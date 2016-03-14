@@ -8,27 +8,56 @@ Initialisation du jeu :
 
 5) En tant que futur joueur, je veux pouvoir me connecter au réseau s'il reste des places
 6) En tant que joueur, je dois pouvoir accéder à tout moment au tableau, voir les cases libres, celles occupées par un canal, etc.
-Phase 1:
+7) En tant que joueur, je veux savoir qui est en train de jouer
+8) En tant que joueur, je veux savoir si c'est à mon tour de jouer
+9) En tant que joueur, je veux savoir à quel tour nous sommes (11 tours en tout (ou 9 si 5 joueurs))
+10) En tant que joueur, je veux savoir à quel phase nous sommes
+11) En tant que joueur, je veux savoir le nombre de canaux qui me restent.
+
+Phase 1: Mise aux enchères des tuiles
 1) En tant que joueur, je veux pouvoir, lors d'une mise aux enchères des tuiles de plantation, faire une mise du montant de mon choix ou passer ainsi que de connaitre les mises déjà faites.
 
-Phase 2:
+Phase 2: Changement du constructeur de canal
 1) En tant que joueur et selon les mises effectuées, je dois devenir le nouveau constructeur de canal.
 2) En tant que constructeur de canal, je veux posséder la figurine du constructeur de canal.
 
-Phase 3:
+Phase 3: Placement des tuiles de plantation
 1) En tant que joueur, je dois pouvoir payer ma mise à la banque.
 2) En tant que joueur, je dois pouvoir voir les tuiles disponibles et en choisir une parmis elles.
 3) En tant que joueur, je dois pouvoir placer une tuile sur un emplacement libre du tableau.
 4) En tant que joueur, je dois pouvoir placer des travailleurs agricoles sur le plateau, ainsi que de savoir combien je dois en placer (nombre indiqué sur la tuile si mise ou un de moins si passe).
 5) En tant que joueur qui a fait la mise la plus forte dans une partie à 3 joueurs, je veux placer la quatrième tuile de manière adjacente à une tuile non désertique déjà posée sur le plateau.
 
-Phase 4:
+Phase 4:Le constructeur de canal place un canal d'irrigation
 
-Phase 5:
+1) En tant que joueur possédant la figurine du constructeur, je dois pouvoir placer un canal d'irrigation sur une case libre.
+2) En tant que joueur non constructeur de canal, je dois pouvoir choisir entre passer et tenter de soudoyer le constructeur de canal.
+3) En tant que soudoyeur, je peux placer un canal sur un double segment non irrigué et proposer une offre en escudos, ou je peux soutenir une offre précédente en proposant des escudos supplémentaires.
+4) En tant que constructeur, je peux voir les offres qui me sont faites.
+5) En tant que constructeur ayant des offres, je peux refuser les offres. Je dois pouvoir choisir alors un emplacement libre non sujet à une offre, et je dois payer à la banque le montant total de la plus grosse offre + 1 escudo.
+6) En tant que constructeur ayant des offres, je peux accepter une des offres. Je place alors un canal bleu sur l'emplacement de l'offre.
+7) En tant que joueur dont l'offre a été acceptée, je dois payer le montant au constructeur.
 
-Phase 6:
 
-Phase 7:
+Phase 5: Irrigation complémentaire
+1) En tant que joueur possédant encore un canal bleu, je veux pouvoir choisir de le placer sur un double segment non irrigué du plateau, si aucun joueur avant moi n'en a déjà placé
+
+Phase 6: Sécheresse
+1) En tant que joueur, je dois pouvoir récupérer mes travailleurs agricoles s'ils sont situés sur une tuile non adjacente à un canal bleu et être informé du nombre de travailleurs à ma disposition.
+2) En tant que joueur, je dois pouvoir accéder au nouveau tableau de jeu, après que les tuiles non adjacentes à un canal bleu aient été retournées côté désert
+
+Phase 7: Revenus
+1) En tant que joueur, je veux pouvoir recevoir 3 escudo et être informé de mon nouveau solde.
+
+Fin de partie:
+	Ultime sécheresse :
+	1) En tant que joueur, je dois pouvoir voir le nouveau plateau de jeu: les parcelles non irriguées deviennent désertiques.
+	Décompte:
+	1) En tant que joueur, je dois recevoir de l'argent venant de mes travailleurs, et savoir combien ils me rapportent. (Chaque travailleur agricole rapporte à son propriétaire autant d’escudos que le nombre de parcelles dans le champ)
+1) En tant que joueur, je veux savoir l'argent possédé par chaque joueur.
+2) En tant que joueur, je veux savoir qui remporte la partie.
+
+--------------------------------------------------------------
 
 Planification des Sprints:
 
