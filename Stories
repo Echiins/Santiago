@@ -1,13 +1,34 @@
 Fichier pour écrire les stories.
 
+Initialisation du jeu :
 1) En tant que joueur je veux pouvoir lire les règles
 2) En tant que joueur je veux pouvoir lancer une partie avec mes amis
 3) En tant que joueur je veux pouvoir quitter une partie à tout moment
 4) Plus à écrire quand on connaitra les règles ou quand on a des idées
 
+5) En tant que futur joueur, je veux pouvoir me connecter au réseau s'il reste des places
+6) En tant que joueur, je dois pouvoir accéder à tout moment au tableau, voir les cases libres, celles occupées par un canal, etc.
+Phase 1:
+1) En tant que joueur, je veux pouvoir, lors d'une mise aux enchères des tuiles de plantation, faire une mise du montant de mon choix ou passer ainsi que de connaitre les mises déjà faites.
 
+Phase 2:
+1) En tant que joueur et selon les mises effectuées, je dois devenir le nouveau constructeur de canal.
+2) En tant que constructeur de canal, je veux posséder la figurine du constructeur de canal.
 
+Phase 3:
+1) En tant que joueur, je dois pouvoir payer ma mise à la banque.
+2) En tant que joueur, je dois pouvoir voir les tuiles disponibles et en choisir une parmis elles.
+3) En tant que joueur, je dois pouvoir placer une tuile sur un emplacement libre du tableau.
+4) En tant que joueur, je dois pouvoir placer des travailleurs agricoles sur le plateau, ainsi que de savoir combien je dois en placer (nombre indiqué sur la tuile si mise ou un de moins si passe).
+5) En tant que joueur qui a fait la mise la plus forte dans une partie à 3 joueurs, je veux placer la quatrième tuile de manière adjacente à une tuile non désertique déjà posée sur le plateau.
 
+Phase 4:
+
+Phase 5:
+
+Phase 6:
+
+Phase 7:
 
 Planification des Sprints:
 
