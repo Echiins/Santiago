@@ -1,1 +1,30 @@
 Fichier pour écrire les stories.
+
+1) En tant que joueur je veux pouvoir lire les règles
+2) En tant que joueur je veux pouvoir lancer une partie avec mes amis
+3) En tant que joueur je veux pouvoir quitter une partie à tout moment
+4) Plus à écrire quand on connaitra les règles ou quand on a des idées
+
+
+
+
+
+Planification des Sprints:
+
+Sprint 1 (Fin le 28/03): -Mise en place d’un réseau ou plusieurs ordinateurs peuvent se connecter (8h)
+-Test du réseau (3h)
+-Apprendre les règles du jeu (2h)
+
+
+Sprint 2 (Fin le 11/04):- Mise en place de l’IHM (12h)
+-Test de l’IHM (3h)
+
+Sprint 3 (Fin le 18/04):-Programmation des fonctions de jeu (2 jours)
+-Test des fonctions de jeu (8h)
+
+Sprint 4 (Fin le 25/04): -Correction et fin des fonctions et de l’IHM (à estimer)
+-Test des fonctions et de l’IHM (à estimer)
+-Ecriture du rapport (6h)
+
+
+(On se laisse une semaine pour vérifier tout au cas ou on à du retard)
