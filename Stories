@@ -63,7 +63,7 @@ Planification des Sprints:
 
 Sprint 1 (Fin le 20/03): 
 -Apprendre les règles du jeu (2h)
--Mise en place de l'UML correspondant à notre programme
+-Construction de l'UML correspondant à notre programme
 
 
 Sprint 2 (Fin le 28/03)
@@ -71,16 +71,16 @@ Sprint 2 (Fin le 28/03)
 -Test du réseau (3h)
 
 
-Sprint 2 (Fin le 11/04):
+Sprint 3 (Fin le 11/04):
 -Mise en place de l’IHM (12h)
 -Test de l’IHM (3h)
 
-Sprint 3 (Fin le 18/04):
+Sprint 4 (Fin le 18/04):
 -Ecriture des tests unitaires ()
 -Programmation des fonctions de jeu (2 jours)
 -Test des fonctions de jeu (8h)
 
-Sprint 4 (Fin le 25/04): 
+Sprint 5 (Fin le 25/04): 
 -Correction et fin des fonctions et de l’IHM (à estimer)
 -Test des fonctions et de l’IHM (à estimer)
 -Ecriture du rapport (6h)
