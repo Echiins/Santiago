@@ -15,47 +15,47 @@ Initialisation du jeu :
 11) En tant que joueur, je veux savoir le nombre de canaux qui me restent.
 
 Phase 1: Mise aux enchères des tuiles
-1) En tant que joueur, je veux pouvoir, lors d'une mise aux enchères des tuiles de plantation, faire une mise du montant de mon choix ou passer ainsi que de connaitre les mises déjà faites.
+12) En tant que joueur, je veux pouvoir, lors d'une mise aux enchères des tuiles de plantation, faire une mise du montant de mon choix ou passer ainsi que de connaitre les mises déjà faites.
 
 Phase 2: Changement du constructeur de canal
-1) En tant que joueur et selon les mises effectuées, je dois devenir le nouveau constructeur de canal.
-2) En tant que constructeur de canal, je veux posséder la figurine du constructeur de canal.
+13) En tant que joueur et selon les mises effectuées, je dois devenir le nouveau constructeur de canal.
+14) En tant que constructeur de canal, je veux posséder la figurine du constructeur de canal.
 
 Phase 3: Placement des tuiles de plantation
-1) En tant que joueur, je dois pouvoir payer ma mise à la banque.
-2) En tant que joueur, je dois pouvoir voir les tuiles disponibles et en choisir une parmis elles.
-3) En tant que joueur, je dois pouvoir placer une tuile sur un emplacement libre du tableau.
-4) En tant que joueur, je dois pouvoir placer des travailleurs agricoles sur le plateau, ainsi que de savoir combien je dois en placer (nombre indiqué sur la tuile si mise ou un de moins si passe).
-5) En tant que joueur qui a fait la mise la plus forte dans une partie à 3 joueurs, je veux placer la quatrième tuile de manière adjacente à une tuile non désertique déjà posée sur le plateau.
+15) En tant que joueur, je dois pouvoir payer ma mise à la banque.
+16) En tant que joueur, je dois pouvoir voir les tuiles disponibles et en choisir une parmis elles.
+17) En tant que joueur, je dois pouvoir placer une tuile sur un emplacement libre du tableau.
+18) En tant que joueur, je dois pouvoir placer des travailleurs agricoles sur le plateau, ainsi que de savoir combien je dois en placer (nombre indiqué sur la tuile si mise ou un de moins si passe).
+19) En tant que joueur qui a fait la mise la plus forte dans une partie à 3 joueurs, je veux placer la quatrième tuile de manière adjacente à une tuile non désertique déjà posée sur le plateau.
 
 Phase 4:Le constructeur de canal place un canal d'irrigation
 
-1) En tant que joueur possédant la figurine du constructeur, je dois pouvoir placer un canal d'irrigation sur une case libre.
-2) En tant que joueur non constructeur de canal, je dois pouvoir choisir entre passer et tenter de soudoyer le constructeur de canal.
-3) En tant que soudoyeur, je peux placer un canal sur un double segment non irrigué et proposer une offre en escudos, ou je peux soutenir une offre précédente en proposant des escudos supplémentaires.
-4) En tant que constructeur, je peux voir les offres qui me sont faites.
-5) En tant que constructeur ayant des offres, je peux refuser les offres. Je dois pouvoir choisir alors un emplacement libre non sujet à une offre, et je dois payer à la banque le montant total de la plus grosse offre + 1 escudo.
-6) En tant que constructeur ayant des offres, je peux accepter une des offres. Je place alors un canal bleu sur l'emplacement de l'offre.
-7) En tant que joueur dont l'offre a été acceptée, je dois payer le montant au constructeur.
+20) En tant que joueur possédant la figurine du constructeur, je dois pouvoir placer un canal d'irrigation sur une case libre.
+21) En tant que joueur non constructeur de canal, je dois pouvoir choisir entre passer et tenter de soudoyer le constructeur de canal.
+22) En tant que soudoyeur, je peux placer un canal sur un double segment non irrigué et proposer une offre en escudos, ou je peux soutenir une offre précédente en proposant des escudos supplémentaires.
+23) En tant que constructeur, je peux voir les offres qui me sont faites.
+24) En tant que constructeur ayant des offres, je peux refuser les offres. Je dois pouvoir choisir alors un emplacement libre non sujet à une offre, et je dois payer à la banque le montant total de la plus grosse offre + 1 escudo.
+25) En tant que constructeur ayant des offres, je peux accepter une des offres. Je place alors un canal bleu sur l'emplacement de l'offre.
+26) En tant que joueur dont l'offre a été acceptée, je dois payer le montant au constructeur.
 
 
 Phase 5: Irrigation complémentaire
-1) En tant que joueur possédant encore un canal bleu, je veux pouvoir choisir de le placer sur un double segment non irrigué du plateau, si aucun joueur avant moi n'en a déjà placé
+27) En tant que joueur possédant encore un canal bleu, je veux pouvoir choisir de le placer sur un double segment non irrigué du plateau, si aucun joueur avant moi n'en a déjà placé
 
 Phase 6: Sécheresse
-1) En tant que joueur, je dois pouvoir récupérer mes travailleurs agricoles s'ils sont situés sur une tuile non adjacente à un canal bleu et être informé du nombre de travailleurs à ma disposition.
-2) En tant que joueur, je dois pouvoir accéder au nouveau tableau de jeu, après que les tuiles non adjacentes à un canal bleu aient été retournées côté désert
+28) En tant que joueur, je dois pouvoir récupérer mes travailleurs agricoles s'ils sont situés sur une tuile non adjacente à un canal bleu et être informé du nombre de travailleurs à ma disposition.
+29) En tant que joueur, je dois pouvoir accéder au nouveau tableau de jeu, après que les tuiles non adjacentes à un canal bleu aient été retournées côté désert
 
 Phase 7: Revenus
-1) En tant que joueur, je veux pouvoir recevoir 3 escudo et être informé de mon nouveau solde.
+30) En tant que joueur, je veux pouvoir recevoir 3 escudo et être informé de mon nouveau solde.
 
 Fin de partie:
 	Ultime sécheresse :
-	1) En tant que joueur, je dois pouvoir voir le nouveau plateau de jeu: les parcelles non irriguées deviennent désertiques.
+	31) En tant que joueur, je dois pouvoir voir le nouveau plateau de jeu: les parcelles non irriguées deviennent désertiques.
 	Décompte:
-	1) En tant que joueur, je dois recevoir de l'argent venant de mes travailleurs, et savoir combien ils me rapportent. (Chaque travailleur agricole rapporte à son propriétaire autant d’escudos que le nombre de parcelles dans le champ)
-1) En tant que joueur, je veux savoir l'argent possédé par chaque joueur.
-2) En tant que joueur, je veux savoir qui remporte la partie.
+	32) En tant que joueur, je dois recevoir de l'argent venant de mes travailleurs, et savoir combien ils me rapportent. (Chaque travailleur agricole rapporte à son propriétaire autant d’escudos que le nombre de parcelles dans le champ)
+33) En tant que joueur, je veux savoir l'argent possédé par chaque joueur.
+34) En tant que joueur, je veux savoir qui remporte la partie.
 
 --------------------------------------------------------------
 
