@@ -13,15 +13,13 @@ public class Serveur {
 	public static void main (String[]args)  throws UnknownHostException, RemoteException, MalformedURLException{
 		
         String host=getLocalHost().getHostAddress();
-
-        
         System.out.println("[SERVEUR : "+host+"]");
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
 
         System.setProperty("java.rmi.server.hostname",host);
         
-        Partie server=new Partie();
+        Partie server=new Partie(1,0,0,new Plateau(1,4,5),new Banque(1));
         Naming.rebind("rmi://"+host+":5755/jeu",server);
 
 
