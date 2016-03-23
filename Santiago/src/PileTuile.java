@@ -1,11 +1,13 @@
+import java.util.List;
+
 
 
 
 public class PileTuile {
 	private int idPiletuile;
-	private List<Tuile> tuiles;
+	private List<TuilePlantation> tuiles;
 	public PileTuile(int idPiletuile){
-	 this.idPiletuiles=idPiletuile;
+	 this.idPiletuile=idPiletuile;
 	}
 
 }

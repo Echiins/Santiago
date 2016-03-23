@@ -13,7 +13,7 @@ public class TuilePlantation {
 		this.idPlantation=idPlantation;
 		this.SourceX=SourceX;
 		this.SourceY=SourceY;
-		this.PileTuile=pileTuile;
+		this.pileTuile=pileTuile;
 		this.dessert=dessert;
 	}
 	
