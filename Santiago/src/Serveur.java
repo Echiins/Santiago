@@ -1,4 +1,43 @@
 
+import static java.net.InetAddress.getLocalHost;
+import java.net.MalformedURLException;
+import java.net.UnknownHostException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+
+
 public class Serveur {
 
+	
+	public static void main (String[]args)  throws UnknownHostException, RemoteException, MalformedURLException{
+		
+        String host=getLocalHost().getHostAddress();
+
+        
+        System.out.println("[SERVEUR : "+host+"]");
+        LocateRegistry.createRegistry(5755);
+        System.setSecurityManager(new SecurityManager());
+
+        System.setProperty("java.rmi.server.hostname",host);
+        
+        Partie server=new Partie();
+        Naming.rebind("rmi://"+host+":5755/jeu",server);
+
+
+
+        int i=0;
+        while (true){
+        	i++; if(i==1000000000){System.out.println("En attente de trois joueurs minimum...");}
+               if(server.getClient().size()>2){
+            	   break;
+                }
+        }
+        
+        System.out.println("Vous êtes maintenant trois !");
+
+        
+        
+        
+	}
 }
