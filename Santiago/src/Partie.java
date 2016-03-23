@@ -12,12 +12,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private Banque banque;
 	private ArrayList<PartieInterface> liste_joueurs=null;
 	
-	Partie(int idPartie,int tour,int phase, Plateau plateau,Banque banque) throws RemoteException, UnknownHostException {
-		this.idPartie=idPartie;
-		this.tour=tour;
-		this.phase=phase;
-		this.plateau=plateau;
-		this.banque=banque;
+	Partie() throws RemoteException, UnknownHostException {
 		this.liste_joueurs=new ArrayList<PartieInterface>();
 	}
 

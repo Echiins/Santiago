@@ -1,5 +1,4 @@
-import java.util.List;
-
+import classes.Damage;
 
 
 
@@ -10,11 +9,13 @@ public class Plateau {
 	private int sourceX;
 	private int sourceY;
 	private List<Parcelle> parcelles;
-	private List<Fosse> fossés;
+	private List<Fossé> fossés;
+	private Partie partie;
 	
-	public Plateau(int idPlateau,int sourceX,int sourceY){
+	public Plateau(int idPlateau,int sourceX,int source,Partie partie){
 		this.idPlateau=idPlateau;
 		this.sourceX=sourceX;
-		this.sourceY=sourceY;	
+		this.source=source;
+		this.partie=partie;	
 	}
 }
