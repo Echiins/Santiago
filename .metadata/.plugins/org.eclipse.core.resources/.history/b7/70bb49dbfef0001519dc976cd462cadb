@@ -28,8 +28,7 @@ public class Serveur {
 
         int i=0;
         while (true){
-        	i++; 
-        	if(i==1000000000){System.out.println("En attente de trois joueurs minimum...");}
+        	i++; if(i==1000000000){System.out.println("En attente de trois joueurs minimum...");}
                if(server.getClient().size()>2){
             	   break;
                 }
