@@ -5,7 +5,11 @@ import java.util.ArrayList;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
 
-
+	private int idPartie;
+	private int tour;
+	private int phase;
+	private Plateau plateau;
+	private Banque banque;
 	private ArrayList<PartieInterface> liste_joueurs=null;
 	
 	Partie() throws RemoteException, UnknownHostException {

@@ -6,6 +6,29 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
+private int idJoueur;
+private String nomJoueur;
+//INUTIL, il aura toujours son canal
+private int canalperso;
+private boolean canalbleu;
+private int cagnotte;
+private int nbTAG;
+private int rang;
+private boolean estConstructeurdecanal;
+private Partie partie;
+
+public Joueur(int idJoueur, String nomJoueur,int canalperso,boolean canalbleu,int cagnotte,nbTAG, int rang, boolean estConstructeurdecanal,Partie partie){
+	this.idJoueur=idJoueur;
+	this.String nomJoueur=String nomJoueur;
+	this.canalperso=canalperso;
+	this.canalbleu=canalbleu;
+	this.cagnotte=cagnotte;
+	this.nbTAG=nbTAG;
+	this.rang=rang;
+	this.estConstructeurdecanal=estConstructeurdecanal;
+	this.partie=partie;
+}
+
 public class Joueur {
 	
 	public static void main (String[]args) throws RemoteException, MalformedURLException, NotBoundException, UnknownHostException{
