@@ -7,7 +7,7 @@ public class Plateau {
 	private int sourceX;
 	private int sourceY;
 	private ArrayList<Parcelle> parcelles;
-	private ArrayList<Fosse> fosses;
+	private ArrayList<Fossé> fosses;
 	private Partie partie;
 	
 	public Plateau(int idPlateau,int sourceX,int sourceY,Partie partie){
