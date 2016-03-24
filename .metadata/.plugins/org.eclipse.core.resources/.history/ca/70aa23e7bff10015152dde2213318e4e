@@ -7,7 +7,7 @@ public class PileTuile {
 	
 	public PileTuile(int idPiletuile){
 		
-	 this.idPiletuile=idPiletuile;
+	 this.idPiletuiles=idPiletuile;
 	 
 	}
 

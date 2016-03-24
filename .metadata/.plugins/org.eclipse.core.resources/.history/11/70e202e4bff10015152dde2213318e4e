@@ -3,12 +3,8 @@ import java.util.ArrayList;
 public class PileTuile {
 	private int idPiletuile;
 	private ArrayList<TuilePlantation> tuiles;
-	
-	
 	public PileTuile(int idPiletuile){
-		
-	 this.idPiletuile=idPiletuile;
-	 
+	 this.idPiletuiles=idPiletuile;
 	}
 
 }

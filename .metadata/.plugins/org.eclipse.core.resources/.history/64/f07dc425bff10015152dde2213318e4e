@@ -36,7 +36,7 @@ public class Serveur {
 	public static void main (String[]args)  throws Exception{
 		
 		//String host=getLocalHost().getHostAddress();
-		//String host = getAddress().getHostAddress();
+		String host = getAddress().getHostAddress();
 		//String host="10.10.164.126";
 		//String host="0.0.0.0";
        
@@ -44,8 +44,10 @@ public class Serveur {
 		
 		
 		
+<<<<<<< Updated upstream
         String host=getLocalHost().getHostAddress();
         System.out.println("[SERVEUR : "+host+"]");
+=======
 		/*
 		 * 
 		 * 
@@ -61,12 +63,13 @@ public class Main {
 	 */
         
          System.out.println("[SERVEUR : "+host+"]");
+>>>>>>> Stashed changes
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
 
         System.setProperty("java.rmi.server.hostname",host);
         
-        Partie server=new Partie();
+        Partie server=new Partie(1,0,0,new Plateau(1,4,5),new Banque(1));
         Naming.rebind("rmi://"+host+":5755/jeu",server);
 
 

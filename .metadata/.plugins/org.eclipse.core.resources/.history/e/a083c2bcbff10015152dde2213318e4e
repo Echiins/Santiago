@@ -23,16 +23,18 @@ public class Joueur {
 	private int nbTAG;
 	private int rang;
 	private boolean estConstructeurdecanal;
+	private Partie partie;
 	
-	public Joueur(int idJoueur, String nomJoueur,int canalperso,boolean canalbleu,int cagnotte,int nbTAG, int rang, boolean estConstructeurdecanal){
+	public Joueur(int idJoueur, String nomJoueur,int canalperso,boolean canalbleu,int cagnotte,nbTAG, int rang, boolean estConstructeurdecanal,Partie partie){
 		this.idJoueur=idJoueur;
-		this.nomJoueur=nomJoueur;
+		this.nomJoueur=String nomJoueur;
 		this.canalperso=canalperso;
 		this.canalbleu=canalbleu;
 		this.cagnotte=cagnotte;
 		this.nbTAG=nbTAG;
 		this.rang=rang;
 		this.estConstructeurdecanal=estConstructeurdecanal;
+		this.partie=partie;
 	}
 	
 	public static void main (String[]args) throws RemoteException, MalformedURLException, NotBoundException, UnknownHostException{

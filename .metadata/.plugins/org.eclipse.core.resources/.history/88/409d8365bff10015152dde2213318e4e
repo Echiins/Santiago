@@ -13,7 +13,7 @@ public class BilletBanque {
 		this.idBilletBanque=idBilletBanque;
 		this.couleur=couleur;
 		this.montant=montant;
-		this.nbbillets=nbbillets;
+		this.nbbillet=nbbillet;
 	}
 	//_____________________GETTER/SETTER_________________________
 }
