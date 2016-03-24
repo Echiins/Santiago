@@ -1,4 +1,6 @@
 
+import static java.net.InetAddress.getLocalHost;
+
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
@@ -32,6 +34,11 @@ public Joueur(int idJoueur, String nomJoueur,int canalperso,boolean canalbleu,in
 public class Joueur {
 	
 	public static void main (String[]args) throws RemoteException, MalformedURLException, NotBoundException, UnknownHostException{
+		
+		String myHost= getLocalHost().getHostAddress();
+		
+		System.setProperty("java.rmi.server.hostname",myHost);
+		
 		System.out.println("[JOUEUR]");
 		
 

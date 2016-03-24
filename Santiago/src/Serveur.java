@@ -1,19 +1,69 @@
-
 import static java.net.InetAddress.getLocalHost;
+
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.NetworkInterface;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.Enumeration;
 
 
 public class Serveur {
 
+	public static  InetAddress getAddress() throws Exception {
+		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
+                       .getNetworkInterfaces();
+               while (networkInterfaces.hasMoreElements()) {
+                   NetworkInterface ni = (NetworkInterface) networkInterfaces
+                           .nextElement();
+                   Enumeration<InetAddress> nias = ni.getInetAddresses();
+                   while(nias.hasMoreElements()) {
+                       InetAddress ia= (InetAddress) nias.nextElement();
+                       if (!ia.isLinkLocalAddress() 
+                        && !ia.isLoopbackAddress()
+                        && ia instanceof Inet4Address) {
+                           return ia;
+                       }
+                   }
+               }
+		return null;
+	}
 	
-	public static void main (String[]args)  throws UnknownHostException, RemoteException, MalformedURLException{
+	public static void main (String[]args)  throws Exception{
 		
+		//String host=getLocalHost().getHostAddress();
+		String host = getAddress().getHostAddress();
+		//String host="10.10.164.126";
+		//String host="0.0.0.0";
+       
+		
+		
+		
+		
+<<<<<<< Updated upstream
         String host=getLocalHost().getHostAddress();
         System.out.println("[SERVEUR : "+host+"]");
+=======
+		/*
+		 * 
+		 * 
+		 * import java.net.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception{
+		System.out.println(getAddress());
+	}
+
+}
+	 */
+        
+         System.out.println("[SERVEUR : "+host+"]");
+>>>>>>> Stashed changes
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
 
@@ -35,8 +85,5 @@ public class Serveur {
         
         System.out.println("Vous êtes maintenant trois !");
 
-        
-        
-        
 	}
 }
