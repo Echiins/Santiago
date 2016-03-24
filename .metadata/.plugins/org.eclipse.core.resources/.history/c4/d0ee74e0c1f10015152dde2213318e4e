@@ -1,15 +1,11 @@
 
 import static java.net.InetAddress.getLocalHost;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.Enumeration;
 import java.util.Scanner;
 
 
@@ -39,28 +35,9 @@ public class Joueur {
 		this.estConstructeurdecanal=estConstructeurdecanal;
 	}
 	
-	public static  InetAddress getAddress() throws Exception {
-		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
-                      .getNetworkInterfaces();
-              while (networkInterfaces.hasMoreElements()) {
-                  NetworkInterface ni = (NetworkInterface) networkInterfaces
-                          .nextElement();
-                  Enumeration<InetAddress> nias = ni.getInetAddresses();
-                  while(nias.hasMoreElements()) {
-                      InetAddress ia= (InetAddress) nias.nextElement();
-                      if (!ia.isLinkLocalAddress() 
-                       && !ia.isLoopbackAddress()
-                       && ia instanceof Inet4Address) {
-                          return ia;
-                      }
-                  }
-              }
-		return null;
-	}
-	
-	public static void main (String[]args) throws Exception{
+	public static void main (String[]args) throws RemoteException, MalformedURLException, NotBoundException, UnknownHostException{
 		
-		String myHost= getAddress().getHostAddress();
+		String myHost= getLocalHost().getHostAddress();
 		
 		System.setProperty("java.rmi.server.hostname",myHost);
 		

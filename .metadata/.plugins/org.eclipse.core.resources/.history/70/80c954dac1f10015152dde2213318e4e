@@ -35,9 +35,31 @@ public class Serveur {
 	
 	public static void main (String[]args)  throws Exception{
 		
-		String host = getAddress().getHostAddress();
+		//String host=getLocalHost().getHostAddress();
+		//String host = getAddress().getHostAddress();
+		//String host="10.10.164.126";
+		//String host="0.0.0.0";
+       
+		
+		
+		
+		
+        String host=getLocalHost().getHostAddress();
+        System.out.println("[SERVEUR : "+host+"]");
+		/*
+		 * 
+		 * 
+		 * import java.net.*;
+import java.util.*;
 
- 
+public class Main {
+	public static void main(String[] args) throws Exception{
+		System.out.println(getAddress());
+	}
+
+}
+	 */
+        
          System.out.println("[SERVEUR : "+host+"]");
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
