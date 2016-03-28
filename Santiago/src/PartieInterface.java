@@ -19,5 +19,13 @@ public interface PartieInterface extends java.rmi.Remote{
 	public void quitterPartie() throws RemoteException;
 	public int getMaxTour() throws RemoteException;
 	public void setMaxTour(int maxTour) throws RemoteException;
-	void joueurPhase() throws RemoteException;
+	public void jouerPhase() throws RemoteException;
+	public void phase0() throws RemoteException;
+	public void phase1() throws RemoteException;
+	public void phase2() throws RemoteException;
+	public void phase3() throws RemoteException;
+	public void phase4() throws RemoteException;
+	public void phase5() throws RemoteException;
+	public void phase6() throws RemoteException;
+	public void phase7() throws RemoteException;
 }

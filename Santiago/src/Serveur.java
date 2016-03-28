@@ -49,21 +49,7 @@ public class Serveur {
         Naming.rebind("rmi://"+host+":5755/jeu",server);
 
         System.out.println("La partie est automatiquement lancée si 5 joueurs sont connectés. Sinon, vous pouvez jouer à partir de trois joueurs en utilisant la commande GO");
-        /*
-        int i=0;
-        while (true){
-        	i++; 
-        	if(i==1000000000){System.out.println("En attente de trois joueurs minimum...");}
-               if(server.getClient().size()>2){
-            	   break;
-                }
-        }
-        
-        System.out.println("Vous etes maintenant trois !");
-        
-        System.out.println("On attend 5 joueurs ou que quelqu'un veuille commencer la partie");
-        System.out.println(server.getStart());
-        */
+
         int i=0;
         while(true){ // ON COMMENCE MAINTENANT LA PARTIE
         if(server.getStart()==false){
@@ -80,7 +66,7 @@ public class Serveur {
         		}
         	}
 			//La on est censé commencer la partie avec les 'maxTour' tours, chacun avec les 7 phases
-			server.joueurPhase(); //Cette méthode comprendra tout le lancement du jeu
+			server.jouerPhase(); //Cette méthode comprendra tout le lancement du jeu
 			
         	server.tourSuivant();
         	if(server.getTour()>server.getMaxTour()){ //le tour 12 correspond au tour de fin de la partie

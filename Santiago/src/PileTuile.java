@@ -11,4 +11,16 @@ public class PileTuile {
 	 
 	}
 
+
+	public PileTuile() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void add(TuilePlantation t){
+		this.tuiles.add(t);
+	}
+	public void addAll(ArrayList<TuilePlantation> l){
+		this.tuiles.addAll(l);
+	}
+	
 }
