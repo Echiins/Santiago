@@ -1,6 +1,7 @@
 
 import static java.net.InetAddress.getLocalHost;
 
+import java.io.Serializable;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
@@ -16,7 +17,7 @@ import java.util.Scanner;
 
 
 
-public class Joueur {
+public class Joueur implements Serializable{
 	
 	private int idJoueur;
 	private String nomJoueur;
@@ -27,16 +28,18 @@ public class Joueur {
 	private int nbTAG;
 	private int rang;
 	private boolean estConstructeurdecanal;
+	private String couleur;
 	
-	public Joueur(int idJoueur, String nomJoueur,int canalperso,boolean canalbleu,int cagnotte,int nbTAG, int rang, boolean estConstructeurdecanal){
+	public Joueur(int idJoueur, String nomJoueur, String couleur, int rang){
 		this.idJoueur=idJoueur;
 		this.nomJoueur=nomJoueur;
-		this.canalperso=canalperso;
-		this.canalbleu=canalbleu;
-		this.cagnotte=cagnotte;
-		this.nbTAG=nbTAG;
+		this.canalperso=1;
+		this.canalbleu=true;
+		this.cagnotte=10;
+		this.nbTAG=22;
 		this.rang=rang;
-		this.estConstructeurdecanal=estConstructeurdecanal;
+		this.estConstructeurdecanal=false;
+		this.couleur=couleur;
 	}
 	
 	public Joueur(){}

@@ -32,6 +32,7 @@ public class Serveur {
                }
 		return null;
 	}
+
 	
 	public static void main (String[]args)  throws Exception{
 		
@@ -47,8 +48,8 @@ public class Serveur {
         Partie server=new Partie();
         Naming.rebind("rmi://"+host+":5755/jeu",server);
 
-
-
+        System.out.println("La partie est automatiquement lancée si 5 joueurs sont connectés. Sinon, vous pouvez jouer à partir de trois joueurs en utilisant la commande GO");
+        /*
         int i=0;
         while (true){
         	i++; 
@@ -58,7 +59,43 @@ public class Serveur {
                 }
         }
         
-        System.out.println("Vous Ãªtes maintenant trois !");
-
+        System.out.println("Vous etes maintenant trois !");
+        
+        System.out.println("On attend 5 joueurs ou que quelqu'un veuille commencer la partie");
+        System.out.println(server.getStart());
+        */
+        int i=0;
+        while(true){ // ON COMMENCE MAINTENANT LA PARTIE
+        if(server.getStart()==false){
+        	i++; 
+        	if(i==1000000000){System.out.println("En attente de joueurs...");}
+        }
+        if(server.getStart()){
+        	if(server.getMaxTour()==0){
+        		if(server.getClient().size()==5){
+        			server.setMaxTour(11);
+        		}
+        		else{
+        			server.setMaxTour(9);
+        		}
+        	}
+			//La on est censé commencer la partie avec les 'maxTour' tours, chacun avec les 7 phases
+			server.joueurPhase(); //Cette méthode comprendra tout le lancement du jeu
+			
+        	server.tourSuivant();
+        	if(server.getTour()>server.getMaxTour()){ //le tour 12 correspond au tour de fin de la partie
+			//Après les x tours (11 si 5 joueurs sinon 9 tours) : fin de la partie ->
+        	
+	        	//Ultime secheresse
+	        	
+	        	//décompte
+	        	
+	        	//resultats
+	        	
+	        	//fin partie
+        	server.quitterPartie(); // prend en compte la sauvegarde
+        	}
+        }
+        }
 	}
 }

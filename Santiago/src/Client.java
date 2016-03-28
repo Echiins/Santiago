@@ -56,9 +56,36 @@ public class Client {
 	    System.setSecurityManager(new SecurityManager());
 	    PartieInterface client=new Partie();
 	    PartieInterface server=(PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
+	    System.out.println("Connection au serveur effectuée");
 	    server.setClient(client);
 
-	    System.out.println("Connection effectuÃ©e");
+	    
+	    //Création joueur + ajout
+	    int nbJoueurs=server.getClient().size();
+	    if(nbJoueurs<=5){ //il faudrait des verrous !!!!
+	    	System.out.println("Bienvenue dans cette partie veuillez indiquer quelques informations:\nPseudo:");
+	    	Scanner scNom=new Scanner(System.in);
+			String nom = scNom.nextLine();
+			System.out.println("Votre couleur sera le "+server.getCouleur(nbJoueurs-1));
+			Joueur j=new Joueur(nbJoueurs,nom,server.getCouleur(nbJoueurs-1),nbJoueurs);
+			server.addJoueur(j);
+			
+			//On demande au client s'il veut lancer la partie
+			System.out.println("Tapez GO pour commencer la partie");
+			while(server.getStart()==false){
+				Scanner scGo=new Scanner(System.in);
+				String go=scGo.nextLine();
+				if(go.equals("GO")){
+					System.out.println("........");
+					server.lancerLaPartie();
+				}
+			}
+
+			
+			
+	    }
+	    
+	    
 
 	}
 	
