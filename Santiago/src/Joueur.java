@@ -45,7 +45,15 @@ public class Joueur implements Serializable{
 	public Joueur(){}
 	
 
-	
+	public boolean getConstructeur(){
+		return this.estConstructeurdecanal;
+	}
+	public void devenirConstructeur(){
+		this.estConstructeurdecanal=true;
+	}
+	public void nEstPlusConstructeur(){
+		this.estConstructeurdecanal=false;
+	}
 	
 	
 }
