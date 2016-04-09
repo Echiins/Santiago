@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="278.0" prefWidth="300.0" style="-fx-background-color: #BC8F8F;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="-299.0" layoutY="-250.0" prefHeight="500.0" prefWidth="300.0" style="-fx-border-width: #8470FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <TextField alignment="TOP_CENTER" editable="false" style="-fx-padding: 15px;" text="Fiche Joueur" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Lucida Bright Demibold" size="19.0" />
+               </font></TextField>
+         </top>
+         <center>
+            <SplitPane dividerPositions="0.2996845425867508" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #8FBC8F;">
+                     <children>
+                        <VBox layoutX="109.0" layoutY="-42.0" prefHeight="89.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField style="-fx-padding: 10px;" text="Ma cagnotte" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-padding: 15px;" />
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFFFF0;">
+                     <children>
+                        <SplitPane dividerPositions="0.5466101694915254" layoutX="82.0" layoutY="33.0" orientation="VERTICAL" prefHeight="356.0" prefWidth="298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFFFF0;">
+                                 <children>
+                                    <VBox layoutX="23.0" layoutY="-53.0" prefHeight="111.0" prefWidth="296.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <TextField text="Mes travailleurs" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField prefHeight="29.0" prefWidth="68.0" text="3 x" />
+                                                <ImageView fitHeight="71.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../Documents/images%20Santiago/TBeige.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children></AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <SplitPane layoutX="68.0" orientation="VERTICAL" prefHeight="231.0" prefWidth="296.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #FFFFFF;">
+                                             <children>
+                                                <VBox layoutX="90.0" layoutY="-74.0" prefHeight="90.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <TextField text="Mes canaux" />
+                                                      <HBox prefHeight="33.0" prefWidth="251.0">
+                                                         <children>
+                                                            <ImageView fitHeight="34.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../Documents/images%20Santiago/CBeige.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <TextField alignment="CENTER" editable="false" prefHeight="40.0" prefWidth="57.0" text="et 3 x" />
+                                                            <ImageView fitHeight="68.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../../../Documents/images%20Santiago/CanalBleu.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
