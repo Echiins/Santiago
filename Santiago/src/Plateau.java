@@ -308,28 +308,28 @@ public class Plateau extends Application {
     	t.setStyle("-fx-font-weight: bold;");
     	t.setTextAlignment(TextAlignment.CENTER);
 
-    	Text rdj = new Text("\n- Chaque joueur ach�te aux "
-    			+ "\nench�res des plantations (Pommes de"
+    	Text rdj = new Text("\n- Chaque joueur achète aux "
+    			+ "\nenchères des plantations (Pommes de"
     			+ "\nterre..) et essaye, d'en constituer"
     			+ "\nle plus grand champs possible ! "
-    			+ "\n \n-Pour �viter que les plantations "
+    			+ "\n \n-Pour éviter que les plantations "
     			+ "\nne perdent de leur rendement ou ne "
-    			+ "\nse dess�chent compl�tement, il faut "
+    			+ "\nse desséchent complètement, il faut "
     			+ "\nque vous les irriguiez en les"
-    			+ "\nraccordant au r�seau de canaux."
+    			+ "\nraccordant au réseau de canaux."
     			+ "\nLe versement de pots de vin au "
     			+ "\n constructeur de canaux est "
     			+ "\nindispensable pour obtenir de"
     			+ "\nnouveaux canaux en direction de ses"
-    			+ "\npropres plantations. Plut�t on"
+    			+ "\npropres plantations. Plutôt on"
     			+ "\nirrigue ses plantations, et plus le"
-    			+ "\nchamp (compos� d'une m�me culture) "
+    			+ "\nchamp (composé d'une même culture) "
     			+ "\nest important, plus les rendements, "
     			+ "\net donc les revenus, seront importants."
     			+ "\n\n-Le vainqueur sera le joueur, qui sera "
     			+ "\nle plus habile, dans l'achat des "
     			+ "\nplantations, dans leurs irrigations et"
-    			+ "\ndans le d�veloppement des champs.");
+    			+ "\ndans le développement des champs.");
     	rdj.setFont(Font.font("Lucida Bright", 12));
     	TextFlow tfRDJ = new TextFlow(t,rdj);
     	tfRDJ.setTextAlignment(TextAlignment.JUSTIFY);
@@ -341,7 +341,7 @@ public class Plateau extends Application {
 		primaryStage.setTitle("Santiago");
 		try { 
 		//titre
-			Text titre = new Text("Bienvenu sur Santiago !");
+			Text titre = new Text("Bienvenue sur Santiago !");
 			titre.setStyle("-fx-padding:50px; -fx-color:#1e1e1e;");
 	        titre.setFill(Color.BLACK);
 	        titre.setFont(Font.font("Lucida Bright", 40));
@@ -363,7 +363,7 @@ public class Plateau extends Application {
 	        rootPrincipal.setRight(commun);
 	        TextFlow rdj = left();
 	        rootPrincipal.setLeft(rdj);
-	        Text bottom = new Text("Ce jeu vous a �t� propos� par Aminetou, Cl�ment, Fikoul, Julien et Sarah. Miage repr�sente ! ");
+	        Text bottom = new Text("Ce jeu vous a été proposé par Aminetou, Clément, Fikoul, Julien et Sarah. Miage représente ! ");
 	        rootPrincipal.setBottom(bottom);
 	        
 	        
