@@ -48,7 +48,7 @@ public class Plateau extends Application {
 		}
 		tfTuiles.setPadding(new Insets(0,0,10,0));
 
-		//Création de boutons radio permettant de choisir une tuile
+		//Crï¿½ation de boutons radio permettant de choisir une tuile
 		ToggleGroup groupe = new ToggleGroup();
 		RadioButton tuile1 = new RadioButton();
 		RadioButton tuile2 = new RadioButton();
@@ -67,7 +67,7 @@ public class Plateau extends Application {
         tuile4.setFocusTraversable(false);
         tuile5.setFocusTraversable(false);
 
-        tuile1.setSelected(true);//le piano est l'instrument sélectionné par défaut
+        tuile1.setSelected(true);//le piano est l'instrument sï¿½lectionnï¿½ par dï¿½faut
 		tuiles.add(tuile1,0,1);
 		tuiles.add(tuile2,1,1);
 		tuiles.add(tuile3,2,1);
@@ -194,12 +194,12 @@ public class Plateau extends Application {
     	
     	HBox hbTr1 = new HBox();
     	HBox hbTr2 = new HBox();
-    	VBox vbTr = new VBox(); // contiendra les différentes HBox des travailleurs
+    	VBox vbTr = new VBox(); // contiendra les diffï¿½rentes HBox des travailleurs
     	vbTr.getChildren().addAll(hbTr1,hbTr2);
     	vbTr.setStyle("-fx-padding:15px;");
 
     	
-    	String couleur ="blanc"; //le remplacer par la couleur du joueur
+    	String couleur ="Blanc"; //le remplacer par la couleur du joueur
     	String url ="img/T"+couleur+".png";
     		
     	int nbtravailleurs = 22 ; //nb de travailleurs restant au joueur :
@@ -242,10 +242,10 @@ public class Plateau extends Application {
 
     	vbCanaux.setStyle("-fx-padding:15px;");
     	
-    	boolean possède =true; //le joueur a-t-il encore son canal de couleur?
+    	boolean possede =true; //le joueur a-t-il encore son canal de couleur?
     	String url2 = new String("img/C"+couleur+".png");
     	//ajout du canal de couleur :
-    	if (possède==true){
+    	if (possede==true){
     		Image imTr =new Image(url2);
 			ImageView tr = new ImageView();
 			tr.setImage(imTr);
@@ -265,7 +265,7 @@ public class Plateau extends Application {
 				max=k;
 			}
 			for(int i =1; i<=max ; i++){
-	    		Image imTr =new Image("img/CanalBleu.png");
+	    		Image imTr =new Image("img/Canalbleu.png");
 				ImageView tr = new ImageView();
 				tr.setImage(imTr);
 				hbCanaux1.getChildren().add(tr);					
@@ -308,28 +308,28 @@ public class Plateau extends Application {
     	t.setStyle("-fx-font-weight: bold;");
     	t.setTextAlignment(TextAlignment.CENTER);
 
-    	Text rdj = new Text("\n- Chaque joueur achète aux "
-    			+ "\nenchères des plantations (Pommes de"
+    	Text rdj = new Text("\n- Chaque joueur achï¿½te aux "
+    			+ "\nenchï¿½res des plantations (Pommes de"
     			+ "\nterre..) et essaye, d'en constituer"
     			+ "\nle plus grand champs possible ! "
-    			+ "\n \n-Pour éviter que les plantations "
+    			+ "\n \n-Pour ï¿½viter que les plantations "
     			+ "\nne perdent de leur rendement ou ne "
-    			+ "\nse dessèchent complètement, il faut "
+    			+ "\nse dessï¿½chent complï¿½tement, il faut "
     			+ "\nque vous les irriguiez en les"
-    			+ "\nraccordant au réseau de canaux."
+    			+ "\nraccordant au rï¿½seau de canaux."
     			+ "\nLe versement de pots de vin au "
     			+ "\n constructeur de canaux est "
     			+ "\nindispensable pour obtenir de"
     			+ "\nnouveaux canaux en direction de ses"
-    			+ "\npropres plantations. Plutôt on"
+    			+ "\npropres plantations. Plutï¿½t on"
     			+ "\nirrigue ses plantations, et plus le"
-    			+ "\nchamp (composé d'une même culture) "
+    			+ "\nchamp (composï¿½ d'une mï¿½me culture) "
     			+ "\nest important, plus les rendements, "
     			+ "\net donc les revenus, seront importants."
     			+ "\n\n-Le vainqueur sera le joueur, qui sera "
     			+ "\nle plus habile, dans l'achat des "
     			+ "\nplantations, dans leurs irrigations et"
-    			+ "\ndans le développement des champs.");
+    			+ "\ndans le dï¿½veloppement des champs.");
     	rdj.setFont(Font.font("Lucida Bright", 12));
     	TextFlow tfRDJ = new TextFlow(t,rdj);
     	tfRDJ.setTextAlignment(TextAlignment.JUSTIFY);
@@ -354,7 +354,7 @@ public class Plateau extends Application {
 			VBox partieCommune = tuilesEtJr();
 			AnchorPane commun = new AnchorPane();
 			VBox vbCommun = new VBox();
-			vbCommun.setPadding(new Insets(5,5,5,5)); // ARRËTE LA !!!!!!
+			vbCommun.setPadding(new Insets(5,5,5,5)); // ARRï¿½TE LA !!!!!!
 			vbCommun.getChildren().addAll(partieCommune,ficheJ);
 			ficheJ.setStyle("-fx-padding:15px;");
 			commun.getChildren().add(vbCommun);
@@ -363,7 +363,7 @@ public class Plateau extends Application {
 	        rootPrincipal.setRight(commun);
 	        TextFlow rdj = left();
 	        rootPrincipal.setLeft(rdj);
-	        Text bottom = new Text("Ce jeu vous a été proposé par Aminetou, Clément, Fikoul, Julien et Sarah. Miage représente ! ");
+	        Text bottom = new Text("Ce jeu vous a ï¿½tï¿½ proposï¿½ par Aminetou, Clï¿½ment, Fikoul, Julien et Sarah. Miage reprï¿½sente ! ");
 	        rootPrincipal.setBottom(bottom);
 	        
 	        
