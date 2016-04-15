@@ -5,11 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Classes.Banque;
-import Classes.Joueur;
-import Classes.PileTuile;
-import Classes.Plateau;
-import Classes.TuilePlantation;
+import Classes.*;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
 
@@ -23,13 +19,17 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private ArrayList<String> couleurs = new ArrayList<String>();
 	private boolean start;
 	private int maxTour;
-	private PileTuile pile1=null;
-	private PileTuile pile2=null;
-	private PileTuile pile3=null;
-	private PileTuile pile4=null;
-	private PileTuile pile5=null;
+	private ArrayList<PileTuile> liste_piles=null;
 	
 	
+	public ArrayList<PileTuile> getListe_piles() {
+		return liste_piles;
+	}
+
+	public void setListe_piles(ArrayList<PileTuile> liste_piles) {
+		this.liste_piles = liste_piles;
+	}
+
 	public Partie() throws RemoteException, UnknownHostException {
 		this.liste_joueurs=new ArrayList<Joueur>();
 		this.liste_interface=new ArrayList<PartieInterface>();
@@ -43,7 +43,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.phase=0;
 	}
 
-	@Override
 	public void setClient(PartieInterface client)  throws RemoteException {
 		//this.client=client;
 		if(this.liste_interface.size()<5){
@@ -58,77 +57,72 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 		}
 		else{
-			System.out.println("Déjà  5 joueurs connectés dsl");
+			System.out.println("Dï¿½jï¿½ 5 joueurs connectï¿½s dsl");
 		}
 	}
 	
-	@Override
-    public ArrayList<PartieInterface> getClient() throws RemoteException {
+	public ArrayList<PartieInterface> getClient() throws RemoteException {
         return this.liste_interface;
     }
 	
-	@Override
 	public ArrayList<Joueur> getJoueurs() throws RemoteException{
 		return this.liste_joueurs;
 	}
 	
 
-	@Override
 	public String getCouleur(int i) throws RemoteException {
 		return this.couleurs.get(i);
 	}
 	
-	@Override
 	public void addJoueur(Joueur j) throws RemoteException{
 		this.liste_joueurs.add(j);
 	}
 	
-	@Override
 	public boolean getStart() throws RemoteException{
 		return this.start;
 	}
-	@Override
 	public void lancerLaPartie() throws RemoteException{
-		if(this.liste_joueurs.size()>=3){
+		if(this.liste_joueurs.size()>=3|| this.liste_interface.size()>=3){
 			this.start=true;
 		}
 	}
-	@Override
 	public void quitterPartie() throws RemoteException{
 		this.start=false;
 		//ici sauvegarde XML ou JSON
 	}
 
-	@Override
+	 
 	public int getTour() throws RemoteException{
 		return this.tour;
 	}
 	
-	@Override
+	 
 	public void tourSuivant() throws RemoteException{
 		this.tour++;
 		this.phase=1;
+		this.jouerPhase();
 	}
 	
-	@Override
+	 
 	public int getPhase() throws RemoteException{
 		return this.phase;
 	}
-	@Override
+	 
 	public void phaseSuivante() throws RemoteException{
 		this.phase++;
+		this.jouerPhase();
 	}
 	
-	@Override
+	 
 	public int getMaxTour() throws RemoteException{
 		return this.maxTour;
 	}
-	@Override
+	 
 	public void setMaxTour(int maxTour) throws RemoteException{
 		this.maxTour=maxTour;
 	}
 	
-	@Override
+	 
 	public void jouerPhase() throws RemoteException{ //FONCTION AVEC TOUTES LES PHASES DU JEU
 		switch (this.phase){
 		case 1:
@@ -160,150 +154,251 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		}
 	}
 	
-	@Override
+	//Reorganiser lordre de jeu en fonction de id du constructeur
+	public void resetOrdre(int id){
+		int rang=1;
+		this.liste_joueurs.get(id-1).setRang(rang);
+		
+		while(rang<5){
+			if(id==liste_joueurs.size())
+			{
+				id=1;
+				rang++;
+				this.liste_joueurs.get(id-1).setRang(rang);
+			}
+			else{
+			id++;
+			rang++;
+			this.liste_joueurs.get(id-1).setRang(rang);	
+			}
+		}
+	}
+	
+	public Joueur getConstructeur(){
+		for(int i=0;i<this.liste_joueurs.size();i++){
+			if(this.liste_joueurs.get(i).getConstructeur())
+				return this.liste_joueurs.get(i);
+		}return null;
+	}
+	/**
+	 * 
+	 */
 	public void phase0() throws RemoteException{ 
-		//On crée le tableau de la partie
-		this.plateau=new Plateau(1,5,6);
-		this.plateau.initparcelles();// tableau de parcelle 8X6
+		//On crï¿½e le tableau de la partie
+		plateau=new Plateau(1,5,6);
+		System.out.println("CrÃ©ation Tableau");
+		plateau.initparcelles();// tableau de parcelle 8X6
+		System.out.println("Initialisation parcelles");
 		this.plateau.initfosses();//tableau de fosses 16 premier verticaux, 16 d'apres horizontaux
-		//On choisit aléatoirement le constructeur de canal
+		System.out.println("Initialisation fossÃ©s");
+		//On choisit alï¿½atoirement le constructeur de canal
 		Random r = new Random();
 		int indiceJoueur= r.nextInt(this.liste_joueurs.size());
 		this.liste_joueurs.get(indiceJoueur).devenirConstructeur();
 		//initialisation de la Banque
 		//this.banque=new Banque();
-		//On gère les tuiles de plantations
+		//On gï¿½re les tuiles de plantations
 		
 			//CREATION DES TUILES
 		ArrayList<TuilePlantation> toutesLesTuiles=new ArrayList<TuilePlantation>();
 		for(int id1=1 ;id1<=9; id1++){
-			toutesLesTuiles.add(new TuilePlantation(id1,"rouge","piment"));
+			toutesLesTuiles.add(new TuilePlantation(id1,"piment"));
 		}
 		for(int id2=10 ;id2<=18; id2++){
-			toutesLesTuiles.add(new TuilePlantation(id2,"jaune","banane"));
+			toutesLesTuiles.add(new TuilePlantation(id2,"banane"));
 		}
 		for(int id3=19 ;id3<=27; id3++){
-			toutesLesTuiles.add(new TuilePlantation(id3,"rouge","piment"));
+			toutesLesTuiles.add(new TuilePlantation(id3,"piment"));
 		}
 		for(int id4=28 ;id4<=36; id4++){
-			toutesLesTuiles.add(new TuilePlantation(id4,"rouge","piment"));
+			toutesLesTuiles.add(new TuilePlantation(id4,"piment"));
 		}
 		for(int id5=37 ;id5<=45; id5++){
-			toutesLesTuiles.add(new TuilePlantation(id5,"rouge","piment"));
+			toutesLesTuiles.add(new TuilePlantation(id5,"piment"));
 		}
+		
 			//Creation des piles
 		if(this.liste_joueurs.size()==5){
-			while(! toutesLesTuiles.isEmpty()){
-				this.pile1=new PileTuile();
+			this.liste_piles=new ArrayList<PileTuile>(5);
+			PileTuile pile1,pile2,pile3,pile4,pile5;
+			
+				pile1=new PileTuile(1);
 				for(int indicePile1=1;indicePile1<=9;indicePile1++){
-					Random rPile1=new Random();
-					int indice1=rPile1.nextInt(toutesLesTuiles.size());
-					this.pile1.add(toutesLesTuiles.get(indice1));
+					int indice1=(int)Math.random()*(toutesLesTuiles.size()-0);
+					pile1.getTuiles().add(toutesLesTuiles.get(indice1));
 					toutesLesTuiles.remove(indice1);
 					
-				}
-				this.pile2=new PileTuile();
+				} this.liste_piles.add(pile1);
+				pile2=new PileTuile(2);
 				for(int indicePile2=1;indicePile2<=9;indicePile2++){
-					Random rPile2=new Random();
-					int indice2=rPile2.nextInt(toutesLesTuiles.size());
-					this.pile2.add(toutesLesTuiles.get(indice2));
+					int indice2=(int)(Math.random()*(toutesLesTuiles.size()-0));
+					pile2.getTuiles().add(toutesLesTuiles.get(indice2));
 					toutesLesTuiles.remove(indice2);
-				}
-				this.pile3=new PileTuile();
+				}this.liste_piles.add(pile2);
+				
+				pile3=new PileTuile(3);
 				for(int indicePile3=1;indicePile3<=9;indicePile3++){
-					Random rPile3=new Random();
-					int indice3=rPile3.nextInt(toutesLesTuiles.size());
-					this.pile3.add(toutesLesTuiles.get(indice3));
+					int indice3=(int)(Math.random()*(toutesLesTuiles.size()-0));
+					pile3.getTuiles().add(toutesLesTuiles.get(indice3));
 					toutesLesTuiles.remove(indice3);
 					
-				}
-				this.pile4=new PileTuile();
+				}this.liste_piles.add(pile3);
+				pile4=new PileTuile(4);
 				for(int indicePile4=1;indicePile4<=9;indicePile4++){
-					Random rPile4=new Random();
-					int indice4=rPile4.nextInt(toutesLesTuiles.size());
-					this.pile4.add(toutesLesTuiles.get(indice4));
+					int indice4=(int)(Math.random()*(toutesLesTuiles.size()-0));
+					pile4.getTuiles().add(toutesLesTuiles.get(indice4));
 					toutesLesTuiles.remove(indice4);
 					
 				}
-				this.pile5=new PileTuile();
-				this.pile5.addAll(toutesLesTuiles);
-			}
+				this.liste_piles.add(pile4);
+				pile5=new PileTuile(5);
+				pile5.getTuiles().addAll(toutesLesTuiles);
+				this.liste_piles.add(pile5);
+				//INIT CONSTRUCTEUR
+				int constructeur=(int)(Math.random()*(liste_joueurs.size()-0));
+				liste_joueurs.get(constructeur).devenirConstructeur();
+				System.out.println("Le joueur "+liste_joueurs.get(constructeur).getNomJoueur()+" est constructeur de canal");
+				
+				//INIT NB DE TOURS
+				this.setMaxTour(9);
+				
+				//RORGANISER l'ordre de passage
 		}
 		else{
+			this.liste_piles=new ArrayList<PileTuile>(4);
+			PileTuile pile1,pile2,pile3,pile4;
+
+
 			Random r2 = new Random();
 			int tuileAsupprimer= r2.nextInt(45);
 			toutesLesTuiles.remove(tuileAsupprimer);
-			while(! toutesLesTuiles.isEmpty()){
-				this.pile1=new PileTuile();
+				pile1=new PileTuile(1);
 				for(int indicePile1=1;indicePile1<=11;indicePile1++){
-					Random rPile1=new Random();
-					int indice1=rPile1.nextInt(toutesLesTuiles.size());
-					this.pile1.add(toutesLesTuiles.get(indice1));
+					int indice1=(int)(Math.random()*(toutesLesTuiles.size()-0));
+					pile1.getTuiles().add(toutesLesTuiles.get(indice1));
 					toutesLesTuiles.remove(indice1);
 					
-				}
-				this.pile2=new PileTuile();
+				} this.liste_piles.add(pile1);
+				pile2=new PileTuile(2);
 				for(int indicePile2=1;indicePile2<=11;indicePile2++){
-					Random rPile2=new Random();
-					int indice2=rPile2.nextInt(toutesLesTuiles.size());
-					this.pile2.add(toutesLesTuiles.get(indice2));
+					int indice2=(int)(Math.random()*(toutesLesTuiles.size()-0));
+					pile2.getTuiles().add(toutesLesTuiles.get(indice2));
 					toutesLesTuiles.remove(indice2);
-				}
-				this.pile3=new PileTuile();
+				}this.liste_piles.add(pile2);
+				
+				pile3=new PileTuile(3);
 				for(int indicePile3=1;indicePile3<=11;indicePile3++){
-					Random rPile3=new Random();
-					int indice3=rPile3.nextInt(toutesLesTuiles.size());
-					this.pile3.add(toutesLesTuiles.get(indice3));
+					int indice3=(int)(Math.random()*(toutesLesTuiles.size()-0));
+					pile3.getTuiles().add(toutesLesTuiles.get(indice3));
 					toutesLesTuiles.remove(indice3);
-					
+				}this.liste_piles.add(pile3);
+				
+				pile4=new PileTuile(4);
+				pile4.getTuiles().addAll(toutesLesTuiles);
+				this.liste_piles.add(pile4);
+				
+				int constructeur=(int)(Math.random()*(liste_joueurs.size()-0));
+				liste_joueurs.get(constructeur).devenirConstructeur();
+				System.out.println("Le joueur "+liste_joueurs.get(constructeur).getNomJoueur()+" est constructeur de canal");
+				//INIT NB DE TOURS
+				this.setMaxTour(11);
+				
+				//RORGANISER l'ordre de passage
+				this.resetOrdre(liste_joueurs.get(constructeur).getIdJoueur());
+				
 				}
-				this.pile4=new PileTuile();
-				this.pile4.addAll(toutesLesTuiles);
-			}
-		}
+		
+	this.phaseSuivante();
 	
 	}
 
-	@Override
+
 	public void phase1() throws RemoteException {
+		System.out.println("Tour "+this.getTour());
+		System.out.println("Phase 1");
+		//returner les tuiles
+		for(int i=0;i<this.liste_piles.size();i++){
+			this.liste_piles.get(i).getTuiles().get(0).setVisible(true);
+		}
+		
+		//classer les joueurs par ordre
+		//faire une mise un a un 
+			//passer=mmise a zero
+			//ne miser differement.
+		
+		
+		
+		
 		// TODO Auto-generated method stub
+		this.phaseSuivante();
 		
 	}
 
-	@Override
+	 
 	public void phase2() throws RemoteException {
+		System.out.println("Phase 2");
+		//plus petite mise... deviens constructeur de canal
+		//test si plusieur passage
+		//donner la figurine
 		// TODO Auto-generated method stub
-		
+		this.phaseSuivante();
 	}
 
-	@Override
+	 
 	public void phase3() throws RemoteException {
+		System.out.println("Phase 3");
 		// TODO Auto-generated method stub
-		
+		this.phaseSuivante();
+		//comparer les mise et payer
+		//ordre de croissant:
+			//payer
+			//choisir ?
+			//place la tuile
+			//placer les travailleurs agricole
+				//tout pour les payÃ©
+				//un en moins pour les passer
+			//cas 3 joueurs
 	}
 
-	@Override
+	 
 	public void phase4() throws RemoteException {
+		System.out.println("Phase 4");
 		// TODO Auto-generated method stub
-		
+		this.phaseSuivante();
 	}
 
-	@Override
+	 
 	public void phase5() throws RemoteException {
+		System.out.println("Phase 5: Irrigation ComplÃ©mentaire");
 		// TODO Auto-generated method stub
-		
+		this.phaseSuivante();
 	}
 
-	@Override
+	 
 	public void phase6() throws RemoteException {
+		System.out.println("Phase 6: Secheresse");
 		// TODO Auto-generated method stub
-		
+		this.phaseSuivante();
 	}
 
-	@Override
+	 
 	public void phase7() throws RemoteException {
+		System.out.println("Phase 7: Revenus");
 		// TODO Auto-generated method stub
-		
+		if(this.getTour()==this.getMaxTour()){
+			//Fin du Jeu
+			//Compter les points
+			for(int i=0;i<liste_joueurs.size();i++){
+				System.out.println("Le joueur "+liste_joueurs.get(i).getNomJoueur()+" a "+this.liste_joueurs.get(i).getCagnotte()+" escudos dans sa cagnotte");
+			}
+		}
+		else{
+			//dont de la Banque
+			for(int i=0;i<liste_joueurs.size();i++){
+				this.liste_joueurs.get(i).setCagnotte(this.liste_joueurs.get(i).getCagnotte()+3);
+			}
+			this.tourSuivant();
+		}
 	}
 	
 	

@@ -39,8 +39,10 @@ public class Plateau {
 		this.idPlateau=idPlateau;
 		this.sourceX=sourceX;
 		this.sourceY=sourceY;
+		this.parcelles=new ArrayList<Parcelle>();
+		this.fosses=new ArrayList<Fosse>();
 	}
-	
+
 	public void initparcelles(){
 		int id=0;
 		for(int i=0;i<6;i++){
@@ -50,7 +52,7 @@ public class Plateau {
 		}
 	}
 	
-	//Permet davoir la liste des fossés pouvant etre irrigué sur le tours
+	//Permet davoir la liste des fossï¿½s pouvant etre irriguï¿½ sur le tours
 	
 	/*public ArrayList<Fosse>getFosseIrrigable(){
 		
@@ -92,20 +94,20 @@ public class Plateau {
 	*/
 	
 	/*
-	// permet davoir la liste des fossés adjacents a une parcelle;
+	// permet davoir la liste des fossï¿½s adjacents a une parcelle;
 	public ArrayList<Parcelle> getfossesadjacents(int idparcelle){
 	}*/
 	public void initfosses()
 	{
 		int id=0;
-		//16 fossés horizontaux
+		//16 fossï¿½s horizontaux
 		
 		for(int i=0;i<4;i++){
 			for(int j=0;j<4;j++){
 			this.fosses.add(new Fosse(id++,j,i,"H",false));
 			}
 		}
-		//15 fossés verticaux
+		//15 fossï¿½s verticaux
 		for(int i=0;i<3;i++){
 			for(int j=0;j<5;j++){
 			this.fosses.add(new Fosse(id++,j,i,"V",false));

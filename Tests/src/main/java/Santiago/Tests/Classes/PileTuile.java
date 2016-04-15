@@ -9,12 +9,24 @@ public class PileTuile {
 	public PileTuile(int idPiletuile){
 		
 	 this.idPiletuile=idPiletuile;
+	 this.tuiles=new ArrayList<TuilePlantation>();
 	 
 	}
 
+	public int getIdPiletuile() {
+		return idPiletuile;
+	}
 
-	public PileTuile() {
-		// TODO Auto-generated constructor stub
+	public void setIdPiletuile(int idPiletuile) {
+		this.idPiletuile = idPiletuile;
+	}
+
+	public ArrayList<TuilePlantation> getTuiles() {
+		return tuiles;
+	}
+
+	public void setTuiles(ArrayList<TuilePlantation> tuiles) {
+		this.tuiles = tuiles;
 	}
 
 	public void add(TuilePlantation t){

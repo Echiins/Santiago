@@ -12,12 +12,10 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Scanner;
-
-
-
-
 
 public class Joueur implements Serializable{
 	
@@ -31,6 +29,8 @@ public class Joueur implements Serializable{
 	private int rang;
 	private boolean estConstructeurdecanal;
 	private String couleur;
+	private boolean montour;
+	private List<TuilePlantation> tuilesjoueur;
 	
 	public Joueur(int idJoueur, String nomJoueur, String couleur, int rang){
 		this.idJoueur=idJoueur;
@@ -41,11 +41,22 @@ public class Joueur implements Serializable{
 		this.nbTAG=22;
 		this.rang=rang;
 		this.estConstructeurdecanal=false;
+		this.montour=false;
 		this.couleur=couleur;
+		this.tuilesjoueur=new ArrayList<TuilePlantation>();
 	}
 	
-	public Joueur(){}
-	
+	public ProposerMise mise(int id, int montant,TuilePlantation tuile){
+		ProposerMise mise=new ProposerMise(id,this,tuile,montant);
+		return mise;
+	}
+	public List<TuilePlantation> getTuilesjoueur() {
+		return tuilesjoueur;
+	}
+
+	public void setTuilesjoueur(List<TuilePlantation> tuilesjoueur) {
+		this.tuilesjoueur = tuilesjoueur;
+	}
 
 	public boolean getConstructeur(){
 		return this.estConstructeurdecanal;

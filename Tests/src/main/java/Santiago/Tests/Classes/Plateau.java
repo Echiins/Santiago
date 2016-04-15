@@ -39,8 +39,10 @@ public class Plateau {
 		this.idPlateau=idPlateau;
 		this.sourceX=sourceX;
 		this.sourceY=sourceY;
+		this.parcelles=new ArrayList<Parcelle>();
+		this.fosses=new ArrayList<Fosse>();
 	}
-	
+
 	public void initparcelles(){
 		int id=0;
 		for(int i=0;i<6;i++){

@@ -6,27 +6,78 @@ public class TuilePlantation {
 	private int idPlantation;
 	private int SourceX;
 	private int SourceY;
-	//AJOUTER DANS UMML
 	private boolean desert;
-	private String couleur;
+	private boolean visible;
 	private String plante;
+	private Joueur joueur;
 	
-	private PileTuile pileTuile;
-	
-	public TuilePlantation(int idPlantation, int SourceX,int SourceY,PileTuile pileTuile,boolean desert ){
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	public Joueur getJoueur() {
+		return joueur;
+	}
+
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
+	}
+
+	public TuilePlantation(int idPlantation, String plante ){
 		this.idPlantation=idPlantation;
-		this.SourceX=SourceX;
-		this.SourceY=SourceY;
-		this.pileTuile=pileTuile;
-		this.desert=desert;
-	}
-	
-	public TuilePlantation(int id,String couleur, String plante){
-		this.SourceX=-1;
-		this.SourceY=-1;
-		this.couleur=couleur;
 		this.plante=plante;
+		this.desert=false;
+		this.visible=false;
 	}
+
+	public int getIdPlantation() {
+		return idPlantation;
+	}
+
+	public void setIdPlantation(int idPlantation) {
+		this.idPlantation = idPlantation;
+	}
+
+	public int getSourceX() {
+		return SourceX;
+	}
+
+	public void setSourceX(int sourceX) {
+		SourceX = sourceX;
+	}
+
+	public int getSourceY() {
+		return SourceY;
+	}
+
+	public void setSourceY(int sourceY) {
+		SourceY = sourceY;
+	}
+
+	public boolean isDesert() {
+		return desert;
+	}
+
+	public void setDesert(boolean desert) {
+		this.desert = desert;
+	}
+
+	public String getPlante() {
+		return plante;
+	}
+
+	public void setPlante(String plante) {
+		this.plante = plante;
+	}
+
+	
+	
+	
+	
 	
 	
 }

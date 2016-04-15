@@ -1,6 +1,5 @@
 package Santiago.Tests.Classes;
 
-
-public class Champ {
+public class ProposerSoudoiement {
 
 }

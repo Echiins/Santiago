@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import Santiago.Tests.Classes.Joueur;
 import Santiago.Tests.Interface.Partie;
+import Santiago.Tests.Interface.PartieInterface;
 import static org.junit.Assert.*;
 
 public class SantiagoTest {
@@ -48,10 +49,47 @@ public class SantiagoTest {
     	Joueur joueur1=new Joueur(1,"joueur1","Noire",0);
     	Joueur joueur2=new Joueur(1,"joueur2","Gris",1);
     	Joueur joueur3=new Joueur(1,"joueur3","Violet",2);
-    	//Partie.setClient(joueur1);
-    	assertEquals(true, partie.getStart());
-    	 
+    	Joueur joueur4=new Joueur(1,"joueur4","Beige",1);
+    	Joueur joueur5=new Joueur(1,"joueur5","Rouge",2);
+    	PartieInterface partie1=new Partie();
+    	PartieInterface partie2=new Partie();
+    	PartieInterface partie3=new Partie();
+    	PartieInterface partie4=new Partie();
+    	PartieInterface partie5=new Partie();
+    	partie.setClient(partie1);
+    	partie.setClient(partie2);
+    	partie.setClient(partie3);
+    	partie.setClient(partie4);
+    	partie.setClient(partie5);
+    	assertEquals(true, partie.getStart()); 
      }
+    
+    /**
+     * Test de la méthode Lancerlapartie Pour:
+     * le nombre de joueurs adequats
+     * @throws UnknownHostException 
+     * @throws RemoteException 
+     */
+    @Test
+    public void testLancerlapartie() throws RemoteException, UnknownHostException {
+   	Partie partie=new Partie();
+   	Partie partie01=new Partie();
+   	Joueur joueur1=new Joueur(1,"joueur1","Noire",0);
+   	Joueur joueur2=new Joueur(1,"joueur2","Gris",1);
+   	Joueur joueur3=new Joueur(1,"joueur3","Violet",2);
+   	PartieInterface partie1=new Partie();
+   	PartieInterface partie2=new Partie();
+   	PartieInterface partie3=new Partie();
+   	partie.setClient(partie1);
+   	partie.setClient(partie2);
+   	partie.setClient(partie3);
+   	partie.lancerLaPartie();
+   	
+	partie01.setClient(partie1);
+   	partie01.setClient(partie2);
+   	assertEquals(true, partie.getStart()); 
+   	assertEquals(false, partie01.getStart()); 
+    }
     
     /**
      * Test de la méthode phase0()
@@ -60,10 +98,76 @@ public class SantiagoTest {
      * -teste pour savoir si la nombre de tuile est correct
      * -test palmier
      */
+    @Test
+    public void testPhase0() throws RemoteException, UnknownHostException {
+   	/*Partie partie=new Partie();
+   	Partie partie01=new Partie();
+   	Joueur joueur1=new Joueur(1,"joueur1","Noire",0);
+   	Joueur joueur2=new Joueur(2,"joueur2","Gris",1);
+   	Joueur joueur3=new Joueur(1,"joueur3","Violet",2);
+
+	Joueur joueur4=new Joueur(1,"joueur4","Beige",1);
+	Joueur joueur5=new Joueur(1,"joueur5","Rouge",2);
+   	
+   	partie.addJoueur(joueur1);	
+   	partie.addJoueur(joueur2);
+   	partie.addJoueur(joueur3);
+   	partie.addJoueur(joueur4);
+   	partie.addJoueur(joueur5);
+	partie01.addJoueur(joueur1);	
+   	partie01.addJoueur(joueur2);
+   	partie01.addJoueur(joueur3);
+   	PartieInterface partie1=new Partie();
+   	PartieInterface partie2=new Partie();
+   	PartieInterface partie3=new Partie();
+   	partie.setClient(partie1);
+   	partie.setClient(partie2);
+   	partie.setClient(partie3);
+   	partie.lancerLaPartie();
+   	partie.jouerPhase();
+   	partie01.lancerLaPartie();
+   	partie01.jouerPhase();
+   	assertEquals(true, partie.getStart());
+   	assertEquals(44, (partie01.getListe_piles().get(0).getTuiles().size()
+				+ partie01.getListe_piles().get(1).getTuiles().size()
+				+ partie01.getListe_piles().get(2).getTuiles().size()
+				+ partie01.getListe_piles().get(3).getTuiles().size()));
+
+   	assertEquals(45, (partie.getListe_piles().get(0).getTuiles().size()
+   					+partie.getListe_piles().get(1).getTuiles().size()
+   					+partie.getListe_piles().get(2).getTuiles().size()
+   					+partie.getListe_piles().get(3).getTuiles().size()
+   					+partie.getListe_piles().get(4).getTuiles().size()));
+    */}
     
     /**
-     * Test de la méthode phase1()
+     * Test de la méthode phase0()
+     * -test pour savoir si il y a bien un distibuteur de canal
+     * -test pour savoir si la nombre de tuile total est le meme que la somme des piles: pour 3 et 5 Joueurs
+     * -teste pour savoir si la nombre de tuile est correct
+     * -test palmier
      */
+    @Test
+    public void testresetOrdre() throws RemoteException, UnknownHostException {
+   	Partie partie=new Partie();
+   	
+   	Joueur joueur1=new Joueur(1,"joueur1","Noire",1);
+   	Joueur joueur2=new Joueur(2,"joueur2","Gris",2);
+   	Joueur joueur3=new Joueur(3,"joueur3","Violet",3);
+	Joueur joueur4=new Joueur(4,"joueur4","Beige",4);
+	Joueur joueur5=new Joueur(5,"joueur5","Rouge",5);
+   	
+   	partie.addJoueur(joueur1);	
+   	partie.addJoueur(joueur2);
+   	partie.addJoueur(joueur3);
+   	partie.addJoueur(joueur4);
+   	partie.addJoueur(joueur5);
+	
+   	partie.getJoueurs().get(1).devenirConstructeur();
+   	partie.resetOrdre(partie.getJoueurs().get(2).getIdJoueur());
+   	assertEquals(1, partie.getJoueurs().get(2).getRang());
+   
+    }
     
     
 }
