@@ -12,9 +12,9 @@
    <children>
       <BorderPane layoutY="-2.0" prefHeight="408.0" prefWidth="1113.0" style="-fx-background-color: #3CB371;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <TextField alignment="CENTER" prefHeight="89.0" prefWidth="1113.0" style="-fx-background-color: #FAEBD7;" text="Ce jeu vous a été proposé par Aminetou, Clément, Fikoul, Julien et Sarah ." BorderPane.alignment="CENTER">
+            <TextField alignment="CENTER" prefHeight="40.0" prefWidth="1135.0" style="-fx-background-color: #FAEBD7;" text="Ce jeu vous a été proposé par Aminetou, Clément, Fikoul, Julien et Sarah ." BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets top="15.0" />
+                  <Insets bottom="10.0" top="15.0" />
                </BorderPane.margin>
             </TextField>
          </bottom>
@@ -994,7 +994,7 @@
             </AnchorPane>
          </right>
          <top>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="61.0" prefWidth="1135.0" style="-fx-background-color: #FAEBD7; -fx-border-color: #800000; -fx-border-radius: 2;" text="Bienvenue dans Santiago !" BorderPane.alignment="CENTER">
+            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="76.0" prefWidth="1135.0" style="-fx-background-color: #FAEBD7; -fx-border-color: #800000; -fx-border-radius: 2;" text="Bienvenue dans Santiago !" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Lucida Bright Demibold" size="22.0" />
                </font>
