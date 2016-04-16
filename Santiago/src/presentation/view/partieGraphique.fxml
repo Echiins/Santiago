@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="1113.0" style="-fx-background-color: #D2B48C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutY="-2.0" prefHeight="408.0" prefWidth="1113.0" style="-fx-background-color: #3CB371;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <TextField alignment="CENTER" prefHeight="89.0" prefWidth="1113.0" style="-fx-background-color: #FAEBD7;" text="Ce jeu vous a été proposé par Aminetou, Clément, Fikoul, Julien et Sarah ." BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="15.0" />
+               </BorderPane.margin>
+            </TextField>
+         </bottom>
+         <left>
+            <AnchorPane maxHeight="370.0" maxWidth="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="248.0" style="-fx-padding: 0; -fx-border-color: #800000; -fx-border-width: 2; -fx-background-color: #FAEBD7; -fx-border-radius: 2;" BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <AnchorPane layoutY="145.0" prefHeight="250.0" prefWidth="249.0" style="-fx-border-width: 2;" AnchorPane.bottomAnchor="124.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox layoutY="27.0" prefHeight="41.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="tuile1" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/DosTuiles.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="tuile2" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/DosTuiles.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="tuile3" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/DosTuiles.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="tuile4" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/DosTuiles.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="tuile5" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/DosTuiles.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets top="2.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutY="68.0" prefHeight="31.0" prefWidth="200.0">
+                           <children>
+                              <RadioButton fx:id="radio1" mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="8.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="radio2" mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="radio3" mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="radio4" mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="radio5" mnemonicParsing="false">
+                                 <HBox.margin>
+                                    <Insets left="18.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <TextField alignment="CENTER" layoutX="5.0" layoutY="94.0" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: transparent;" text="Joueurs">
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <font>
+                              <Font name="Lucida Bright Demibold" size="13.0" />
+                           </font>
+                        </TextField>
+                        <HBox layoutX="1.0" layoutY="120.0" prefHeight="71.0" prefWidth="240.0">
+                           <children>
+                              <VBox fx:id="j1" prefHeight="51.0" prefWidth="79.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
+                                    <ImageView fx:id="con1" fitHeight="77.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/figurineConstructeur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="j2" prefHeight="51.0" prefWidth="79.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
+                                    <ImageView fx:id="con2" fitHeight="80.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../../../../../../Downloads/Santiago-master%20(2)/Santiago-master/Santiago/src/img/figurineConstructeur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="j3" prefHeight="51.0" prefWidth="79.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
+                                    <ImageView fx:id="con3" fitHeight="78.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../img/figurineConstructeur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="j4" prefHeight="51.0" prefWidth="79.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
+                                    <ImageView fx:id="con4" fitHeight="79.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../img/figurineConstructeur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="j5" prefHeight="51.0" prefWidth="79.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
+                                    <ImageView fx:id="con5" fitHeight="80.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../../img/figurineConstructeur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <TextField alignment="CENTER" focusTraversable="false" layoutX="5.0" layoutY="2.0" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: transparent;" text="Piles de tuiles">
+                           <font>
+                              <Font name="Lucida Bright Demibold" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="20.0" right="5.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="580.0" style="-fx-padding: 25;" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator fx:id="h5" layoutX="2.0" layoutY="137.0" prefHeight="5.0" prefWidth="150.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <VBox fx:id="AA" layoutX="3.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator fx:id="v3" layoutX="286.0" layoutY="2.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v2" layoutX="142.0" layoutY="3.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v1" layoutX="-2.0" layoutY="3.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="0.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v4" layoutX="428.0" layoutY="5.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v5" layoutX="571.0" layoutY="5.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v6" layoutX="-2.0" layoutY="140.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="h6" layoutX="151.0" layoutY="137.0" prefHeight="5.0" prefWidth="137.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h1" layoutY="-3.0" prefHeight="5.0" prefWidth="150.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h2" layoutX="150.0" layoutY="-3.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <VBox fx:id="AB" layoutX="72.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="49.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="AC" layoutX="148.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="AD" layoutX="217.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <Separator fx:id="h3" layoutX="293.0" layoutY="-3.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h4" layoutX="436.0" layoutY="-3.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h7" layoutX="291.0" layoutY="137.0" prefHeight="5.0" prefWidth="137.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h8" layoutX="434.0" layoutY="135.0" prefHeight="5.0" prefWidth="137.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h9" layoutX="4.0" layoutY="276.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h10" layoutX="148.0" layoutY="277.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h11" layoutX="294.0" layoutY="276.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h12" layoutX="436.0" layoutY="276.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <VBox fx:id="BA" layoutX="4.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BB" layoutX="72.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BC" layoutX="148.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BD" layoutX="217.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="AE" layoutX="292.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="AF" layoutX="361.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BE" layoutX="292.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BF" layoutX="361.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="AG" layoutX="434.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="AH" layoutX="503.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BG" layoutX="434.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="BH" layoutX="503.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <Separator fx:id="v7" layoutX="142.0" layoutY="138.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v8" layoutX="286.0" layoutY="145.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v10" layoutX="571.0" layoutY="143.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v9" layoutX="428.0" layoutY="143.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <VBox fx:id="CA" layoutX="4.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CB" layoutX="73.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DA" layoutX="4.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DB" layoutX="72.0" layoutY="212.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CC" layoutX="148.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CD" layoutX="217.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DC" layoutX="148.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DD" layoutX="217.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CE" layoutX="292.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CF" layoutX="361.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DE" layoutX="292.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DF" layoutX="361.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CG" layoutX="434.0" layoutY="144.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="CH" layoutX="503.0" layoutY="144.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DG" layoutX="434.0" layoutY="212.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="DH" layoutX="503.0" layoutY="212.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EA" layoutX="4.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <Separator fx:id="v11" layoutX="-2.0" layoutY="282.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v12" layoutX="142.0" layoutY="282.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v13" layoutX="286.0" layoutY="282.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v14" layoutX="428.0" layoutY="281.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <Separator fx:id="v15" layoutX="571.0" layoutY="281.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
+                  <VBox fx:id="FA" layoutX="4.0" layoutY="354.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EC" layoutX="148.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="ED" layoutX="217.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FC" layoutX="148.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FD" layoutX="217.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EE" layoutX="293.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EF" layoutX="361.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FE" layoutX="292.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FF" layoutX="361.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EG" layoutX="434.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EH" layoutX="503.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FG" layoutX="434.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FH" layoutX="503.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="EB" layoutX="72.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="FB" layoutX="73.0" layoutY="353.0" prefHeight="61.0" prefWidth="69.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/parcelle.jpg" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                     </children>
+                  </VBox>
+                  <Separator fx:id="h13" layoutX="2.0" layoutY="417.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h14" layoutX="146.0" layoutY="417.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h15" layoutX="289.0" layoutY="417.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h16" layoutX="433.0" layoutY="417.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </AnchorPane>
+         </center>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <right>
+            <AnchorPane maxHeight="400.0" maxWidth="257.0" minHeight="96.0" minWidth="200.0" prefHeight="400.0" prefWidth="257.0" style="-fx-border-color: #800000; -fx-background-color: #FAEBD7; -fx-border-radius: 3; -fx-border-width: 2;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" right="20.0" />
+               </BorderPane.margin>
+               <children>
+                  <TextField alignment="CENTER" layoutX="1.0" prefHeight="25.0" prefWidth="212.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Fiche Joueur">
+                     <font>
+                        <Font name="Lucida Bright Demibold" size="17.0" />
+                     </font>
+                  </TextField>
+                  <VBox layoutX="4.0" layoutY="55.0" prefHeight="79.0" prefWidth="240.0" AnchorPane.bottomAnchor="279.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="54.0">
+                     <children>
+                        <TextField prefHeight="2.0" prefWidth="207.0" style="-fx-background-color: transparent;" text="Ma cagnotte" />
+                        <HBox prefHeight="41.0" prefWidth="214.0">
+                           <children>
+                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/1.jpg" />
+                                 </image>
+                              </ImageView>
+                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/2.jpg" />
+                                 </image>
+                              </ImageView>
+                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/5.jpg" />
+                                 </image>
+                              </ImageView>
+                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/20.jpg" />
+                                 </image>
+                              </ImageView>
+                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/50.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="7.0" layoutY="130.0" prefHeight="110.0" prefWidth="213.0">
+                     <children>
+                        <TextField style="-fx-background-color: transparent;" text="Mes travailleurs" />
+                        <HBox prefHeight="26.0" prefWidth="213.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="33.0" prefWidth="213.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/TViolet.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutY="235.0" prefHeight="102.0" prefWidth="215.0">
+                     <children>
+                        <TextField style="-fx-background-color: transparent;" text="Mes canaux" />
+                        <HBox prefHeight="33.0" prefWidth="221.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/CViolet.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="34.0" prefWidth="215.0">
+                           <children>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/Canalbleu.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator layoutX="12.0" layoutY="28.0" prefHeight="3.0" prefWidth="188.0" style="-fx-background-color: #800000;" />
+               </children>
+            </AnchorPane>
+         </right>
+         <top>
+            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="61.0" prefWidth="1135.0" style="-fx-background-color: #FAEBD7; -fx-border-color: #800000; -fx-border-radius: 2;" text="Bienvenue dans Santiago !" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Lucida Bright Demibold" size="22.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" top="35.0" />
+               </BorderPane.margin>
+            </TextField>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
