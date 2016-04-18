@@ -169,5 +169,31 @@ public class SantiagoTest {
    
     }
     
+    @Test
+    public void testPhase1(){
+    	Partie p=new Partie();
+		Joueur j1=new Joueur(1, "J1", "rouge", 1);
+		Joueur j2=new Joueur(2,"J2","brun",2);
+		Joueur j3=new Joueur(3,"J3","vert",3);
+		p.liste_joueurs.add(j1);
+		p.liste_joueurs.add(j2);
+		p.liste_joueurs.add(j3);
+		p.phase0();
+    }
+    
+    public void testPhase2(){
+    	Partie p=new Partie();
+		Joueur j1=new Joueur(1, "J1", "rouge", 1);
+		Joueur j2=new Joueur(2,"J2","brun",2);
+		Joueur j3=new Joueur(3,"J3","vert",3);
+		p.liste_joueurs.add(j1);
+		p.liste_joueurs.add(j2);
+		p.liste_joueurs.add(j3);
+		p.phase0();
+		p.phase1();
+		
+		
+    }
+    
     
 }

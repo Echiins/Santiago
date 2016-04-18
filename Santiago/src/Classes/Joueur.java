@@ -46,6 +46,7 @@ public class Joueur implements Serializable{
 		this.tuilesjoueur=new ArrayList<TuilePlantation>();
 	}
 	
+
 	public ProposerMise mise(int id, int montant,TuilePlantation tuile){
 		ProposerMise mise=new ProposerMise(id,this,tuile,montant);
 		return mise;
@@ -140,6 +141,17 @@ public class Joueur implements Serializable{
 		this.couleur = couleur;
 	}
 	
+	public void tirerTuile(TuilePlantation t){
+		this.tuilesjoueur.add(t);
+	}
+
+	public int proposerEnchere(){
+		//demander l'enchere ou passer, se fait via l'interface graphique
+		//si le joueur passe : l'enchere est -1
+		//on créer la mise et on retourne le montant
+		//si il décide de passer le montant vaut -1
+		return -1;
+	}
 	
 	
 }

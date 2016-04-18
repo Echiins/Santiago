@@ -19,8 +19,15 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private ArrayList<String> couleurs = new ArrayList<String>();
 	private boolean start;
 	private int maxTour;
-	private ArrayList<PileTuile> liste_piles=null;
-	
+	//private ArrayList<PileTuile> liste_piles=null;
+	private PileTuile pile1=null;
+	private PileTuile pile2=null;
+	private PileTuile pile3=null;
+	private PileTuile pile4=null;
+	private PileTuile pile5=null;
+	private ArrayList<PileTuile> liste_piles;
+	private ArrayList<Integer> encheres_courantes;
+	private int indice_constructeur_canal;
 	
 	public ArrayList<PileTuile> getListe_piles() {
 		return liste_piles;
@@ -41,6 +48,10 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.start=false;
 		this.tour=1;
 		this.phase=0;
+
+		this.liste_piles=new ArrayList<PileTuile>();
+		this.encheres_courantes=new ArrayList<Integer>();
+		this.indice_constructeur_canal=-1;
 	}
 
 	public void setClient(PartieInterface client)  throws RemoteException {
@@ -195,6 +206,8 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		Random r = new Random();
 		int indiceJoueur= r.nextInt(this.liste_joueurs.size());
 		this.liste_joueurs.get(indiceJoueur).devenirConstructeur();
+		this.indice_constructeur_canal=indiceJoueur;
+		System.out.println("Le joueur "+liste_joueurs.get(indiceJoueur).getNomJoueur()+" est constructeur de canal");
 		//initialisation de la Banque
 		//this.banque=new Banque();
 		//On g�re les tuiles de plantations
@@ -208,13 +221,13 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			toutesLesTuiles.add(new TuilePlantation(id2,"banane"));
 		}
 		for(int id3=19 ;id3<=27; id3++){
-			toutesLesTuiles.add(new TuilePlantation(id3,"piment"));
+			toutesLesTuiles.add(new TuilePlantation(id3,"patate"));
 		}
 		for(int id4=28 ;id4<=36; id4++){
-			toutesLesTuiles.add(new TuilePlantation(id4,"piment"));
+			toutesLesTuiles.add(new TuilePlantation(id4,"haricot"));
 		}
 		for(int id5=37 ;id5<=45; id5++){
-			toutesLesTuiles.add(new TuilePlantation(id5,"piment"));
+			toutesLesTuiles.add(new TuilePlantation(id5,"canne"));
 		}
 		
 			//Creation des piles
@@ -258,10 +271,10 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				int constructeur=(int)(Math.random()*(liste_joueurs.size()-0));
 				liste_joueurs.get(constructeur).devenirConstructeur();
 				System.out.println("Le joueur "+liste_joueurs.get(constructeur).getNomJoueur()+" est constructeur de canal");
-				
+				/*
 				//INIT NB DE TOURS
 				this.setMaxTour(9);
-				
+				*/
 				//RORGANISER l'ordre de passage
 		}
 		else{
@@ -296,7 +309,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				pile4=new PileTuile(4);
 				pile4.getTuiles().addAll(toutesLesTuiles);
 				this.liste_piles.add(pile4);
-				
+				/*
 				int constructeur=(int)(Math.random()*(liste_joueurs.size()-0));
 				liste_joueurs.get(constructeur).devenirConstructeur();
 				System.out.println("Le joueur "+liste_joueurs.get(constructeur).getNomJoueur()+" est constructeur de canal");
@@ -305,14 +318,67 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				
 				//RORGANISER l'ordre de passage
 				this.resetOrdre(liste_joueurs.get(constructeur).getIdJoueur());
-				
+				*/
 				}
 		
-	this.phaseSuivante();
+	//this.phaseSuivante();
 	
 	}
 
+	public void phase1() throws RemoteException {
+		
+		int place=this.indice_constructeur_canal;
+		Joueur j=this.getJoueurs().get(place);
+			for(PileTuile p:liste_piles){
+				j.tirerTuile(p.retirerTuile());
+			}
+			
+			//encheres
+			
+		for(int i=place+1 ; i<=this.liste_joueurs.size();i++){
+			this.encheres_courantes.add(-1);
+			int enchere=this.liste_joueurs.get(i).proposerEnchere();
+			while(this.encheres_courantes.contains(enchere)){
+				enchere=this.liste_joueurs.get(i).proposerEnchere();
+			}
+			System.out.println(i);
+			this.encheres_courantes.add(i, enchere);
+		}
 
+		for(int i2=0;i2<place;i2++){
+			int enchere=this.liste_joueurs.get(i2).proposerEnchere();
+			while(this.encheres_courantes.contains(enchere)){
+				enchere=this.liste_joueurs.get(i2).proposerEnchere();
+			}
+			this.encheres_courantes.add(i2, enchere);
+		}
+		
+	}
+
+	
+	public void phase2() throws RemoteException {
+		//on cherche le nouveau constructeur de canal
+		int place=this.indice_constructeur_canal;
+		int min =this.encheres_courantes.get(place);
+		int indiceMin=place+1;
+		for(int i=place+2; i<=this.liste_joueurs.size();i++){
+			if(this.encheres_courantes.get(i)<min){
+				min=this.encheres_courantes.get(i);
+				indiceMin=i;
+			}
+		}
+		for(int i2=0;i2<place+1;i2++){
+			if(this.encheres_courantes.get(i2)<min){
+				min=this.encheres_courantes.get(i2);
+				indiceMin=i2;
+			};
+		}
+		this.liste_joueurs.get(this.indice_constructeur_canal).nEstPlusConstructeur();
+		this.liste_joueurs.get(indiceMin).devenirConstructeur();
+		this.indice_constructeur_canal=indiceMin;
+	}
+	
+/*
 	public void phase1() throws RemoteException {
 		System.out.println("Tour "+this.getTour());
 		System.out.println("Phase 1");
@@ -343,7 +409,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		// TODO Auto-generated method stub
 		this.phaseSuivante();
 	}
-
+*/
 	 
 	public void phase3() throws RemoteException {
 		System.out.println("Phase 3");
@@ -400,6 +466,17 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			this.tourSuivant();
 		}
 	}
+	
+	public ArrayList<Integer> getEncheresCourantes() {
+		return encheres_courantes;
+	}
+
+	public void addEnchere(int i) {
+		this.encheres_courantes.add(i);
+	}
+	
+
+	
 	
 	
 }
