@@ -1,17 +1,24 @@
 package Santiago.Tests.Classes;
 
-public class ProposerMise {
+import Santiago.Tests.Classes.*;
+import java.util.*;
+
+public class ProposerMise implements Comparable<ProposerMise> {
 	
 	private int idMise;
 	private Joueur joueur;
-	private TuilePlantation tuile;
 	private int montant;
 	
-	public ProposerMise(int idMise,Joueur joueur, TuilePlantation tuile, int montant){
+	public ProposerMise(int idMise,Joueur joueur, int montant){
 		this.joueur=joueur;
 		this.idMise=idMise;
-		this.tuile=tuile;
 		this.montant=montant;
+	}
+	
+	public ProposerMise(int idMise,Joueur joueur){
+		this.joueur=joueur;
+		this.idMise=idMise;
+		this.montant=0;
 	}
 
 	public int getIdMise() {
@@ -30,14 +37,6 @@ public class ProposerMise {
 		this.joueur = joueur;
 	}
 
-	public TuilePlantation getTuile() {
-		return tuile;
-	}
-
-	public void setTuile(TuilePlantation tuile) {
-		this.tuile = tuile;
-	}
-
 	public int getMontant() {
 		return montant;
 	}
@@ -46,6 +45,17 @@ public class ProposerMise {
 		this.montant = montant;
 	}
 	
-	
+	/**********************COMPARATOR************************************/
+
+	 public static class Comparators {
+
+		 public static final Comparator<ProposerMise> MONTANT = (ProposerMise o1, ProposerMise o2) -> Integer.compare(o1.getMontant(), o2.getMontant());
+	        
+	    }
+
+	@Override
+	public int compareTo(ProposerMise o) {
+		return Comparators.MONTANT.compare(this, o);
+	}
 
 }

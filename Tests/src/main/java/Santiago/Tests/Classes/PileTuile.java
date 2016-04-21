@@ -35,5 +35,10 @@ public class PileTuile {
 	public void addAll(ArrayList<TuilePlantation> l){
 		this.tuiles.addAll(l);
 	}
-	
+
+	public TuilePlantation retirerTuile(){
+		TuilePlantation t=this.tuiles.get(0);
+		this.tuiles.remove(0);
+		return t;
+	}
 }
