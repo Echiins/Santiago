@@ -49,7 +49,7 @@ public class SantiagoTestPhase1 {
 		p.addJoueur(j1);
 		p.addJoueur(j2);
 		p.addJoueur(j3);
-		p.getJoueurs().get(1).Est_constructeurdecanal();
+		p.getJoueurs().get(1).setEst_constructeurdecanal(true);
 	   	p.phase0();
 	   	assertEquals(3,p.getEncheresCourantes().size() );
 	  

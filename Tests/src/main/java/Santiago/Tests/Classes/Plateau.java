@@ -32,88 +32,224 @@ public class Plateau {
 	private int idPlateau;
 	private int sourceX;
 	private int sourceY;
-	private List<Parcelle> parcelles;
-	private List<Fosse> fosses;
+	private List<Parcelle> liste_parcelles;
+	private List<Fosse> liste_fosses;
+	
+	/***************************************************************************
+	 * *******************************CONSTRUCTOR*******************************
+	 ***************************************************************************/
 	
 	public Plateau(int idPlateau,int sourceX,int sourceY){
 		this.idPlateau=idPlateau;
 		this.sourceX=sourceX;
 		this.sourceY=sourceY;
-		this.parcelles=new ArrayList<Parcelle>();
-		this.fosses=new ArrayList<Fosse>();
+		this.liste_parcelles=new ArrayList<Parcelle>();
+		this.liste_fosses=new ArrayList<Fosse>();
 	}
 
-	public void initparcelles(){
-		int id=0;
+	/***************************************************************************
+	 * *******************************METHODES*******************************
+	 ***************************************************************************/
+	//************************************INIT************************************
+	/**
+	 * Permet d'initialiser le tableau et d'instensier toutes les liste_parcelles présentes dessus.
+	 * un tableau 1D de 6X8 liste_parcelles
+	 */
+	public void initliste_parcelles(){
+		int id=1;
 		for(int i=0;i<6;i++){
 			for(int j=0;j<8;j++){
-			this.parcelles.add(new Parcelle(id++,j,i,false,0,0));
+			this.liste_parcelles.add(new Parcelle(id++,i,j,false));
 			}
 		}
 	}
 	
-	//Permet davoir la liste des foss�s pouvant etre irrigu� sur le tours
-	
-	/*public ArrayList<Fosse>getFosseIrrigable(){
-		
-	}*/
-	
-	//Permet d'avoir la liste des champs adjacents a un canal
-	/*
-	public ArrayList<Parcelle>getParcellesIrrigesAdjacents(int idcanal){
-		String sens=this.fosses.get(idcanal).getSens();
-		List<Parcelle> parcellesAdjacentes= new ArrayList<Parcelle>();
-		
-		if((idcanal==1 && sens.equals("H")) || (idcanal==2 && sens.equals("H")) || (idcanal==3 && sens.equals("H"))|| (idcanal==4 && sens.equals("H"))){
-			parcellesAdjacentes.add(this.parcelles.get((idcanal*2)-1));
-			parcellesAdjacentes.add(this.parcelles.get(idcanal*2));
-			return (ArrayList<Parcelle>) parcellesAdjacentes;
-		}
-		else if((idcanal==13 && sens.equals("H")) || (idcanal==14 && sens.equals("H"))){
-			parcellesAdjacentes.add(this.parcelles.get((idcanal*3)+2));
-			parcellesAdjacentes.add(this.parcelles.get((idcanal*3)+3));
-			return (ArrayList<Parcelle>) parcellesAdjacentes;
-		}
-		else if((idcanal==15 && sens.equals("H"))|| (idcanal==16 && sens.equals("H"))){
-			parcellesAdjacentes.add(this.parcelles.get(idcanal*3));
-			parcellesAdjacentes.add(this.parcelles.get((idcanal*3)+1));
-			return (ArrayList<Parcelle>) parcellesAdjacentes;
-		}
-		else if(sens.equals("H")){
-		//diff cas	
-		}
-		
-		else if((idcanal==17 && sens.equals("V")) || (idcanal==22 && sens.equals("V")) || (idcanal==27 && sens.equals("V"))){
-			parcellesAdjacentes.add(this.parcelles.get(idcanal%8));
-		}
-		
-		else if((idcanal==21 && sens.equals("V")) || (idcanal==26 && sens.equals("V")) || (idcanal==31 && sens.equals("V"))){
-			
-		}
-	}
-	*/
-	
-	/*
-	// permet davoir la liste des foss�s adjacents a une parcelle;
-	public ArrayList<Parcelle> getfossesadjacents(int idparcelle){
-	}*/
+	/**
+	 * * Permet d'initialiser le tableau et d'instensier touts les fossés présentes dessus.
+	 * un tableau 1D de 16 fossés horizontaux et 15 fossés verticaux.
+	 */
 	public void initfosses()
 	{
-		int id=0;
+		int id=1;
 		//16 foss�s horizontaux
 		
 		for(int i=0;i<4;i++){
 			for(int j=0;j<4;j++){
-			this.fosses.add(new Fosse(id++,j,i,"H",false));
+			this.liste_fosses.add(new Fosse(id,j,i,"H",false));
+			System.out.println(id+":"+i+" "+j);id++;
+			
+			
 			}
 		}
-		//15 foss�s verticaux
-		for(int i=0;i<3;i++){
-			for(int j=0;j<5;j++){
-			this.fosses.add(new Fosse(id++,j,i,"V",false));
+		//15 foss�s verticau
+		id=1;
+		for(int k=0;k<3;k++){
+			for(int l=0;l<5;l++){
+			this.liste_fosses.add(new Fosse(id,k,l,"V",false));
+			id++;
 			}
-		}
-		
-		
+		}	
 	}
+	/**
+	 * Permet de trouver une parcelle directement par ses coordonnées
+	 * @param x
+	 * @param y
+	 * @return la parcelle en xy
+	 */
+	public Parcelle get(int x,int y){
+		for(Parcelle p:this.liste_parcelles){
+			if(p.getCoorX()==x && p.getCoorY()==y)
+				return p;
+			
+		}
+		return null;
+	}
+	/**
+	 * Permet de trouver un fosse directement par ses coordonnées
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public Fosse getFosse(int x,int y,String sens){
+
+		
+		switch (sens){
+		case "H":
+			for(int i=0;i<16;i++){
+				
+				if((liste_fosses.get(i).getCoorX()==y) && (liste_fosses.get(i).getCoorY()==x)){
+					//System.out.println("H :"+x+","+y+" id: "+liste_fosses.get(i).getIdFosse());
+					return liste_fosses.get(i);
+				}
+				
+			}
+			break;
+		case "V":
+			for(int j=16;j<liste_fosses.size();j++){
+				if((liste_fosses.get(j).getCoorX()==x) && (liste_fosses.get(j).getCoorY()==y))
+				{
+					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());return liste_fosses.get(j);
+				}
+					
+			}
+			break;
+		}
+		return null;
+	}
+
+	/**
+	 * Permet de connaitre lensemble des parcelles autours d'un fossé
+	 * @param fosse
+	 * @return
+	 */
+	public ArrayList<Parcelle> getparcellesAdjacentes(Fosse fosse){
+		ArrayList<Parcelle> parcelles=new ArrayList<Parcelle>();
+		if(fosse.getSens().equals("V")){
+			int coordx;
+			int coordy;
+			if(fosse.getIdFosse()%4==0){
+				coordy=fosse.getCoorY();System.out.println("ici");
+				
+			}
+			else{
+				coordy=(fosse.getIdFosse()%4)*fosse.getCoorY();
+			}
+			
+			if(fosse.getIdFosse()%4==3||fosse.getIdFosse()%4==0){
+				coordx=(2*fosse.getCoorX());//+1;
+			}
+			else{
+				coordx=fosse.getCoorX();
+			}
+			
+			if(fosse.getCoorY()==0){
+
+				
+				parcelles.add(this.get(coordx,0));
+				parcelles.add(this.get(coordx+1,0));
+			}
+			else if(fosse.getCoorY()==4){
+				parcelles.add(this.get(coordx,7));
+				parcelles.add(this.get(coordx+1,7));
+			}
+			else{
+				parcelles.add(this.get(coordx,coordy));
+				parcelles.add(this.get(coordx+1,coordy));
+				parcelles.add(this.get(coordx,coordy+1));
+				parcelles.add(this.get(coordx+1,coordy+1));
+			}
+			//autres bords
+			return parcelles;
+		}
+		else if(fosse.getSens().equals("H")){
+			int coordx;
+			int coordy;
+			if(fosse.getIdFosse()%4==0||fosse.getIdFosse()%4==3){
+				coordy=(2*fosse.getCoorY());
+			}
+			else{
+				coordy=(fosse.getIdFosse()%4)*fosse.getCoorY();
+			}
+			
+			if(fosse.getIdFosse()%4==3){
+				coordx=fosse.getCoorX()+1;
+			}
+			else{
+				coordx=fosse.getCoorX();
+			}
+			
+			if(fosse.getCoorX()==0){
+				parcelles.add(this.get(0,coordy));
+				parcelles.add(this.get(0,coordy+1));
+			}
+			//bords bas
+			else if(fosse.getCoorX()==3){
+				parcelles.add(this.get(5,coordy));
+				parcelles.add(this.get(5,coordy+1));
+			}
+			//les autres
+			else{
+				parcelles.add(this.get(coordx,coordy));
+				parcelles.add(this.get(coordx,coordy+1));
+				parcelles.add(this.get(coordx+1,coordy));
+				parcelles.add(this.get(coordx+1,coordy+1));
+			}
+			return parcelles;
+		}
+		else
+			return null;
+	}
+	
+	/**
+	 * Permet de connaitre les fosses autours d'une parcelles
+	 * @param parcelle
+	 * @return
+	 */
+	public ArrayList<Fosse> getFossesAdjacents( Parcelle parcelle){
+		ArrayList<Fosse> fosses= new ArrayList<Fosse>();
+		int x;
+		int y;
+		
+		if((parcelle.getCoorX()%2==1) ){
+			x=parcelle.getCoorX()/2+1;
+		}
+		else
+			x=parcelle.getCoorX()/2;
+		
+		fosses.add(this.getFosse(x,parcelle.getCoorY()/2,"H"));
+		
+		if((parcelle.getCoorY()%2==1) ){
+			y=parcelle.getCoorY()/2+1;
+		}
+		else
+			y=parcelle.getCoorY();
+		
+		fosses.add(this.getFosse(parcelle.getCoorX()/2,y,"V"));
+		return fosses;
+	}
+	
+	
+	
+	//************************************GETTER************************************
+	//************************************SETTER************************************
 }
