@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Santiago.Tests.Classes.Joueur;
+import Santiago.Tests.Classes.TuilePlantation;
 import Santiago.Tests.Interface.Partie;
 import Santiago.Tests.Interface.PartieInterface;
 import static org.junit.Assert.*;
@@ -49,8 +50,16 @@ public class SantiagoTestPhase7 {
 		p.addJoueur(j1);
 		p.addJoueur(j2);
 		p.addJoueur(j3);
-		p.getJoueurs().get(1).Est_constructeurdecanal();
-	   	p.phase0();
+		p.getJoueurs().get(1).setEst_constructeurdecanal(true);
+		TuilePlantation t1=new TuilePlantation(1,"piment",1);
+		t1.setSourceX(2);t1.setSourceY(5);
+		TuilePlantation t2=new TuilePlantation(2,"banane",1);
+		t2.setSourceX(1);t2.setSourceY(5);
+		j1.getTuilesjoueur().add(t1);
+		j1.getTuilesjoueur().add(t2);
+		p.phase0();
+		assertEquals(true, t1.getDesert());
+	   	
 	  
     }
     

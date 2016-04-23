@@ -30,6 +30,10 @@ public class Joueur implements Comparable<Joueur> {
 	private boolean montour;
 	private List<TuilePlantation> tuiles_joueur;
 	
+	
+	/***************************************************************************
+	 * *******************************CONSTRUCTOR*******************************
+	 ***************************************************************************/
 	public Joueur(int id_joueur, String nom_joueur, String couleur, int rang){
 		this.id_joueur=id_joueur;
 		this.nom_joueur=nom_joueur;
@@ -44,15 +48,14 @@ public class Joueur implements Comparable<Joueur> {
 		this.tuiles_joueur=new ArrayList<TuilePlantation>();
 	}
 	
+	/***************************************************************************
+	 * *******************************METHODES*******************************
+	 ***************************************************************************/
 
 	public ProposerMise proposerEnchere(int id, int montant){
 		
 		ProposerMise mise=new ProposerMise(id,this,montant);
 		return mise;
-			//demander l'enchere ou passer, se fait via l'interface graphique
-			//si le joueur passe : l'enchere est -1
-			//on cr�er la mise et on retourne le montant
-			//si il d�cide de passer le montant vaut -1
 		}
 	
 	public ProposerMise passer(int id){
@@ -60,93 +63,84 @@ public class Joueur implements Comparable<Joueur> {
 		return mise;
 	}
 
+	//************************************GETTER************************************
 	public List<TuilePlantation> getTuilesjoueur() {
 		return tuiles_joueur;
 	}
-
-	public void setTuilesjoueur(List<TuilePlantation> tuiles_joueur) {
-		this.tuiles_joueur = tuiles_joueur;
-	}
-
-	public boolean getConstructeur(){
-		return this.est_constructeurdecanal;
-	}
-	public void estPlusConstructeur(){
-		this.est_constructeurdecanal=false;
-	}
-
+	
 	public int getId_joueur() {
 		return id_joueur;
 	}
-
-	public void setId_joueur(int id_joueur) {
-		this.id_joueur = id_joueur;
-	}
-
+	public boolean getConstructeur(){
+			return this.est_constructeurdecanal;
+		}
 	public String getNom_joueur() {
 		return nom_joueur;
 	}
-
-	public void setNom_joueur(String nom_joueur) {
-		this.nom_joueur = nom_joueur;
-	}
-
 	public int getCanal_perso() {
 		return canal_perso;
 	}
-
-	public void setCanal_perso(int canal_perso) {
-		this.canal_perso = canal_perso;
-	}
-
-	public boolean isCanal_bleu() {
+	public boolean getCanal_bleu() {
 		return canal_bleu;
 	}
-
-	public void setCanal_bleu(boolean canal_bleu) {
-		this.canal_bleu = canal_bleu;
+	public int getNb_tag() {
+		return nb_tag;
 	}
-
 	public int getCagnotte() {
 		return cagnotte;
 	}
 
-	public void setCagnotte(int cagnotte) {
-		this.cagnotte = cagnotte;
+	public int getRang() {
+		return rang;
 	}
-
-	public int getNb_tag() {
-		return nb_tag;
+	public boolean getEst_constructeurdecanal() {
+		return est_constructeurdecanal;
+	}
+	
+	public String getCouleur() {
+		return couleur;
+	}
+	
+	//************************************SETTER************************************
+	public void setTuilesjoueur(List<TuilePlantation> tuiles_joueur) {
+		this.tuiles_joueur = tuiles_joueur;
+	}
+	
+	public void setId_joueur(int id_joueur) {
+		this.id_joueur = id_joueur;
+	}
+	public void setNom_joueur(String nom_joueur) {
+		this.nom_joueur = nom_joueur;
+	}
+	public void setCanal_perso(int canal_perso) {
+		this.canal_perso = canal_perso;
+	}
+	public void setCanal_bleu(boolean canal_bleu) {
+		this.canal_bleu = canal_bleu;
 	}
 
 	public void setNb_tag(int nbtag) {
 		this.nb_tag = nbtag;
 	}
-
-	public int getRang() {
-		return rang;
+	public void setCagnotte(int cagnotte) {
+		this.cagnotte = cagnotte;
+	}
+	public void setEst_constructeurdecanal(boolean estConstructeurdecanal) {
+		this.est_constructeurdecanal = estConstructeurdecanal;
 	}
 
 	public void setRang(int rang) {
 		this.rang = rang;
 	}
 
-	public boolean Est_constructeurdecanal() {
-		return est_constructeurdecanal;
-	}
-
-	public void setEst_constructeurdecanal(boolean estConstructeurdecanal) {
-		this.est_constructeurdecanal = estConstructeurdecanal;
-	}
-
-	public String getCouleur() {
-		return couleur;
-	}
-
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
 	}
-	
+	//A FACTORISER
+	public void estPlusConstructeur(){
+		this.est_constructeurdecanal=false;
+	}
+
 	public void tirerTuile(TuilePlantation t){
 		this.tuiles_joueur.add(t);
 	}
@@ -162,7 +156,4 @@ public class Joueur implements Comparable<Joueur> {
 		 public static final Comparator<Joueur> RANG = (Joueur o1, Joueur o2) -> Integer.compare(o1.getRang(), o2.getRang());
 	        
 	    }
-	
-	
 }
-

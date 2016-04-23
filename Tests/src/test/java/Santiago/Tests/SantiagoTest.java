@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import Santiago.Tests.Classes.Fosse;
 import Santiago.Tests.Classes.Joueur;
+import Santiago.Tests.Classes.Plateau;
 import Santiago.Tests.Interface.Partie;
 import Santiago.Tests.Interface.PartieInterface;
 import static org.junit.Assert.*;
@@ -43,9 +45,9 @@ public class SantiagoTest {
      * @throws UnknownHostException 
      * @throws RemoteException 
      */
-    @Test
+   /* @Test
      public void testSetClient() throws RemoteException, UnknownHostException {
-    	/*Partie partie=new Partie();
+    	Partie partie=new Partie();
     	Joueur joueur1=new Joueur(1,"joueur1","Noire",0);
     	Joueur joueur2=new Joueur(1,"joueur2","Gris",1);
     	Joueur joueur3=new Joueur(1,"joueur3","Violet",2);
@@ -62,7 +64,7 @@ public class SantiagoTest {
     	partie.setClient(partie4);
     	partie.setClient(partie5);
     	assertEquals(true, partie.getStart()); 
-     */}
+     }*/
     
     /**
      * Test de la méthode Lancerlapartie Pour:
@@ -70,9 +72,9 @@ public class SantiagoTest {
      * @throws UnknownHostException 
      * @throws RemoteException 
      */
-    @Test
+   /* @Test
     public void testLancerlapartie() throws RemoteException, UnknownHostException {
-   	/*Partie partie=new Partie();
+   	Partie partie=new Partie();
    	Partie partie01=new Partie();
    	Joueur joueur1=new Joueur(1,"joueur1","Noire",0);
    	Joueur joueur2=new Joueur(1,"joueur2","Gris",1);
@@ -89,7 +91,7 @@ public class SantiagoTest {
    	partie01.setClient(partie2);
    	assertEquals(true, partie.getStart()); 
    	assertEquals(false, partie01.getStart()); 
-    */}
+    }*/
     
     /**
      * Test de la méthode phase0()
@@ -98,9 +100,9 @@ public class SantiagoTest {
      * -teste pour savoir si la nombre de tuile est correct
      * -test palmier
      */
-    @Test
+    	/*@Test
     public void testPhase0() throws RemoteException, UnknownHostException {
-   	/*Partie partie=new Partie();
+   Partie partie=new Partie();
    	Partie partie01=new Partie();
    	Joueur joueur1=new Joueur(1,"joueur1","Noire",0);
    	Joueur joueur2=new Joueur(2,"joueur2","Gris",1);
@@ -138,7 +140,7 @@ public class SantiagoTest {
    					+partie.getListe_piles().get(2).getTuiles().size()
    					+partie.getListe_piles().get(3).getTuiles().size()
    					+partie.getListe_piles().get(4).getTuiles().size()));
-    */}
+   } */
     
     /**
      * Test de la méthode phase0()
@@ -147,9 +149,9 @@ public class SantiagoTest {
      * -teste pour savoir si la nombre de tuile est correct
      * -test palmier
      */
-    @Test
+    /*@Test
     public void testresetOrdre() throws RemoteException, UnknownHostException {
-   /*	Partie partie=new Partie();
+   	Partie partie=new Partie();
    	
    	Joueur joueur1=new Joueur(1,"joueur1","Noire",1);
    	Joueur joueur2=new Joueur(2,"joueur2","Gris",2);
@@ -166,7 +168,7 @@ public class SantiagoTest {
    	partie.getJoueurs().get(1).devenirConstructeur();
    	partie.resetOrdre(partie.getJoueurs().get(2).getId_joueur());
    	assertEquals(5, partie.getJoueurs().get(2).getRang());
-   */
+   
     }
    
     @Test
@@ -178,25 +180,14 @@ public class SantiagoTest {
 		p.addJoueur(j1);
 		p.addJoueur(j2);
 		p.addJoueur(j3);
-		p.getJoueurs().get(1).Est_constructeurdecanal();
+		p.getJoueurs().get(1).setEst_constructeurdecanal(true);
 	   	p.phase0();
 	   	assertEquals(3, p.getConstructeur().getId_joueur());
 	  
-    }
-    /*
-    public void testPhase2() throws RemoteException, UnknownHostException{
-    	Partie p=new Partie();
-		Joueur j1=new Joueur(1, "J1", "rouge", 1);
-		Joueur j2=new Joueur(2,"J2","brun",2);
-		Joueur j3=new Joueur(3,"J3","vert",3);
-		p.addJoueur(j1);
-		p.addJoueur(j2);
-		p.addJoueur(j3);
-		p.phase0();
-		p.phase1();
-		
-		
     }*/
+    
+
+
     
     
 }

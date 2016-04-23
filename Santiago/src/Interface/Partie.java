@@ -79,6 +79,35 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	public ArrayList<ProposerMise> getEncheresCourantes() {
 		return encheres_courantes;
 	}
+	
+	
+	public int getIdPartie() {
+		return idPartie;
+	}
+
+	public Plateau getPlateau() {
+		return plateau;
+	}
+
+	public Banque getBanque() {
+		return banque;
+	}
+
+	public ArrayList<PartieInterface> getListe_interface() {
+		return liste_interface;
+	}
+
+	public ArrayList<Joueur> getListe_joueurs() {
+		return liste_joueurs;
+	}
+
+	public ArrayList<String> getCouleurs() {
+		return couleurs;
+	}
+
+	public ArrayList<ProposerMise> getEncheres_courantes() {
+		return encheres_courantes;
+	}
 
 	public void addEnchere(ProposerMise i) {
 		this.encheres_courantes.add(i);
@@ -252,7 +281,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		//On cr�e le tableau de la partie
 		plateau=new Plateau(1,5,6);
 		System.out.println("Création Tableau");
-		plateau.initparcelles();// tableau de parcelle 8X6
+		plateau.initliste_parcelles();// tableau de parcelle 8X6
 		System.out.println("Initialisation parcelles");
 		this.plateau.initfosses();//tableau de fosses 16 premier verticaux, 16 d'apres horizontaux
 		System.out.println("Initialisation fossés");
@@ -264,19 +293,19 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			//CREATION DES TUILES
 		ArrayList<TuilePlantation> toutesLesTuiles=new ArrayList<TuilePlantation>();
 		for(int id1=1 ;id1<=9; id1++){
-			toutesLesTuiles.add(new TuilePlantation(id1,"piment"));
+			toutesLesTuiles.add(new TuilePlantation(id1,"piment",1));
 		}
 		for(int id2=10 ;id2<=18; id2++){
-			toutesLesTuiles.add(new TuilePlantation(id2,"banane"));
+			toutesLesTuiles.add(new TuilePlantation(id2,"banane",1));
 		}
 		for(int id3=19 ;id3<=27; id3++){
-			toutesLesTuiles.add(new TuilePlantation(id3,"patate"));
+			toutesLesTuiles.add(new TuilePlantation(id3,"patate",1));
 		}
 		for(int id4=28 ;id4<=36; id4++){
-			toutesLesTuiles.add(new TuilePlantation(id4,"haricot"));
+			toutesLesTuiles.add(new TuilePlantation(id4,"haricot",1));
 		}
 		for(int id5=37 ;id5<=45; id5++){
-			toutesLesTuiles.add(new TuilePlantation(id5,"canne"));
+			toutesLesTuiles.add(new TuilePlantation(id5,"canne",1));
 		}
 		
 			//Creation des piles
@@ -318,7 +347,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				this.liste_piles.add(pile5);
 				//INIT CONSTRUCTEUR
 				int constructeur=(int)(Math.random()*(liste_joueurs.size()-0));
-				liste_joueurs.get(constructeur).Est_constructeurdecanal();
+				liste_joueurs.get(constructeur).setEst_constructeurdecanal(true);
 				System.out.println("Le joueur "+liste_joueurs.get(constructeur).getNom_joueur()+" est constructeur de canal");
 	
 				//RORGANISER l'ordre de passage par rapport au constructeur de canal
@@ -360,7 +389,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				
 				//Choisir en Random le constructeur de Canal
 				int constructeur=(int)(Math.random()*(liste_joueurs.size()-0));
-				liste_joueurs.get(constructeur).Est_constructeurdecanal();
+				liste_joueurs.get(constructeur).setEst_constructeurdecanal(true);
 				System.out.println("Le joueur "+liste_joueurs.get(constructeur).getNom_joueur()+" est constructeur de canal");
 	
 				
@@ -390,7 +419,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		//TRIER TABLEAU DE JOUEUR EN FONCTION DU RANG
 		Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		
-		for(Joueur j:liste_joueurs){
+		for(Joueur j:this.liste_joueurs){
 			System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" voulez-vous Passer ou Proposer une Enchere 0(Encherir)/1(Passer)");
 			Scanner c=new Scanner(System.in);
 			int choix=c.nextInt();
@@ -487,7 +516,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		
 		//Redefinir le constructeur de canal
 		int idcons=this.encheres_courantes.get(0).getJoueur().getRang();
-		this.liste_joueurs.get(idcons-1).Est_constructeurdecanal();
+		this.liste_joueurs.get(idcons-1).setEst_constructeurdecanal(true);
 		System.out.println("Le joueur "+this.getConstructeur().getNom_joueur()+" est le nouveau constructeur de canal");	
 		this.phaseSuivante();
 	}
@@ -518,7 +547,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		}
 		//cas 4 5 Joueurs
 		else{
-			for(Joueur j:liste_joueurs){
+			for(Joueur j:this.liste_joueurs){
 				System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Quelle tuile voulez vous choisir?");
 				//payer
 				//choisir ?
@@ -555,10 +584,53 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		}
 	}
 
-	 
+	 /**
+	  * Phasre 6:
+	  * Pour chaque tuile de plantation qui n’est pas adjacente à un canal bleu :
+	  * Si la tuile est couverte d’au moins un travailleur agricole, retirer un travailleur
+	  * agricole de la tuile.
+	  * Si la tuile n’est couverte d’aucun travailleur agricole, retourner la tuile côté désert.
+	  */
 	public void phase6() throws RemoteException {
-		System.out.println("Phase 6: Secheresse");
-		// TODO Auto-generated method stub
+		System.out.println("==============\nPhase 6: Secheresse\n===============");
+		for(Joueur j:this.liste_joueurs){
+			System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+"");
+			for(TuilePlantation t:j.getTuilesjoueur()){
+			
+					 ArrayList<Fosse> fosses=this.plateau.getFossesAdjacents(this.plateau.get(t.getSourceX(), t.getSourceY()));
+					 System.out.println("la tuile "+fosses.get(0).getSens()+" est bien arrosée");
+					 boolean res=false;
+					 	if(fosses.size()==0){
+					 		res=false;
+					 	}
+					 	else
+					 	for(int i=0;i<2;i++){
+					 		if(fosses.get(i).getIrrigue()==true){
+					 			System.out.println("la tuile "+t.getPlante()+" est bien arrosée");
+					 			res=true;
+					 			break;
+					 		}	
+					 	}
+					 
+					 if(res==false && 1<=t.getTag_presents()){
+						t.setTag_presents(t.getTag_presents()-1);
+						System.out.println("Un TAG en moins sur la tuile "+t.getPlante());
+					 }
+					 else if(res==false && t.getTag_presents()==0){
+						//Cas Palmier
+						if(this.plateau.get(t.getSourceX(), t.getSourceX()).getPalmier()==false){
+							t.setDesert(true);
+							t.setVisible(false);
+							System.out.println("La tuile "+t.getPlante()+" est maintenant un dessert");
+							}
+						else
+							this.plateau.get(t.getSourceX(), t.getSourceX()).setPalmier(false);
+					 }
+				 
+				 }
+				
+			}
+		
 		this.phaseSuivante();
 	}
 
