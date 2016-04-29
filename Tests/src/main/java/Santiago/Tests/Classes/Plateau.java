@@ -76,7 +76,7 @@ public class Plateau {
 		for(int i=0;i<4;i++){
 			for(int j=0;j<4;j++){
 			this.liste_fosses.add(new Fosse(id,j,i,"H",false));
-			System.out.println(id+":"+i+" "+j);id++;
+			System.out.println(id+"x:"+i+" y:"+j);id++;
 			
 			
 			}
@@ -128,7 +128,8 @@ public class Plateau {
 			for(int j=16;j<liste_fosses.size();j++){
 				if((liste_fosses.get(j).getCoorX()==x) && (liste_fosses.get(j).getCoorY()==y))
 				{
-					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());return liste_fosses.get(j);
+					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());
+					return liste_fosses.get(j);
 				}
 					
 			}
@@ -242,9 +243,10 @@ public class Plateau {
 			y=parcelle.getCoorY()/2+1;
 		}
 		else
-			y=parcelle.getCoorY();
+			y=parcelle.getCoorY()/2;
 		
 		fosses.add(this.getFosse(parcelle.getCoorX()/2,y,"V"));
+		System.out.println("x:"+parcelle.getCoorX()/2+"y:"+y);
 		return fosses;
 	}
 	
