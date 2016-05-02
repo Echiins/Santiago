@@ -596,6 +596,25 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					int choix=c.nextInt();
 				}
 				if(choix==1){
+					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
+					Scanner c=new Scanner(System.in);
+					int coordx=c.nextInt();
+					while ((coordx<0) || (coordx>8) )
+					{
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
+						Scanner c=new Scanner(System.in);
+						int coordx=c.nextInt();
+					}
+					
+					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+					Scanner c=new Scanner(System.in);
+					int coordy=c.nextInt();
+					while ((coordy<0) || (coordy>6) )
+					{
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+						Scanner c=new Scanner(System.in);
+						int coordy=c.nextInt();
+					}
 					//Poser canal Bleu
 					aPoser=true;
 				}else{
