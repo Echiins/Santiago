@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
+import Classes.String;
 import Santiago.Tests.Classes.*;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
@@ -596,30 +597,74 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					int choix=c.nextInt();
 				}
 				if(choix==1){
-					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
-					Scanner c=new Scanner(System.in);
-					int coordx=c.nextInt();
-					while ((coordx<0) || (coordx>8) )
-					{
+					boolean estBienpose = false;
+					while (estBienpose == false){
+					
+						//Coordonnée X
 						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
 						Scanner c=new Scanner(System.in);
 						int coordx=c.nextInt();
-					}
-					
-					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
-					Scanner c=new Scanner(System.in);
-					int coordy=c.nextInt();
-					while ((coordy<0) || (coordy>6) )
-					{
+						while ((coordx<0) || (coordx>4) )
+						{
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée x :");
+							Scanner c=new Scanner(System.in);
+							int coordx=c.nextInt();
+						}
+						
+						//Coordonnée Y
 						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
 						Scanner c=new Scanner(System.in);
 						int coordy=c.nextInt();
+						if(coordx==4){
+							while ((coordy<0) || (coordy>2) )
+							{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+								Scanner c=new Scanner(System.in);
+								int coordy=c.nextInt();
+							}
+						}else{
+							while ((coordy<0) || (coordy>3) )
+							{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+								Scanner c=new Scanner(System.in);
+								int coordy=c.nextInt();
+							}
+						}
+						
+						//Sens
+						if(coordx==4){
+							sens="V";
+						}else if(coordy==3){
+							sens="H";
+						}else{
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal :");
+							Scanner c=new Scanner(System.in);
+							String sens=c.nextLine(); 
+							while ((sens!="V") || (sens!="H") || (sens!="v") || (sens!="h") )
+							{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal : ( V : vertical / H : horizontal");
+								Scanner c=new Scanner(System.in);
+								String sens=c.nextLine();
+							}
+							if(sens="v"){
+								sens="V";
+							}else{
+								sens="H";
+							}
+						}
+						
+						Fosse canal = this.plateau.getFosse(x,y,sens);
+						if (canal.getIrrigue()!=true){
+							
+							estBienpose=false;
+						}
+						//Poser canal Bleu
+						aPoser=true;
 					}
-					//Poser canal Bleu
-					aPoser=true;
 				}else{
-					i++;
+						i++;
 				}
+				
 			}
 		}
 		// TODO Auto-generated method stub

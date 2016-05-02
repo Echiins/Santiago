@@ -250,6 +250,13 @@ public class Plateau {
 		return fosses;
 	}
 	
+	public boolean getFossesIrrigueAdjacents(Fosse fosse){
+		boolean irrigue = false;
+			if(fosse.getCoorX()==0 && fosse.getCoorY()==3){
+				
+			}
+		
+	}
 	
 	
 	//************************************GETTER************************************
