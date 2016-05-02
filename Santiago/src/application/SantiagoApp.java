@@ -2,6 +2,7 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 
+import Classes.Santiago;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +19,10 @@ public class SantiagoApp extends Application {
 	private MainUIController controller;
 
 	public static void main(String[] args) {
-		System.out.println("ici");launch(args);
+		Santiago santiago=new Santiago();
+		launch(args);
+		santiago.demarrerServeur();
+		
 	}
 	
 	@Override
