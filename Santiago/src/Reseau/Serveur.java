@@ -16,6 +16,20 @@ import Classes.*;
 import Interface.Partie;
 
 public class Serveur {
+	
+	private Partie server;
+	
+	public Serveur(){
+		try {
+			this.server=new Partie();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static  InetAddress getAddress() throws Exception {
 		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
@@ -37,12 +51,18 @@ public class Serveur {
 	}
 
 	
-	public static void main (String[]args)  throws Exception{
-		
-		String host = getAddress().getHostAddress();
+	public Partie getServer() {
+		return server;
+	}
 
- 
-         System.out.println("[SERVEUR : "+host+"]");
+	public void setServer(Partie server) {
+		this.server = server;
+	}
+
+	public static void initServeur()  throws Exception{
+		
+		String host = "localhost";
+        System.out.println("[SERVEUR : "+host+"]");
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
 
@@ -60,19 +80,18 @@ public class Serveur {
         	if(i==1000000000){System.out.println("En attente de joueurs...");}
         }
         if(server.getStart()){
-        	if(server.getMaxTour()==0){
+        	if(server.getMax_tour()==0){
         		if(server.getClient().size()==5){
-        			server.setMaxTour(11);
+        			server.setMax_tour(11);
         		}
         		else{
-        			server.setMaxTour(9);
+        			server.setMax_tour(9);
         		}
         	}
 			//La on est censé commencer la partie avec les 'maxTour' tours, chacun avec les 7 phases
 			server.jouerPhase(); //Cette méthode comprendra tout le lancement du jeu
-			
         	server.tourSuivant();
-        	if(server.getTour()>server.getMaxTour()){ //le tour 12 correspond au tour de fin de la partie
+        	if(server.getTour()>server.getMax_tour()){ //le tour 12 correspond au tour de fin de la partie
 			//Après les x tours (11 si 5 joueurs sinon 9 tours) : fin de la partie ->
         	
 	        	//Ultime secheresse
