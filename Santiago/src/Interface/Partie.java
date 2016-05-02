@@ -569,9 +569,40 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.phaseSuivante();
 	}
 
-	 
+	 /**
+	  * Phasre 5:
+	  * En commençant par le joueur à gauche du constructeur de canal et en suivant le sens horaire :
+	  * Chaque joueur qui possède encore un canal bleu peut choisir de le placer maintenant
+	  * sur un double segment (de couleur sombre) non irrigué du plateau.
+	  * La phase s’arrête immédiatement si un joueur place un canal bleu (en clair, on ne peut
+	  * placer qu’un seul canal complémentaire par tour de jeu).
+	  */
 	public void phase5() throws RemoteException {
-		System.out.println("Phase 5: Irrigation Complémentaire");
+		System.out.println("==============\nPhase 5: Irrigation Complémentaire\n===============");
+		
+		boolean aPoser=false;
+		int i =0;
+		
+		while(aPoser==false && i < this.liste_joueurs.size()){
+			
+			if(this.liste_joueurs.get(i).getCanal_bleu()==true){
+				System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
+				Scanner c=new Scanner(System.in);
+				int choix=c.nextInt();
+				while ((choix!=0)||(choix!=1))
+				{
+					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
+					Scanner c=new Scanner(System.in);
+					int choix=c.nextInt();
+				}
+				if(choix==1){
+					//Poser canal Bleu
+					aPoser=true;
+				}else{
+					i++;
+				}
+			}
+		}
 		// TODO Auto-generated method stub
 		this.phaseSuivante();
 		
