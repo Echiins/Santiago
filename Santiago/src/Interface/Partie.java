@@ -542,13 +542,40 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 			
 		//CAS 3 joueurs
-		if(liste_joueurs.size()==3)	{
-			
-		}
-		//cas 4 5 Joueurs
-		else{
+		
 			for(Joueur j:this.liste_joueurs){
 				System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Quelle tuile voulez vous choisir?");
+				Scanner tuile=new Scanner(System.in);
+				int j=tuile.nextInt();				
+				Tuile tuile = j.getTuilesjoueur().get(j);
+				
+				
+				System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
+				Scanner c=new Scanner(System.in);
+				int coordx=c.nextInt();
+				
+				boolean occupee=false;
+				while(occupee=false){
+					while ((coordx<0) || (coordx>8) )
+					{
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
+						Scanner c=new Scanner(System.in);
+						int coordx=c.nextInt();
+					}
+					
+					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+					Scanner c=new Scanner(System.in);
+					int coordy=c.nextInt();
+					while ((coordy<0) || (coordy>6) || this.plateau.get(coordx,coordy).getOccupee()=TRUE )
+					{
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+						Scanner c=new Scanner(System.in);
+						int coordy=c.nextInt();
+					}
+					occupee=this.plateau.get(coordx,coordy).getOccupee();
+				}
+				
+				
 				//payer
 				//choisir ?
 				//place la tuile
@@ -557,7 +584,9 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					//un en moins pour les passer
 				//cas 3 joueurs
 			}
-		}
+			if(liste_joueurs.size()==3)	{
+				
+			}
 		this.phaseSuivante();
 		
 	}

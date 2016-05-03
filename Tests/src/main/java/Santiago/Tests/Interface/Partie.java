@@ -645,4 +645,16 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			this.tourSuivant();
 		}
 
+	@Override
+	public int getMaxTour() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setMaxTour(int maxTour) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
