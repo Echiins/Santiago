@@ -575,7 +575,15 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					occupee=this.plateau.get(coordx,coordy).getOccupee();
 				}
 				
-				
+				if(j.getNb_tag()-(tuile.getTag_necessaires()-tuile.getTag_present())>0){
+					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Combien de pionts de rendement voulez vous déposer?");
+					Scanner r=new Scanner(System.in);
+					
+					int rend=r.nextInt();
+					j.setNb_tag(j.getNb_tag()-rend);
+					tuile.setTag_presents(tuile.getTag_present+rend);
+					this.plateau.get(coordx,coordy).setOccupee(true);
+				}
 				//payer
 				//choisir ?
 				//place la tuile
