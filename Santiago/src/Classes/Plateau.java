@@ -1,4 +1,4 @@
-package Santiago.Tests.Classes;
+package Classes;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,6 +45,13 @@ public class Plateau {
 		this.sourceY=sourceY;
 		this.liste_parcelles=new ArrayList<Parcelle>();
 		this.liste_fosses=new ArrayList<Fosse>();
+	}
+	public Plateau(int idPlateau, int sourceX, int sourceY, List<Parcelle> liste_parcelles, List<Fosse> liste_fosses) {
+		this.idPlateau=idPlateau;
+		this.sourceX = sourceX;
+		this.sourceY = sourceY;
+		this.liste_parcelles = liste_parcelles;
+		this.liste_fosses = liste_fosses;
 	}
 
 	/***************************************************************************
@@ -250,8 +257,55 @@ public class Plateau {
 		return fosses;
 	}
 	
-	
-	
 	//************************************GETTER************************************
 	//************************************SETTER************************************
+	
+	
+	public int getIdPlateau() {
+		return idPlateau;
+	}
+
+	public void setIdPlateau(int idPlateau) {
+		this.idPlateau = idPlateau;
+	}
+
+	public int getSourceX() {
+		return sourceX;
+	}
+
+	public void setSourceX(int sourceX) {
+		this.sourceX = sourceX;
+	}
+
+	public int getSourceY() {
+		return sourceY;
+	}
+
+	public void setSourceY(int sourceY) {
+		this.sourceY = sourceY;
+	}
+
+	public List<Parcelle> getListe_parcelles() {
+		return liste_parcelles;
+	}
+
+	public void setListe_parcelles(List<Parcelle> liste_parcelles) {
+		this.liste_parcelles = liste_parcelles;
+	}
+
+	public List<Fosse> getListe_fosses() {
+		return liste_fosses;
+	}
+
+	public void setListe_fosses(List<Fosse> liste_fosses) {
+		this.liste_fosses = liste_fosses;
+	}
+	
+	
+
+	
+	
+	
+	
+	
 }

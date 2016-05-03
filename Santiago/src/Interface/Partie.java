@@ -1,4 +1,4 @@
-package Santiago.Tests.Interface;
+package Interface;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import Santiago.Tests.Classes.*;
+import Classes.*;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
 
@@ -23,6 +23,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private int max_tour;
 	private ArrayList<PileTuile> liste_piles=null;
 	private ArrayList<ProposerMise> encheres_courantes;
+	private int score;
 	
 /***************************************************************************
  * *******************************CONSTRUCTOR*******************************
@@ -43,6 +44,23 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.liste_piles=new ArrayList<PileTuile>();
 		this.encheres_courantes=new ArrayList<ProposerMise>();
 	}
+	
+	public Partie(int idPartie, int tour, int phase,Plateau plateau,Banque banque,
+			 ArrayList<Joueur> liste_joueurs,boolean start, int max_tour, ArrayList<PileTuile> liste_piles, ArrayList<ProposerMise> encheres_courantes, int score)
+				throws RemoteException {
+			this.idPartie = idPartie;
+			this.tour = tour;
+			this.phase = phase;
+			this.plateau=plateau;
+			this.banque = banque;
+			this.liste_joueurs = liste_joueurs;
+			this.couleurs = couleurs;
+			this.start = start;
+			this.max_tour = max_tour;
+			this.liste_piles = liste_piles;
+			this.encheres_courantes = encheres_courantes;
+			this.setScore(score);
+		}
 
 	/***************************************************************************
 	 * *******************************METHODES*******************************
@@ -571,11 +589,11 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 
 	 /**
 	  * Phasre 5:
-	  * En commençant par le joueur à gauche du constructeur de canal et en suivant le sens horaire :
-	  * Chaque joueur qui possède encore un canal bleu peut choisir de le placer maintenant
-	  * sur un double segment (de couleur sombre) non irrigué du plateau.
-	  * La phase s’arrête immédiatement si un joueur place un canal bleu (en clair, on ne peut
-	  * placer qu’un seul canal complémentaire par tour de jeu).
+	  * En commencant par le joueur a gauche du constructeur de canal et en suivant le sens horaire :
+	  * Chaque joueur qui possede encore un canal bleu peut choisir de le placer maintenant
+	  * sur un double segment (de couleur sombre) non irrigue du plateau.
+	  * La phase s'arrete immediatement si un joueur place un canal bleu (en clair, on ne peut
+	  * placer qu'un seul canal complementaire par tour de jeu).
 	  */
 	public void phase5() throws RemoteException {
 		System.out.println("==============\nPhase 5: Irrigation Complémentaire\n===============");
@@ -592,28 +610,28 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				while ((choix!=0)||(choix!=1))
 				{
 					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
-					Scanner c=new Scanner(System.in);
-					int choix=c.nextInt();
+					c=new Scanner(System.in);
+					choix=c.nextInt();
 				}
 				if(choix==1){
 					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
-					Scanner c=new Scanner(System.in);
+					c=new Scanner(System.in);
 					int coordx=c.nextInt();
 					while ((coordx<0) || (coordx>8) )
 					{
 						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
-						Scanner c=new Scanner(System.in);
-						int coordx=c.nextInt();
+						c=new Scanner(System.in);
+						coordx=c.nextInt();
 					}
 					
 					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
-					Scanner c=new Scanner(System.in);
+					 c=new Scanner(System.in);
 					int coordy=c.nextInt();
 					while ((coordy<0) || (coordy>6) )
 					{
 						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
-						Scanner c=new Scanner(System.in);
-						int coordy=c.nextInt();
+						c=new Scanner(System.in);
+						coordy=c.nextInt();
 					}
 					//Poser canal Bleu
 					aPoser=true;
@@ -628,8 +646,8 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		if(this.getTour()==this.getMax_tour()){
 			//Fin du Jeu
 			//Compter les points
-			for(int i=0;i<liste_joueurs.size();i++){
-				System.out.println("Le joueur "+liste_joueurs.get(i).getNom_joueur()+" a "+this.liste_joueurs.get(i).getCagnotte()+" escudos dans sa cagnotte");
+			for(int j=0;j<liste_joueurs.size();j++){
+				System.out.println("Le joueur "+liste_joueurs.get(j).getNom_joueur()+" a "+this.liste_joueurs.get(j).getCagnotte()+" escudos dans sa cagnotte");
 			}
 		}
 	}
@@ -694,5 +712,25 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 			this.tourSuivant();
 		}
+
+	@Override
+	public int getMaxTour() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setMaxTour(int maxTour) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 
 }
