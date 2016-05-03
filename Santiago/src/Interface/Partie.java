@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
+import Classes.Fosse;
 import Classes.String;
 import Santiago.Tests.Classes.*;
 
@@ -584,7 +585,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		boolean aPoser=false;
 		int i =0;
 		
-		while(aPoser==false && i < this.liste_joueurs.size()){
+		while((aPoser==false)||(i < this.liste_joueurs.size())){
 			
 			if(this.liste_joueurs.get(i).getCanal_bleu()==true){
 				System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
@@ -655,11 +656,16 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 						
 						Fosse canal = this.plateau.getFosse(x,y,sens);
 						if (canal.getIrrigue()!=true){
-							
-							estBienpose=false;
+							if(this.plateau.getFossesIrrigueAdjacents(canal)){
+								estBienpose=true;
+								aPoser=true;
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a été posé.");
+							}else{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas être posé car il n'est pas relier à un autre canal.");
+							}
+						}else{
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Ce fossé est déjà irrigué.");	
 						}
-						//Poser canal Bleu
-						aPoser=true;
 					}
 				}else{
 						i++;
