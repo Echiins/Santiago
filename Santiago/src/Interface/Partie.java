@@ -581,7 +581,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	  */
 	public void phase5() throws RemoteException {
 		System.out.println("==============\nPhase 5: Irrigation Complémentaire\n===============");
-		
+		Scanner c=new Scanner(System.in);
 		boolean aPoser=false;
 		int i =0;
 		
@@ -589,12 +589,11 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			
 			if(this.liste_joueurs.get(i).getCanal_bleu()==true){
 				System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
-				Scanner c=new Scanner(System.in);
+				
 				int choix=c.nextInt();
 				while ((choix!=0)||(choix!=1))
 				{
 					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
-					Scanner c=new Scanner(System.in);
 					int choix=c.nextInt();
 				}
 				if(choix==1){
@@ -603,31 +602,30 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					
 						//Coordonnée X
 						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
-						Scanner c=new Scanner(System.in);
 						int coordx=c.nextInt();
 						while ((coordx<0) || (coordx>4) )
 						{
 							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée x :");
-							Scanner c=new Scanner(System.in);
+
 							int coordx=c.nextInt();
 						}
 						
 						//Coordonnée Y
 						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
-						Scanner c=new Scanner(System.in);
+
 						int coordy=c.nextInt();
 						if(coordx==4){
 							while ((coordy<0) || (coordy>2) )
 							{
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
-								Scanner c=new Scanner(System.in);
+
 								int coordy=c.nextInt();
 							}
 						}else{
 							while ((coordy<0) || (coordy>3) )
 							{
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
-								Scanner c=new Scanner(System.in);
+
 								int coordy=c.nextInt();
 							}
 						}
@@ -639,12 +637,12 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 							sens="H";
 						}else{
 							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal :");
-							Scanner c=new Scanner(System.in);
+
 							String sens=c.nextLine(); 
 							while ((sens!="V") || (sens!="H") || (sens!="v") || (sens!="h") )
 							{
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal : ( V : vertical / H : horizontal");
-								Scanner c=new Scanner(System.in);
+
 								String sens=c.nextLine();
 							}
 							if(sens="v"){
