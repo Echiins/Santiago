@@ -600,8 +600,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		Scanner c=new Scanner(System.in);
 		boolean aPoser=false;
 		int i =0;
-		int x,y;
-		String sens;
+
 		
 		while((aPoser==false)||(i < this.liste_joueurs.size())){
 			
@@ -656,7 +655,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 						}else{
 							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal :");
 
-							sens=c.nextLine(); 
+							String sens=c.nextLine(); 
 							while ((sens!="V") || (sens!="H") || (sens!="v") || (sens!="h") )
 							{
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal : ( V : vertical / H : horizontal");
@@ -670,7 +669,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 							}
 						}
 						
-						Fosse canal = this.plateau.getFosse(x,y,sens);
+						Fosse canal = this.plateau.getFosse(coordx,coordy,sens);
 						if (canal.getIrrigue()!=true){
 							if(this.plateau.getFossesIrrigueAdjacents(canal)){
 								estBienpose=true;
