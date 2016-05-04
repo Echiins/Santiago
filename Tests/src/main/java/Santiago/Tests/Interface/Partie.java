@@ -776,7 +776,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 							}
 						}
 						
-						Fosse canal = this.plateau.getFosse(x,y,sens);
+						Fosse canal = this.plateau.getFosse(coordx,coordy,sens);
 						if (canal.getIrrigue()!=true){
 							if(this.plateau.getFossesIrrigueAdjacents(canal)){
 								estBienpose=true;
@@ -868,7 +868,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 			this.tourSuivant();
 		}
 
-<<<<<<< HEAD
+
 
 
 	public int getScore() {
@@ -880,7 +880,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 	}
 
 
-=======
+
 	@Override
 	public int getMaxTour() throws RemoteException {
 		// TODO Auto-generated method stub
@@ -893,5 +893,5 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		
 	}
 
->>>>>>> phase3
+
 }
