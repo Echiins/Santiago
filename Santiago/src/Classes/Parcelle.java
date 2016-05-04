@@ -43,7 +43,11 @@ public class Parcelle {
 	public boolean getPalmier() {
 		return palmier;
 	}
+<<<<<<< HEAD
 	public boolean getOccupee(){
+=======
+	public boolean getOccupee() {
+>>>>>>> phase3
 		return occupee;
 	}
 
@@ -59,5 +63,8 @@ public class Parcelle {
 	}
 	public void setCoorX(int coorX) {
 		this.coorX = coorX;
+	}
+	public void setOccupee(boolean occupee) {
+		this.occupee = occupee;
 	}
 }
