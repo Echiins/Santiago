@@ -1,10 +1,37 @@
 package Sauvegardes;
 
 
+import java.io.BufferedReader;
+import java.util.Properties;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.rmi.RemoteException;
 import java.util.List;
+
+import javax.swing.text.AsyncBoxView.ChildState;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 import Interface.Partie;
 import Classes.*;
@@ -147,6 +174,53 @@ public class Sauvegarde {
 				+"<tag_necessaires>"+tuile.getTag_necessaires()+"</tag_necessaires>" 
 				+"</tuile>";
 	}
+	
+	
+	public static void nouveau_score(Partie p) throws IOException, ParserConfigurationException, SAXException, TransformerException{
+
+		try{
+			//Si le fichier existe
+			System.out.println("jjjjj");
+			FileReader f= new FileReader("SCORES.xml");
+			System.out.println("LOL");
+			
+		}
+		catch(FileNotFoundException e){
+			//S'il n'existe pas on crée un nouveau fichier xml "vide"
+			System.out.println("NEW");
+			File f= new File("SCORES.xml");
+			FileWriter fw=new FileWriter(f);
+			fw.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?><scores></scores>");
+			fw.close();
+		}
+		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		final DocumentBuilder builder = factory.newDocumentBuilder();
+		final Document document= builder.parse(new File("SCORES.xml"));
+		final Element racine = document.getDocumentElement();
+		Element score = document.createElement("score");
+		score.setTextContent(String.valueOf(p.getScore()));
+		score.setAttribute("id",String.valueOf(p.getIdPartie()));
+		racine.appendChild(score);
+		
+		File f= new File("SCORES.xml");
+		FileWriter fw=new FileWriter(f);
+		
+		
+				
+		DOMSource domSource = new DOMSource(document); 
+		StringWriter writer = new StringWriter(); 
+		StreamResult result = new StreamResult(writer); 
+		TransformerFactory tf = TransformerFactory.newInstance(); 
+		Transformer transformer = tf.newTransformer(); 
+		transformer.transform(domSource, result); 
+		String stringResult = writer.toString();
+ 
+		fw.write(stringResult);
+		
+		fw.close();
+		
+	}
+	
 
 	
 }

@@ -2,11 +2,20 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 import Classes.Banque;
 import Classes.BilletBanque;
@@ -22,7 +31,7 @@ import Sauvegardes.ChargementPartie;
 import Sauvegardes.Sauvegarde;
 
 public class SauvegardesTest {
-
+	
 	@Test
 	public void test_save_and_load() throws IOException {
 		ArrayList<BilletBanque> liste_billets= new ArrayList();
@@ -69,5 +78,45 @@ public class SauvegardesTest {
 		
 		
 	}
+	
+	@Test
+	public void score() throws IOException, ParserConfigurationException, SAXException, TransformerException{
+		Partie p1=new Partie(1,1,2,null,null,null,true,11,null,null,200);
+		Sauvegarde.nouveau_score(p1);
+		Partie p2=new Partie(2,1,2,null,null,null,true,11,null,null,300);
+		Sauvegarde.nouveau_score(p2);
+		Partie p3=new Partie(3,1,2,null,null,null,true,11,null,null,1000);
+		Sauvegarde.nouveau_score(p3);
+		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		final DocumentBuilder builder = factory.newDocumentBuilder();
+		final Document document= builder.parse(new File("SCORES.xml"));
+		final Element racine = document.getDocumentElement();
+		int score1=-1;
+		int score2=-1;
+		int score3=-1;
+		
+		for(int i=0; i<racine.getElementsByTagName("score").getLength();i++){
+			String s=((Element) racine.getElementsByTagName("score").item(i)).getTextContent();
+			switch (((Element) racine.getElementsByTagName("score").item(i)).getAttribute("id")){
+				case "1":
+					score1=Integer.parseInt(s);
+					break;
+				case "2":
+					score2=Integer.parseInt(s);
+					break;
+				case "3":
+					score3=Integer.parseInt(s);
+					break;
+				default:
+					break;
+			}
+		}
+		assertEquals(200,score1);
+		assertEquals(300,score2);
+		assertEquals(1000,score3);
+
+		
+	}
+	
 
 }

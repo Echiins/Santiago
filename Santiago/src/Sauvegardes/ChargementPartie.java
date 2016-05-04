@@ -169,11 +169,7 @@ public class ChargementPartie {
 			Partie partie=new Partie(id,tour,phase,plateau_de_jeu,banque,liste_joueurs,start,maxTour,liste_piles,encheres_courantes,score);
 			partie.getBanque().setPartie(partie);
 			return partie;
-			/*
-			public Partie(int idPartie, int tour, int phase,Plateau plateau,Banque banque,
-			 ArrayList<Joueur> liste_joueurs,boolean start, int max_tour, ArrayList<PileTuile> liste_piles, ArrayList<ProposerMise> encheres_courantes, int score)
-				throws RemoteException {
-			*/
+			
 		}
 		catch (final ParserConfigurationException e) {
 		    e.printStackTrace();
@@ -190,5 +186,7 @@ public class ChargementPartie {
 	}
 	
 
-
 }
+
+
+
