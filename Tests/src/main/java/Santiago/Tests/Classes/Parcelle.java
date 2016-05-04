@@ -36,6 +36,9 @@ public class Parcelle {
 	public boolean getPalmier() {
 		return palmier;
 	}
+	public boolean getOccupee() {
+		return occupee;
+	}
 
 	//************************************SETTER************************************
 	public void setIdParcelle(int idParcelle) {
@@ -49,5 +52,8 @@ public class Parcelle {
 	}
 	public void setCoorX(int coorX) {
 		this.coorX = coorX;
+	}
+	public void setOccupee(boolean occupee) {
+		this.occupee = occupee;
 	}
 }
