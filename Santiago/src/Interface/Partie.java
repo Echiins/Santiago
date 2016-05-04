@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import Classes.*;
+import Santiago.Tests.Classes.*;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
 
@@ -173,7 +173,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 		}
 		else{
-			System.out.println("D�j� 5 joueurs connect�s dsl");
+			System.out.println("Dï¿½jï¿½ 5 joueurs connectï¿½s dsl");
 		}
 	}
 	
@@ -286,27 +286,27 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	 * PHASE 0 : INITIALISATION DU JEU
 	 * 1)Initialiser le tableau
 	 * 	a)initialiser les parcelles
-	 * 	b)initialiser les foss�es
+	 * 	b)initialiser les fossï¿½es
 	 * 2)Initialiser les piles
 	 * 	a)Initialiser les tuiles
 	 * 	b)distribuer les tuiles
 	 * 3)Initialiser le nombre de Tours
 	 * 4)Choisisir le constucteur de canal
-	 * 5)D�finir le nouvel Ordre de jeu
+	 * 5)Dï¿½finir le nouvel Ordre de jeu
 	 * Phase suivante
 	 */
 	public void phase0() throws RemoteException{ 
-		//On cr�e le tableau de la partie
+		//On crï¿½e le tableau de la partie
 		plateau=new Plateau(1,5,6);
-		System.out.println("Création Tableau");
+		System.out.println("CrÃ©ation Tableau");
 		plateau.initliste_parcelles();// tableau de parcelle 8X6
 		System.out.println("Initialisation parcelles");
 		this.plateau.initfosses();//tableau de fosses 16 premier verticaux, 16 d'apres horizontaux
-		System.out.println("Initialisation fossés");
+		System.out.println("Initialisation fossÃ©s");
 		
 		//initialisation de la Banque
 		//this.banque=new Banque();
-		//On g�re les tuiles de plantations
+		//On gï¿½re les tuiles de plantations
 		
 			//CREATION DES TUILES
 		ArrayList<TuilePlantation> toutesLesTuiles=new ArrayList<TuilePlantation>();
@@ -420,14 +420,14 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	
 	}
 /**
- * Phase 1: Mise aux ench�res des tuiles de plantation
+ * Phase 1: Mise aux enchï¿½res des tuiles de plantation
  * 1)Retourner les Tuiles
  * 2)Proposer les Encheress
  * Phase suivante
  */
 	public void phase1() throws RemoteException {
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nTour \n=-=-=-=-=-=-=-=-=-="+this.getTour());
-		System.out.println("===============\nPhase 1: Mise aux ench�res des tuiles de plantation \n===============");
+		System.out.println("===============\nPhase 1: Mise aux enchï¿½res des tuiles de plantation \n===============");
 		
 		//RENDRE LES PREMIERES TUILES DE CHAQUE PILES VISIBLES:
 		for(int i=0;i<this.liste_piles.size();i++){
@@ -455,7 +455,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				System.out.println("ENCHERIR:");
 				int montant=0;
 				boolean res=false;
-				System.out.println("Le Montant de votre ench�re:");
+				System.out.println("Le Montant de votre enchï¿½re:");
 
 				while(res==false){
 					//TODO VERIFIER QUE LE JOUEUR A ASSEZ D'ARGENT DANS SA CAGNOTTE POUR ENCHERIR
@@ -468,29 +468,29 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					
 					montant=m.nextInt();
 					if(0<encheres_courantes.size()){
-						System.out.println("Vérification de l'enchere");
+						System.out.println("VÃ©rification de l'enchere");
 					
 						if(montant==0){
-							System.out.println("Passer par défaut");
+							System.out.println("Passer par dÃ©faut");
 							this.addEnchere(j.passer(j.getRang()));
 							res=true;
 						}
 						else{
 								if(verifEnchere(montant)==true){
-									System.out.println("Enchere validée");
+									System.out.println("Enchere validÃ©e");
 									res=true;
 									this.addEnchere(j.proposerEnchere(j.getRang(),montant));
 									}
 								else{
 									res=false;
-									System.out.println("Cette enchere � d�ja �t� faite, faites en une autre:");
+									System.out.println("Cette enchere ï¿½ dï¿½ja ï¿½tï¿½ faite, faites en une autre:");
 									}
 							}			
 					}
 					else {
 						if(montant==0){
 							res=true;
-							System.out.println("Passer par défaut");
+							System.out.println("Passer par dÃ©faut");
 							this.addEnchere(j.passer(j.getRang()));
 						}
 						else{
@@ -571,7 +571,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				//choisir ?
 				//place la tuile
 				//placer les travailleurs agricole
-					//tout pour les payé
+					//tout pour les payÃ©
 					//un en moins pour les passer
 				//cas 3 joueurs
 			}
@@ -589,17 +589,19 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 
 	/**
 	  * Phasre 5:
-	  * En commençant par le joueur à gauche du constructeur de canal et en suivant le sens horaire :
-	  * Chaque joueur qui possède encore un canal bleu peut choisir de le placer maintenant
-	  * sur un double segment (de couleur sombre) non irrigué du plateau.
-	  * La phase s’arrête immédiatement si un joueur place un canal bleu (en clair, on ne peut
-	  * placer qu’un seul canal complémentaire par tour de jeu).
+	  * En commencÌ§ant par le joueur aÌ€ gauche du constructeur de canal et en suivant le sens horaire :
+	  * Chaque joueur qui posseÌ€de encore un canal bleu peut choisir de le placer maintenant
+	  * sur un double segment (de couleur sombre) non irrigueÌ� du plateau.
+	  * La phase sâ€™arreÌ‚te immeÌ�diatement si un joueur place un canal bleu (en clair, on ne peut
+	  * placer quâ€™un seul canal compleÌ�mentaire par tour de jeu).
 	  */
 	public void phase5() throws RemoteException {
-		System.out.println("==============\nPhase 5: Irrigation Complémentaire\n===============");
+		System.out.println("==============\nPhase 5: Irrigation ComplÃ©mentaire\n===============");
 		Scanner c=new Scanner(System.in);
 		boolean aPoser=false;
 		int i =0;
+		int x,y;
+		String sens;
 		
 		while((aPoser==false)||(i < this.liste_joueurs.size())){
 			
@@ -610,39 +612,39 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				while ((choix!=0)||(choix!=1))
 				{
 					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
-					int choix=c.nextInt();
+					choix=c.nextInt();
 				}
 				if(choix==1){
 					boolean estBienpose = false;
 					while (estBienpose == false){
 					
-						//Coordonnée X
-						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
+						//CoordonnÃ©e X
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" OÃ¹ voulez-vous poser votre canal bleu ? Saisissez la coordonnÃ©e x :");
 						int coordx=c.nextInt();
 						while ((coordx<0) || (coordx>4) )
 						{
-							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée x :");
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e x :");
 
-							int coordx=c.nextInt();
+							coordx=c.nextInt();
 						}
 						
-						//Coordonnée Y
-						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+						//CoordonnÃ©e Y
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e y :");
 
 						int coordy=c.nextInt();
 						if(coordx==4){
 							while ((coordy<0) || (coordy>2) )
 							{
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e y :");
 
-								int coordy=c.nextInt();
+								coordy=c.nextInt();
 							}
 						}else{
 							while ((coordy<0) || (coordy>3) )
 							{
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e y :");
 
-								int coordy=c.nextInt();
+								coordy=c.nextInt();
 							}
 						}
 						
@@ -654,14 +656,14 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 						}else{
 							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal :");
 
-							String sens=c.nextLine(); 
+							sens=c.nextLine(); 
 							while ((sens!="V") || (sens!="H") || (sens!="v") || (sens!="h") )
 							{
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal : ( V : vertical / H : horizontal");
 
-								String sens=c.nextLine();
+								 sens=c.nextLine();
 							}
-							if(sens="v"){
+							if(sens.equals("v")){
 								sens="V";
 							}else{
 								sens="H";
@@ -673,12 +675,12 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 							if(this.plateau.getFossesIrrigueAdjacents(canal)){
 								estBienpose=true;
 								aPoser=true;
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a été posé.");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a Ã©tÃ© posÃ©.");
 							}else{
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas être posé car il n'est pas relier à un autre canal.");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas Ãªtre posÃ© car il n'est pas relier Ã  un autre canal.");
 							}
 						}else{
-							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Ce fossé est déjà irrigué.");	
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Ce fossÃ© est dÃ©jÃ  irriguÃ©.");	
 						}
 					}
 				}else{
@@ -693,7 +695,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		if(this.getTour()==this.getMax_tour()){
 			//Fin du Jeu
 			//Compter les points
-			for(int i=0;i<liste_joueurs.size();i++){
+			for(int j=0;j<liste_joueurs.size();j++){
 				System.out.println("Le joueur "+liste_joueurs.get(i).getNom_joueur()+" a "+this.liste_joueurs.get(i).getCagnotte()+" escudos dans sa cagnotte");
 			}
 		}
@@ -701,10 +703,10 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 
 	 /**
 	  * Phasre 6:
-	  * Pour chaque tuile de plantation qui n’est pas adjacente à un canal bleu :
-	  * Si la tuile est couverte d’au moins un travailleur agricole, retirer un travailleur
+	  * Pour chaque tuile de plantation qui nâ€™est pas adjacente Ã  un canal bleu :
+	  * Si la tuile est couverte dâ€™au moins un travailleur agricole, retirer un travailleur
 	  * agricole de la tuile.
-	  * Si la tuile n’est couverte d’aucun travailleur agricole, retourner la tuile côté désert.
+	  * Si la tuile nâ€™est couverte dâ€™aucun travailleur agricole, retourner la tuile cÃ´tÃ© dÃ©sert.
 	  */
 	public void phase6() throws RemoteException {
 		System.out.println("==============\nPhase 6: Secheresse\n===============");
@@ -713,7 +715,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			for(TuilePlantation t:j.getTuilesjoueur()){
 			
 					 ArrayList<Fosse> fosses=this.plateau.getFossesAdjacents(this.plateau.get(t.getSourceX(), t.getSourceY()));
-					 System.out.println("la tuile "+fosses.get(0).getSens()+" est bien arrosée");
+					 System.out.println("la tuile "+fosses.get(0).getSens()+" est bien arrosÃ©e");
 					 boolean res=false;
 					 	if(fosses.size()==0){
 					 		res=false;
@@ -721,7 +723,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					 	else
 					 	for(int i=0;i<2;i++){
 					 		if(fosses.get(i).getIrrigue()==true){
-					 			System.out.println("la tuile "+t.getPlante()+" est bien arrosée");
+					 			System.out.println("la tuile "+t.getPlante()+" est bien arrosÃ©e");
 					 			res=true;
 					 			break;
 					 		}	
@@ -760,17 +762,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			this.tourSuivant();
 		}
 
-	@Override
-	public int getMaxTour() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void setMaxTour(int maxTour) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public int getScore() {
 		return score;
@@ -779,5 +771,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	public void setScore(int score) {
 		this.score = score;
 	}
+
 
 }

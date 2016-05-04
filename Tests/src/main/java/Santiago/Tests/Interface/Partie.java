@@ -23,6 +23,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private int max_tour;
 	private ArrayList<PileTuile> liste_piles=null;
 	private ArrayList<ProposerMise> encheres_courantes;
+	private int score;
 	
 /***************************************************************************
  * *******************************CONSTRUCTOR*******************************
@@ -43,6 +44,23 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.liste_piles=new ArrayList<PileTuile>();
 		this.encheres_courantes=new ArrayList<ProposerMise>();
 	}
+	
+	public Partie(int idPartie, int tour, int phase,Plateau plateau,Banque banque,
+			 ArrayList<Joueur> liste_joueurs,boolean start, int max_tour, ArrayList<PileTuile> liste_piles, ArrayList<ProposerMise> encheres_courantes, int score)
+				throws RemoteException {
+			this.idPartie = idPartie;
+			this.tour = tour;
+			this.phase = phase;
+			this.plateau=plateau;
+			this.banque = banque;
+			this.liste_joueurs = liste_joueurs;
+			this.couleurs = couleurs;
+			this.start = start;
+			this.max_tour = max_tour;
+			this.liste_piles = liste_piles;
+			this.encheres_courantes = encheres_courantes;
+			this.setScore(score);
+		}
 
 	/***************************************************************************
 	 * *******************************METHODES*******************************
@@ -569,16 +587,115 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.phaseSuivante();
 	}
 
-	 
+	/**
+	  * Phasre 5:
+	  * En commençant par le joueur à gauche du constructeur de canal et en suivant le sens horaire :
+	  * Chaque joueur qui possède encore un canal bleu peut choisir de le placer maintenant
+	  * sur un double segment (de couleur sombre) non irrigué du plateau.
+	  * La phase s’arrête immédiatement si un joueur place un canal bleu (en clair, on ne peut
+	  * placer qu’un seul canal complémentaire par tour de jeu).
+	  */
 	public void phase5() throws RemoteException {
-		System.out.println("Phase 5: Irrigation Complémentaire");
+		System.out.println("==============\nPhase 5: Irrigation Complémentaire\n===============");
+		Scanner c=new Scanner(System.in);
+		boolean aPoser=false;
+		int i =0;
+		int x,y;
+		String sens;
+		
+		while((aPoser==false)||(i < this.liste_joueurs.size())){
+			
+			if(this.liste_joueurs.get(i).getCanal_bleu()==true){
+				System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
+				
+				int choix=c.nextInt();
+				while ((choix!=0)||(choix!=1))
+				{
+					System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" voulez-vous poser votre canal bleu ? 0 (Non) / 1 (Oui)");
+					choix=c.nextInt();
+				}
+				if(choix==1){
+					boolean estBienpose = false;
+					while (estBienpose == false){
+					
+						//Coordonnée X
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
+						int coordx=c.nextInt();
+						while ((coordx<0) || (coordx>4) )
+						{
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée x :");
+
+							coordx=c.nextInt();
+						}
+						
+						//Coordonnée Y
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+
+						int coordy=c.nextInt();
+						if(coordx==4){
+							while ((coordy<0) || (coordy>2) )
+							{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+
+								coordy=c.nextInt();
+							}
+						}else{
+							while ((coordy<0) || (coordy>3) )
+							{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+
+								coordy=c.nextInt();
+							}
+						}
+						
+						//Sens
+						if(coordx==4){
+							sens="V";
+						}else if(coordy==3){
+							sens="H";
+						}else{
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal :");
+
+							sens=c.nextLine(); 
+							while ((sens!="V") || (sens!="H") || (sens!="v") || (sens!="h") )
+							{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez le sens du canal : ( V : vertical / H : horizontal");
+
+								 sens=c.nextLine();
+							}
+							if(sens.equals("v")){
+								sens="V";
+							}else{
+								sens="H";
+							}
+						}
+						
+						Fosse canal = this.plateau.getFosse(x,y,sens);
+						if (canal.getIrrigue()!=true){
+							if(this.plateau.getFossesIrrigueAdjacents(canal)){
+								estBienpose=true;
+								aPoser=true;
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a été posé.");
+							}else{
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas être posé car il n'est pas relier à un autre canal.");
+							}
+						}else{
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Ce fossé est déjà irrigué.");	
+						}
+					}
+				}else{
+						i++;
+				}
+				
+			}
+		}
 		// TODO Auto-generated method stub
 		this.phaseSuivante();
 		
 		if(this.getTour()==this.getMax_tour()){
 			//Fin du Jeu
 			//Compter les points
-			for(int i=0;i<liste_joueurs.size();i++){
+			for(int j=0;j<liste_joueurs.size();j++){
 				System.out.println("Le joueur "+liste_joueurs.get(i).getNom_joueur()+" a "+this.liste_joueurs.get(i).getCagnotte()+" escudos dans sa cagnotte");
 			}
 		}
@@ -644,5 +761,16 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 			this.tourSuivant();
 		}
+
+
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 
 }
