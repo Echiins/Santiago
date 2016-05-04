@@ -708,6 +708,9 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		int i =0;
 		int x,y;
 		String sens;
+		//reorganisation du passage des joueurs
+		int idc = this.getConstructeur().getId_joueur();
+		this.resetOrdre(idc);
 		
 		while((aPoser==false)||(i < this.liste_joueurs.size())){
 			
@@ -781,6 +784,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 							if(this.plateau.getFossesIrrigueAdjacents(canal)){
 								estBienpose=true;
 								aPoser=true;
+								this.plateau.getFosse(coordx,coordy,sens).setIrrigue(true);
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a été posé.");
 							}else{
 								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas être posé car il n'est pas relier à un autre canal.");
