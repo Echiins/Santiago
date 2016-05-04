@@ -540,8 +540,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				}
 				//definir le nouvel ordre de passage des des joueur
 		Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
-			
-		//CAS 3 joueurs
+
 		
 			for(Joueur j:this.liste_joueurs){
 				System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Quelle tuile voulez vous choisir?");
@@ -555,7 +554,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				int coordx=c.nextInt();
 				
 				boolean occupee=false;
-				while(occupee=false){
+				while(occupee==false){
 					while ((coordx<0) || (coordx>8) )
 					{
 						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
@@ -574,27 +573,59 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					}
 					occupee=this.plateau.get(coordx,coordy).getOccupee();
 				}
-				
-				if(j.getNb_tag()-(tuile.getTag_necessaires()-tuile.getTag_present())>0){
-					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Combien de pionts de rendement voulez vous déposer?");
-					Scanner r=new Scanner(System.in);
-					
-					int rend=r.nextInt();
-					j.setNb_tag(j.getNb_tag()-rend);
-					tuile.setTag_presents(tuile.getTag_present+rend);
-					this.plateau.get(coordx,coordy).setOccupee(true);
+				if(){
+					int tag=tuile.getTag_necessaires()-tuile.getTag_present();
+				}else{
+					int tag=tuile.getTag_necessaires()-tuile.getTag_present()-1;
+					if(tag<0){tag=0;}
 				}
-				//payer
-				//choisir ?
-				//place la tuile
-				//placer les travailleurs agricole
-					//tout pour les payé
-					//un en moins pour les passer
-				//cas 3 joueurs
-			}
-			if(liste_joueurs.size()==3)	{
 				
+				
+				if(j.getNb_tag()-tag>0){
+					
+					j.setNb_tag(j.getNb_tag()-tag);
+					tuile.setTag_presents(tag);
+					tuile.setSourceX(coordx);
+					tuile.setSourceY(coordy);
+					this.plateau.get(coordx,coordy).setOccupee(true);   
+				}
+
+				
+				if(liste_joueurs.size()==3 && j.getRang()==1 )	{
+					
+					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Quelle tuile voulez vous choisir?");
+					Scanner tuile=new Scanner(System.in);
+					int j=tuile.nextInt();				
+					Tuile tuile = j.getTuilesjoueur().get(j);
+					
+					boolean occupee=false;
+					while(occupee==false){
+						while ((coordx<0) || (coordx>8) )
+						{
+							System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
+							Scanner c=new Scanner(System.in);
+							int coordx=c.nextInt();
+						}
+						
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+						Scanner c=new Scanner(System.in);
+						int coordy=c.nextInt();
+						while ((coordy<0) || (coordy>6) || this.plateau.get(coordx,coordy).getOccupee()=TRUE )
+						{
+							System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+							Scanner c=new Scanner(System.in);
+							int coordy=c.nextInt();
+						}
+						occupee=this.plateau.get(coordx,coordy).getOccupee();
+					}
+					tuile.setSourceX(coordx);
+					tuile.setSourceY(coordy);
+					
+				}
+				
+				//PAYER LA BANQUE
 			}
+			
 		this.phaseSuivante();
 		
 	}

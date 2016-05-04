@@ -1,5 +1,7 @@
 package Santiago.Tests;
 
+import static org.junit.Assert.assertEquals;
+
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 
@@ -10,14 +12,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Santiago.Tests.Classes.Joueur;
-import Santiago.Tests.Classes.ProposerMise;
 import Santiago.Tests.Interface.Partie;
-import Santiago.Tests.Interface.PartieInterface;
-import static org.junit.Assert.*;
 
-public class SantiagoTestPhase2 {
-
-	public SantiagoTestPhase2() {
+public class SantiagoTestPhase3 {
+	
+	public SantiagoTestPhase3() {
     }
 
     @BeforeClass
@@ -42,7 +41,7 @@ public class SantiagoTestPhase2 {
     * @throws UnknownHostException
     */
     @Test
-    public void testPhase2() throws RemoteException, UnknownHostException{
+    public void testPhase3() throws RemoteException, UnknownHostException{
     	Partie p=new Partie();
 		Joueur j1=new Joueur(1, "J1", "rouge", 1);
 		Joueur j2=new Joueur(2,"J2","brun",2);
@@ -50,10 +49,15 @@ public class SantiagoTestPhase2 {
 		p.addJoueur(j1);
 		p.addJoueur(j2);
 		p.addJoueur(j3);
-		p.getJoueurs().get(2).setEst_constructeurdecanal(true);
 		p.jouerPhase();
-	   	assertEquals(3, p.getConstructeur().getId_joueur());
-	  
+		//assertEquals(3,p.getListe_joueurs().get(1).getCagnotte() );
+		//assertEquals(3,p.getListe_joueurs().get(2).getCagnotte() );
+		//assertEquals(3,p.getListe_joueurs().get(0).getCagnotte() );
+		assertEquals(2,p.getListe_joueurs().get(0).getTuilesjoueur().size());
+		assertEquals(4,p.getListe_piles().size());
+		assertEquals(40,p.getListe_piles().get(0).getTuiles().size()+p.getListe_piles().get(1).getTuiles().size()+p.getListe_piles().get(2).getTuiles().size()+p.getListe_piles().get(3).getTuiles().size());
+		assertEquals(3,p.getEncheres_courantes().size());
+		
     }
-    
+
 }
