@@ -15,11 +15,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Joueur implements Comparable<Joueur> {
+public class Joueur implements Comparable<Joueur>,Serializable {
 	
 	private int id_joueur;
 	private String nom_joueur;
-	private String mdp;
+	private String password;
 	private int canal_perso;
 	private boolean canal_bleu;
 	private int cagnotte;
@@ -28,13 +28,16 @@ public class Joueur implements Comparable<Joueur> {
 	private boolean est_constructeurdecanal;
 	private String couleur;
 	private boolean montour;
+	private boolean enligne;
 	private List<TuilePlantation> tuiles_joueur;
+	private int score;
 	
-	
+
+
 	/***************************************************************************
 	 * *******************************CONSTRUCTOR*******************************
 	 ***************************************************************************/
-	public Joueur(int id_joueur, String nom_joueur, String couleur, int rang){
+	public Joueur(int id_joueur, String nom_joueur, String couleur, int rang,String password){
 		this.id_joueur=id_joueur;
 		this.nom_joueur=nom_joueur;
 		this.canal_perso=1;
@@ -43,15 +46,17 @@ public class Joueur implements Comparable<Joueur> {
 		this.nb_tag=22;
 		this.rang=rang;
 		this.est_constructeurdecanal=false;
-		this.setMontour(false);
+		this.montour=false;
 		this.couleur=couleur;
 		this.tuiles_joueur=new ArrayList<TuilePlantation>();
+		this.password=password;
+		this.enligne=true;
 	}
 	
 	public Joueur(int id_joueur, String nom_joueur, String mdp, String couleur, int rang){
 		this.id_joueur=id_joueur;
 		this.nom_joueur=nom_joueur;
-		this.mdp=mdp;
+		this.password=mdp;
 		this.canal_perso=1;
 		this.canal_bleu=true;
 		this.cagnotte=10;
@@ -68,7 +73,7 @@ public class Joueur implements Comparable<Joueur> {
 			List<TuilePlantation> tuiles_joueur) {
 		this.id_joueur = id_joueur;
 		this.nom_joueur = nom_joueur;
-		this.mdp=mdp;
+		this.password=mdp;
 		this.canal_perso = canal_perso;
 		this.canal_bleu = canal_bleu;
 		this.cagnotte = cagnotte;
@@ -79,10 +84,6 @@ public class Joueur implements Comparable<Joueur> {
 		this.setMontour(montour);
 		this.tuiles_joueur = tuiles_joueur;
 	}
-	
-	
-	
-	
 	/***************************************************************************
 	 * *******************************METHODES*******************************
 	 ***************************************************************************/
@@ -96,102 +97,6 @@ public class Joueur implements Comparable<Joueur> {
 	public ProposerMise passer(int id){
 		ProposerMise mise=new ProposerMise(id,this);
 		return mise;
-	}
-
-	//************************************GETTER************************************
-	public List<TuilePlantation> getTuilesjoueur() {
-		return tuiles_joueur;
-	}
-	
-	public int getId_joueur() {
-		return id_joueur;
-	}
-	public boolean getConstructeur(){
-			return this.est_constructeurdecanal;
-		}
-	public String getNom_joueur() {
-		return nom_joueur;
-	}
-	public int getCanal_perso() {
-		return canal_perso;
-	}
-	public boolean getCanal_bleu() {
-		return canal_bleu;
-	}
-	public int getNb_tag() {
-		return nb_tag;
-	}
-	public int getCagnotte() {
-		return cagnotte;
-	}
-
-	public int getRang() {
-		return rang;
-	}
-	public boolean getEst_constructeurdecanal() {
-		return est_constructeurdecanal;
-	}
-	
-	public String getCouleur() {
-		return couleur;
-	}
-	public String getMdp(){
-		return mdp;
-	}
-	
-	//************************************SETTER************************************
-	public void setTuilesjoueur(List<TuilePlantation> tuiles_joueur) {
-		this.tuiles_joueur = tuiles_joueur;
-	}
-	
-	public void setId_joueur(int id_joueur) {
-		this.id_joueur = id_joueur;
-	}
-	public void setNom_joueur(String nom_joueur) {
-		this.nom_joueur = nom_joueur;
-	}
-	public void setCanal_perso(int canal_perso) {
-		this.canal_perso = canal_perso;
-	}
-	public void setCanal_bleu(boolean canal_bleu) {
-		this.canal_bleu = canal_bleu;
-	}
-
-	public void setNb_tag(int nbtag) {
-		this.nb_tag = nbtag;
-	}
-	public void setCagnotte(int cagnotte) {
-		this.cagnotte = cagnotte;
-	}
-	public void setEst_constructeurdecanal(boolean estConstructeurdecanal) {
-		this.est_constructeurdecanal = estConstructeurdecanal;
-	}
-
-	public void setRang(int rang) {
-		this.rang = rang;
-	}
-
-	public boolean getMontour() {
-		return montour;
-	}
-
-	public void setMontour(boolean montour) {
-		this.montour = montour;
-	}
-
-	public void setCouleur(String couleur) {
-		this.couleur = couleur;
-	}
-	public void setMdp(String mdp){
-		this.mdp=mdp;
-	}
-	//A FACTORISER
-	public void estPlusConstructeur(){
-		this.est_constructeurdecanal=false;
-	}
-
-	public void tirerTuile(TuilePlantation t){
-		this.tuiles_joueur.add(t);
 	}
 
 
@@ -238,6 +143,7 @@ public class Joueur implements Comparable<Joueur> {
 			}
 			propositions= propositions + "\n pot de vin n°"+ps.idPS + "du montant de "+ montantTotal  +" pour un canal sur le faussé (" + ps.getF().getCoorX() +","+ps.getF().getCoorY()+")";
 		}
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.println(propositions);
 		int res = sc.nextInt();
@@ -246,7 +152,128 @@ public class Joueur implements Comparable<Joueur> {
 		
 		return null;
 	}
+	//************************************GETTER************************************
+	public List<TuilePlantation> getTuilesjoueur() {
+		return tuiles_joueur;
+	}
 	
+	public int getId_joueur() {
+		return id_joueur;
+	}
+	public boolean getConstructeur(){
+			return this.est_constructeurdecanal;
+		}
+	public String getNom_joueur() {
+		return nom_joueur;
+	}
+	public int getCanal_perso() {
+		return canal_perso;
+	}
+	public boolean getCanal_bleu() {
+		return canal_bleu;
+	}
+	public int getNb_tag() {
+		return nb_tag;
+	}
+	public int getCagnotte() {
+		return cagnotte;
+	}
+
+	public int getRang() {
+		return rang;
+	}
+	public boolean getEst_constructeurdecanal() {
+		return est_constructeurdecanal;
+	}
+	
+	public String getCouleur() {
+		return couleur;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	//************************************SETTER************************************
+	public void setTuilesjoueur(List<TuilePlantation> tuiles_joueur) {
+		this.tuiles_joueur = tuiles_joueur;
+	}
+	
+	public void setId_joueur(int id_joueur) {
+		this.id_joueur = id_joueur;
+	}
+	public void setNom_joueur(String nom_joueur) {
+		this.nom_joueur = nom_joueur;
+	}
+	public void setCanal_perso(int canal_perso) {
+		this.canal_perso = canal_perso;
+	}
+	public void setCanal_bleu(boolean canal_bleu) {
+		this.canal_bleu = canal_bleu;
+	}
+
+	public void setNb_tag(int nbtag) {
+		this.nb_tag = nbtag;
+	}
+	public void setCagnotte(int cagnotte) {
+		this.cagnotte = cagnotte;
+	}
+	public void setEst_constructeurdecanal(boolean estConstructeurdecanal) {
+		this.est_constructeurdecanal = estConstructeurdecanal;
+	}
+
+	public void setRang(int rang) {
+		this.rang = rang;
+	}
+
+	public void setCouleur(String couleur) {
+		this.couleur = couleur;
+	}
+	//A FACTORISER
+	public void estPlusConstructeur(){
+		this.est_constructeurdecanal=false;
+	}
+
+	public void tirerTuile(TuilePlantation t){
+		this.tuiles_joueur.add(t);
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isMontour() {
+		return montour;
+	}
+
+	public void setMontour(boolean montour) {
+		this.montour = montour;
+	}
+
+	public List<TuilePlantation> getTuiles_joueur() {
+		return tuiles_joueur;
+	}
+
+	public void setTuiles_joueur(List<TuilePlantation> tuiles_joueur) {
+		this.tuiles_joueur = tuiles_joueur;
+	}
+	
+public boolean isEnligne() {
+		return enligne;
+	}
+
+	public void setEnligne(boolean enligne) {
+		this.enligne = enligne;
+	}
+
 /**********************COMPARATOR************************************/
 	@Override
     public int compareTo(Joueur o) {

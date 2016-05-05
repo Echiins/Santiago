@@ -43,11 +43,9 @@ public class Parcelle {
 	public boolean getPalmier() {
 		return palmier;
 	}
-<<<<<<< HEAD
-	public boolean getOccupee(){
-=======
+
+
 	public boolean getOccupee() {
->>>>>>> phase3
 		return occupee;
 	}
 

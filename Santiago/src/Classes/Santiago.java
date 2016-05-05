@@ -11,7 +11,8 @@ public final class Santiago {
 	private  Client client;
 	
 	public Santiago(){
-		serveur=new Serveur();
+		this.serveur=new Serveur();
+		this.client=null;
 	}
 	
 	public static Santiago getSantiago() {
@@ -47,11 +48,11 @@ public final class Santiago {
 		return client;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClient(Client client2) {
+		this.client=client2;
+		
 	}
-	
-	
+
 	
 
 }

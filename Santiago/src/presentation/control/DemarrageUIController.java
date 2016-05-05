@@ -34,9 +34,6 @@ public class DemarrageUIController extends DialogUIController{
 	private Label instruction;
 	
 	@FXML
-	private ProgressBar progression;
-	
-	@FXML
 	private ImageView a1,a2,a3,a4,a5;
 	
 	Joueur joueur;
@@ -47,9 +44,11 @@ public class DemarrageUIController extends DialogUIController{
 		dialog = new Stage(StageStyle.DECORATED);
 		dialog.initModality(Modality.WINDOW_MODAL);
 		dialog.setTitle("COMMENCER LA PARTIE");
-		annuler.setOnAction(event -> dialog.close());
+		annuler.setOnAction(event -> {
+		dialog.close();});
 		
 		try {
+			
 			PartieInterface server=(PartieInterface)Naming.lookup("rmi://localhost:5755/jeu");
 			for(Joueur j : server.getJoueurs()){
 			if(j.getNom_joueur().equals(santiago.getClient().getJoueur().getNom_joueur()))
@@ -106,10 +105,23 @@ public class DemarrageUIController extends DialogUIController{
 		} 
 		
 		commencer.setOnAction(event->{
-			PlateauController = DialogUIController.initDialog(PLATEAU, 
-					PlateauUIController.class,primaryStage);
+			try {
+				PartieInterface server=(PartieInterface)Naming.lookup("rmi://localhost:5755/jeu");
+				if (!server.getStart())
+				{
+					server.lancerLaPartie();
+					//LancerPhase 0
+					server.jouerPhase();
+				}
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			PlateauController = DialogUIController.initDialog(PLATEAU, PlateauUIController.class,primaryStage);
 			dialog.close();
-		PlateauController.showAndWait();});
+			PlateauController.showAndWait();});
 	}
 
 }
+

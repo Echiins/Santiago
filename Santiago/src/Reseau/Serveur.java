@@ -12,24 +12,11 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.Enumeration;
+
 import Classes.*;
 import Interface.Partie;
 
 public class Serveur {
-	
-	private Partie server;
-	
-	public Serveur(){
-		try {
-			this.server=new Partie();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public static  InetAddress getAddress() throws Exception {
 		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
@@ -48,15 +35,6 @@ public class Serveur {
                    }
                }
 		return null;
-	}
-
-	
-	public Partie getServer() {
-		return server;
-	}
-
-	public void setServer(Partie server) {
-		this.server = server;
 	}
 
 	public static void initServeur()  throws Exception{
@@ -80,29 +58,35 @@ public class Serveur {
         	if(i==1000000000){System.out.println("En attente de joueurs...");}
         }
         if(server.getStart()){
-        	if(server.getMax_tour()==0){
+        	if(server.getMaxTour()==0){
         		if(server.getClient().size()==5){
-        			server.setMax_tour(11);
+        			server.setMaxTour(11);
         		}
         		else{
-        			server.setMax_tour(9);
+        			server.setMaxTour(9);
         		}
         	}
-			//La on est censé commencer la partie avec les 'maxTour' tours, chacun avec les 7 phases
-			server.jouerPhase(); //Cette méthode comprendra tout le lancement du jeu
-        	server.tourSuivant();
-        	if(server.getTour()>server.getMax_tour()){ //le tour 12 correspond au tour de fin de la partie
-			//Après les x tours (11 si 5 joueurs sinon 9 tours) : fin de la partie ->
-        	
-	        	//Ultime secheresse
-	        	
-	        	//décompte
-	        	
-	        	//resultats
-	        	
-	        	//fin partie
-        	server.quitterPartie(); // prend en compte la sauvegarde
+        	while(true){
+	        	if(server.getPhase()==1){
+	        		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nTour \n=-=-=-=-=-=-=-=-=-="+server.getTour());
+	        		System.out.println("===============\nPhase 1: Mise aux enchï¿½res des tuiles de plantation \n===============");
+	        		//retourner les tuiles
+	        		int j=0;
+	        		while(true){
+	        			if(server.getEncheres_courantes().size()==server.getListe_joueurs().size()){
+	        				break;
+	        			}
+	        			else{
+	        				j++;
+	        				if(j==j+1000000000){System.out.println("En attente d'enchere...");
+	        				}
+	        			}
+	        		}
+	        		
+	        		
+	        	}
         	}
+        	
         }
         }
 	}

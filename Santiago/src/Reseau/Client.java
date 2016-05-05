@@ -18,44 +18,44 @@ import Interface.PartieInterface;
 public class Client {
 	private String host;
 	private String pseudo;
+	private String password;
 	private Joueur joueur;
 	
+	
+	public Client(String host, String pseudo, String password){
+		this.host=host;
+		this.pseudo=pseudo;
+		this.password=password;
+	}
+	
+	//************************************GETTER************************************
 	public String getHost() {
 		return host;
 	}
-
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-
 	public String getPseudo() {
 		return pseudo;
 	}
-
-
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-
-
 	public Joueur getJoueur() {
 		return joueur;
 	}
-
-
+	public String getPassword() {
+		return password;
+	}
+	//************************************SETTER************************************
+	public void setHost(String host) {
+		this.host = host;
+	}
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
 
-
-	public Client(String host, String pseudo){
-		this.host=host;
-		this.pseudo=pseudo;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-	
+
 	public static  InetAddress getAddress() throws Exception {
 		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
                       .getNetworkInterfaces();
@@ -77,7 +77,7 @@ public class Client {
 	
 	public  void creerClient() throws Exception{
 		
-		String myHost= getAddress().getHostAddress();
+		String myHost= this.host;
 		
 		System.setProperty("java.rmi.server.hostname",myHost);
 		
@@ -95,7 +95,7 @@ public class Client {
 	    if(nbJoueurs<=5){ //il faudrait des verrous !!!!
 	    	//System.out.println("Bienvenue dans cette partie veuillez indiquer quelques informations:\nPseudo:");
 			System.out.println("Votre couleur sera le "+server.getCouleur(nbJoueurs-1));
-			this.joueur=new Joueur(nbJoueurs,this.pseudo,server.getCouleur(nbJoueurs-1),nbJoueurs);
+			this.joueur=new Joueur(nbJoueurs,this.pseudo,server.getCouleur(nbJoueurs-1),nbJoueurs,this.password);
 			server.addJoueur(this.joueur);
 			
 			/*On demande au client s'il veut lancer la partie

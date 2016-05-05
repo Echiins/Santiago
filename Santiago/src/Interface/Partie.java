@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import Santiago.Tests.Classes.*;
+import Classes.*;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
 
@@ -15,16 +15,14 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private int tour;
 	private int phase;
 	private Plateau plateau;
-	private Banque banque;
 	private ArrayList<PartieInterface> liste_interface=null;
 	private ArrayList<Joueur> liste_joueurs=null;
 	private ArrayList<String> couleurs = new ArrayList<String>();
 	private boolean start;
 	private int max_tour;
 	private ArrayList<PileTuile> liste_piles=null;
-	private ArrayList<PropositionSoudoiement> soudoiments;
 	private ArrayList<ProposerMise> encheres_courantes;
-	private int score;
+	private ArrayList<PropositionSoudoiement> soudoiments;
 	
 /***************************************************************************
  * *******************************CONSTRUCTOR*******************************
@@ -43,34 +41,15 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.phase=0;
 
 		this.liste_piles=new ArrayList<PileTuile>();
-		this.soudoiments= new ArrayList<PropositionSoudoiement>();
 		this.encheres_courantes=new ArrayList<ProposerMise>();
 	}
-	
-	
-	public Partie(int idPartie, int tour, int phase,Plateau plateau,Banque banque,
-			 ArrayList<Joueur> liste_joueurs,boolean start, int max_tour, ArrayList<PileTuile> liste_piles, ArrayList<ProposerMise> encheres_courantes, int score)
-				throws RemoteException {
-			this.idPartie = idPartie;
-			this.tour = tour;
-			this.phase = phase;
-			this.plateau=plateau;
-			this.banque = banque;
-			this.liste_joueurs = liste_joueurs;
-			this.couleurs = couleurs;
-			this.start = start;
-			this.max_tour = max_tour;
-			this.liste_piles = liste_piles;
-			this.encheres_courantes = encheres_courantes;
-			this.setScore(score);
-		}
 
 	/***************************************************************************
 	 * *******************************METHODES*******************************
 	 ***************************************************************************/
 
 	//************************************GETTER************************************
-	public ArrayList<PileTuile> getListe_piles() {
+	public ArrayList<PileTuile> getListe_piles()throws RemoteException {
 		return liste_piles;
 	}
 	public int getTour() throws RemoteException{
@@ -93,11 +72,11 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	public int getPhase() throws RemoteException{
 		return this.phase;
 	}
-	public int getMax_tour() throws RemoteException{
+	public int getMaxTour() throws RemoteException{
 		return this.max_tour;
 	}
 	
-	public ArrayList<ProposerMise> getEncheresCourantes() {
+	public ArrayList<ProposerMise> getEncheresCourantes() throws RemoteException{
 		return encheres_courantes;
 	}
 	
@@ -108,10 +87,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 
 	public Plateau getPlateau() {
 		return plateau;
-	}
-
-	public Banque getBanque() {
-		return banque;
 	}
 
 	public ArrayList<PartieInterface> getListe_interface() {
@@ -138,15 +113,11 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	 * Permet de recuperer le constructeur de canal de la Phase en cours
 	 * @return le constructeur de canal
 	 */
-	public Joueur getConstructeur(){
+	public Joueur getConstructeur() throws RemoteException{
 		for(int i=0;i<this.liste_joueurs.size();i++){
 			if(this.liste_joueurs.get(i).getConstructeur())
 				return this.liste_joueurs.get(i);
 		}return null;
-	}
-
-	public ArrayList<PropositionSoudoiement> getSoudoiments() {
-		return soudoiments;
 	}
 	
 	//************************************SETTER************************************
@@ -154,7 +125,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.liste_piles = liste_piles;
 		
 	}
-	public void setMax_tour(int max_tour) throws RemoteException{
+	public void setMaxTour(int max_tour) throws RemoteException{
 		this.max_tour=max_tour;
 	}
 	//************************************ADDER************************************
@@ -180,7 +151,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 		}
 		else{
-			System.out.println("D�j� 5 joueurs connect�s dsl");
+			System.out.println("Dï¿½jï¿½ 5 joueurs connectï¿½s dsl");
 		}
 	}
 	
@@ -215,7 +186,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	 
 	public void phaseSuivante() throws RemoteException{
 		this.phase++;
-		this.jouerPhase();
 	}
 	
 	public boolean verifEnchere(int montant)throws RemoteException{
@@ -237,9 +207,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	   */
 	public void jouerPhase() throws RemoteException{ 
 		switch (this.phase){
-		case 1:
-			this.phase1();
-			break;
 		case 2:
 			this.phase2();
 			break;
@@ -293,44 +260,59 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	 * PHASE 0 : INITIALISATION DU JEU
 	 * 1)Initialiser le tableau
 	 * 	a)initialiser les parcelles
-	 * 	b)initialiser les foss�es
+	 * 	b)initialiser les fossï¿½es
 	 * 2)Initialiser les piles
 	 * 	a)Initialiser les tuiles
 	 * 	b)distribuer les tuiles
 	 * 3)Initialiser le nombre de Tours
 	 * 4)Choisisir le constucteur de canal
-	 * 5)D�finir le nouvel Ordre de jeu
+	 * 5)Dï¿½finir le nouvel Ordre de jeu
 	 * Phase suivante
 	 */
 	public void phase0() throws RemoteException{ 
-		//On cr�e le tableau de la partie
+		//On crï¿½e le tableau de la partie
 		plateau=new Plateau(1,5,6);
-		System.out.println("Création Tableau");
+		System.out.println("CrÃ©ation Tableau");
 		plateau.initliste_parcelles();// tableau de parcelle 8X6
 		System.out.println("Initialisation parcelles");
 		this.plateau.initfosses();//tableau de fosses 16 premier verticaux, 16 d'apres horizontaux
-		System.out.println("Initialisation fossés");
+		System.out.println("Initialisation fossÃ©s");
 		
 		//initialisation de la Banque
 		//this.banque=new Banque();
-		//On g�re les tuiles de plantations
+		//On gï¿½re les tuiles de plantations
 		
 			//CREATION DES TUILES
 		ArrayList<TuilePlantation> toutesLesTuiles=new ArrayList<TuilePlantation>();
-		for(int id1=1 ;id1<=9; id1++){
+		for(int id1=1 ;id1<=5; id1++){
 			toutesLesTuiles.add(new TuilePlantation(id1,"piment",1));
 		}
-		for(int id2=10 ;id2<=18; id2++){
+		for(int id11=6 ;id11<=9; id11++){
+			toutesLesTuiles.add(new TuilePlantation(id11,"piment",2));
+		}
+		for(int id2=10 ;id2<=14; id2++){
 			toutesLesTuiles.add(new TuilePlantation(id2,"banane",1));
 		}
-		for(int id3=19 ;id3<=27; id3++){
+		for(int id21=15 ;id21<=18; id21++){
+			toutesLesTuiles.add(new TuilePlantation(id21,"banane",2));
+		}
+		for(int id3=19 ;id3<=23; id3++){
 			toutesLesTuiles.add(new TuilePlantation(id3,"patate",1));
 		}
-		for(int id4=28 ;id4<=36; id4++){
+		for(int id31=24 ;id31<=27; id31++){
+			toutesLesTuiles.add(new TuilePlantation(id31,"patate",2));
+		}
+		for(int id4=28 ;id4<=33; id4++){
 			toutesLesTuiles.add(new TuilePlantation(id4,"haricot",1));
 		}
-		for(int id5=37 ;id5<=45; id5++){
+		for(int id41=34 ;id41<=36; id41++){
+			toutesLesTuiles.add(new TuilePlantation(id41,"haricot",2));
+		}
+		for(int id5=37 ;id5<=41; id5++){
 			toutesLesTuiles.add(new TuilePlantation(id5,"canne",1));
+		}
+		for(int id51=42 ;id51<=45; id51++){
+			toutesLesTuiles.add(new TuilePlantation(id51,"canne",2));
 		}
 		
 			//Creation des piles
@@ -422,105 +404,29 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				this.resetOrdre(liste_joueurs.get(constructeur).getId_joueur());
 				
 				}
-		
-	this.phaseSuivante();
-	
+	phaseSuivante();
 	}
 /**
- * Phase 1: Mise aux ench�res des tuiles de plantation
+ * Phase 1: Mise aux enchï¿½res des tuiles de plantation
  * 1)Retourner les Tuiles
  * 2)Proposer les Encheress
  * Phase suivante
  */
-	public void phase1() throws RemoteException {
-		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nTour \n=-=-=-=-=-=-=-=-=-="+this.getTour());
-		System.out.println("===============\nPhase 1: Mise aux ench�res des tuiles de plantation \n===============");
-		
-		//RENDRE LES PREMIERES TUILES DE CHAQUE PILES VISIBLES:
-		for(int i=0;i<this.liste_piles.size();i++){
-			this.liste_piles.get(i).getTuiles().get(0).setVisible(true);
-		}
-		
-		//TRIER TABLEAU DE JOUEUR EN FONCTION DU RANG
-		Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
-		
-		for(Joueur j:this.liste_joueurs){
-			System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" voulez-vous Passer ou Proposer une Enchere 0(Encherir)/1(Passer)");
-			Scanner c=new Scanner(System.in);
-			int choix=c.nextInt();
-			//Choix=Boolean lorqu'on fera l'interface
-			/*while (!(choix==0)||!(choix==1))
-			{
-				System.out.println("Entrer (Encherir)/(Passer)");
-				c.next();
-				choix=c.nextInt();
-			}*/
-			
-			switch(choix)
-			{
-			case 0:
-				System.out.println("ENCHERIR:");
-				int montant=0;
-				boolean res=false;
-				System.out.println("Le Montant de votre ench�re:");
-
-				while(res==false){
-					//TODO VERIFIER QUE LE JOUEUR A ASSEZ D'ARGENT DANS SA CAGNOTTE POUR ENCHERIR
-					Scanner m=new Scanner(System.in);
-					//Verifier les chiffres
-					while (!m.hasNextInt()){
-					System.out.println("Entrer un chiffre");
-					m.next();
-					}
-					
-					montant=m.nextInt();
-					if(0<encheres_courantes.size()){
-						System.out.println("Vérification de l'enchere");
-					
-						if(montant==0){
-							System.out.println("Passer par défaut");
-							this.addEnchere(j.passer(j.getRang()));
-							res=true;
-						}
-						else{
-								if(verifEnchere(montant)==true){
-									System.out.println("Enchere validée");
-									res=true;
-									this.addEnchere(j.proposerEnchere(j.getRang(),montant));
-									}
-								else{
-									res=false;
-									System.out.println("Cette enchere � d�ja �t� faite, faites en une autre:");
-									}
-							}			
-					}
-					else {
-						if(montant==0){
-							res=true;
-							System.out.println("Passer par défaut");
-							this.addEnchere(j.passer(j.getRang()));
-						}
-						else{
-								res=true;
-							this.addEnchere(j.proposerEnchere(j.getRang(),montant));
-							}
-						}
-					
-				}
-				break;
-				
-			case 1:
-				System.out.println("PASSER:");
-				this.addEnchere(j.passer(j.getRang()));
-				break;
-			default:
-				System.out.println("Erreur, Je ne comprend pas votre choix");
-				break;
-			}
-		}
-		this.phaseSuivante();
+	
+	public void miser(Joueur j, int montant)throws RemoteException{
+		this.addEnchere(j.proposerEnchere(j.getRang(),montant));
+		System.out.println(j.getNom_joueur()+" a enchéri "+montant);
+	}
+	
+	public void passerMise(Joueur j) throws RemoteException{
+		this.addEnchere(j.passer(j.getRang()));
+		System.out.println(j.getNom_joueur()+"à passé");
 	}
 
+
+	public void setEncheres_courantes(ArrayList<ProposerMise> encheres_courantes) {
+		this.encheres_courantes = encheres_courantes;
+	}
 
 	/**
 	 * Phase 2:Changement du constructeur de canal"
@@ -531,21 +437,8 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	 */
 	public void phase2() throws RemoteException {
 		
-		//redefinir l'ordre de piochage des cartes.
-		for(int i=0;i<this.encheres_courantes.size();i++){
-			
-			for(int j=0;j<this.liste_joueurs.size();j++ ){
-				if(this.encheres_courantes.get(i).getJoueur().getId_joueur()==liste_joueurs.get(j).getId_joueur()){
-					this.liste_joueurs.get(j).setRang(i);
-				}
-			}
-		}
-		//definir le nouvel ordre de passage des des joueur
-Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
-
-		
 		//RETIRER LA FIGURINE DE L'ANCIEN CONSTRUCTEUR
-		this.liste_joueurs.get(this.getConstructeur().getRang()).estPlusConstructeur();
+		this.liste_joueurs.get(this.getConstructeur().getRang()-1).estPlusConstructeur();
 		
 		System.out.println("==============\nPhase 2: Changement du constructeur de canal\n===============");
 		
@@ -554,10 +447,8 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		
 		//Redefinir le constructeur de canal
 		int idcons=this.encheres_courantes.get(0).getJoueur().getRang();
-		System.out.println("id constructuers:"+idcons);
 		this.liste_joueurs.get(idcons-1).setEst_constructeurdecanal(true);
 		System.out.println("Le joueur "+this.getConstructeur().getNom_joueur()+" est le nouveau constructeur de canal");	
-		this.phaseSuivante();
 	}
 	/**
 	 * Phase 3:
@@ -892,7 +783,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 				boolean existe=false;
 				int indiceExistante=0;
 				for(int i =0; i< this.soudoiments.size(); i++){
-					if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).getEtat()==true ){
+					if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).isEtat()==true ){
 						existe=true;
 						indiceExistante =i;
 						break;
@@ -900,10 +791,10 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 				}
 				
 				if (existe==true){ // une proposition existe déjà, le joueur peut la soutenir.
-					this.getSoudoiments().get(indiceExistante).getSupporters().add(gamer.soutenir(gamer.getId_joueur(),f));
+					this.soudoiments.get(indiceExistante).getSupporters().add(gamer.soutenir(gamer.getId_joueur(),f));
 				}
 				else{//le joueur peut créer une proposition de soudoiement pour le faussé f 
-					this.getSoudoiments().add(gamer.soudoyer(gamer.getId_joueur(), f));	//la proposition prend l'id du joueur?						
+					this.soudoiments.add(gamer.soudoyer(gamer.getId_joueur(), f));	//la proposition prend l'id du joueur?						
 				}
 				
 			}
@@ -916,7 +807,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		//tout les joueurs ont soudoyer ou passer leurs tours: c'est au constructeur de décider : 
 		ArrayList<PropositionSoudoiement> propositions = new ArrayList<PropositionSoudoiement>();
 		for (PropositionSoudoiement ps : this.soudoiments){
-			if (ps.getEtat()==true){
+			if (ps.isEtat()==true){
 				propositions.add(ps);
 			}
 		}
@@ -1048,7 +939,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		// TODO Auto-generated method stub
 		this.phaseSuivante();
 		
-		if(this.getTour()==this.getMax_tour()){
+		if(this.getTour()==this.getMaxTour()){
 			//Fin du Jeu
 			//Compter les points
 			for(int j=0;j<liste_joueurs.size();j++){
@@ -1119,29 +1010,6 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		}
 
 
-
-
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-
-
-
-	@Override
-	public int getMaxTour() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setMaxTour(int maxTour) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

@@ -9,44 +9,77 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1113.0" style="-fx-background-color: #D2B48C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.control.PlateauUIController">
+<AnchorPane prefHeight="501.0" prefWidth="891.0" style="-fx-background-color: #D2B48C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.control.PlateauUIController">
    <children>
-      <BorderPane layoutY="-2.0" prefHeight="408.0" prefWidth="1113.0" style="-fx-background-color: #3CB371;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <bottom>
-            <TextField alignment="CENTER" prefHeight="40.0" prefWidth="1135.0" style="-fx-background-color: #FAEBD7;" text="Ce jeu vous a été proposé par Aminetou, Clément, Fikoul, Julien et Sarah ." BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="10.0" top="15.0" />
-               </BorderPane.margin>
-            </TextField>
-         </bottom>
+      <BorderPane layoutX="-5.0" layoutY="-4.0" prefHeight="685.0" prefWidth="1207.0" style="-fx-background-color: DimGray;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="-4.0">
          <left>
-            <AnchorPane maxHeight="419.0" maxWidth="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="248.0" style="-fx-padding: 0; -fx-border-color: #800000; -fx-background-color: #FAEBD7; -fx-border-width: 2; -fx-border-radius: 2;" BorderPane.alignment="CENTER_LEFT">
+            <AnchorPane maxHeight="505.0" maxWidth="253.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="253.0" style="-fx-padding: 2; -fx-background-color: Gainsboro; -fx-border-width: 2; -fx-background-radius: 4;" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <AnchorPane layoutX="8.0" layoutY="6.0" prefHeight="260.0" prefWidth="236.0" style="-fx-border-width: 2;" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="4.0">
+                  <AnchorPane layoutY="2.0" prefHeight="505.0" prefWidth="246.0" style="-fx-border-width: 2;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="2.0">
                      <children>
-                        <HBox layoutX="22.0" layoutY="108.0" prefHeight="41.0" prefWidth="195.0">
+                        <VBox layoutY="1.0" prefHeight="69.0" prefWidth="242.0">
                            <children>
-                              <ImageView fx:id="pile1" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <HBox prefHeight="35.0" prefWidth="215.0">
+                                 <children>
+                                    <Label text="Tour :">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="numTour" text="Label">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="29.0" prefWidth="235.0">
+                                 <children>
+                                    <Label text="Phase">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="numPhase" text="Label">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </VBox>
+                        <Label layoutX="74.0" layoutY="84.0" text="Piles de tuiles">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <HBox fx:id="listePiles" layoutX="3.0" layoutY="103.0" prefHeight="50.0" prefWidth="234.0">
+                           <children>
+                              <ImageView fx:id="pile1" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pile2" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile2" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pile3" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile3" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pile4" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile4" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="pile5" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile5" fitHeight="59.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
@@ -56,65 +89,91 @@
                               <Insets top="2.0" />
                            </padding>
                         </HBox>
-                        <HBox layoutX="21.0" layoutY="155.0" prefHeight="31.0" prefWidth="200.0">
+                        <VBox fx:id="partieMise" layoutX="9.0" layoutY="166.0" prefHeight="76.0" prefWidth="229.0" style="-fx-background-color: LIGHTSLATEGRAY; -fx-background-radius: 4;">
                            <children>
-                              <RadioButton fx:id="radio1" mnemonicParsing="false">
-                                 <HBox.margin>
-                                    <Insets left="8.0" right="5.0" />
-                                 </HBox.margin>
-                              </RadioButton>
-                              <RadioButton fx:id="radio2" mnemonicParsing="false">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </RadioButton>
-                              <RadioButton fx:id="radio3" mnemonicParsing="false">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </RadioButton>
-                              <RadioButton fx:id="radio4" mnemonicParsing="false">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </RadioButton>
-                              <RadioButton fx:id="radio5" mnemonicParsing="false">
-                                 <HBox.margin>
-                                    <Insets left="18.0" />
-                                 </HBox.margin>
-                              </RadioButton>
+                              <Label prefHeight="17.0" prefWidth="229.0" text="Faire une enchere sur une tuile:" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="montanMise" prefHeight="25.0" prefWidth="180.0" promptText="Montant de votre mise">
+                                 <opaqueInsets>
+                                    <Insets right="5.0" />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets right="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <HBox prefHeight="54.0" prefWidth="229.0" spacing="4.0">
+                                 <children>
+                                    <Button fx:id="miser" mnemonicParsing="false" style="-fx-background-color: DARKGREEN;" text="Miser" textFill="#ffffffe5" />
+                                    <Button fx:id="passerMise" mnemonicParsing="false" style="-fx-background-color: DARKRED;" text="Passer" textFill="WHITE" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="50.0" top="5.0" />
+                                 </padding>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <Label layoutX="43.0" layoutY="7.0" text="Tour :">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="numTour" layoutX="114.0" layoutY="7.0" text="Label">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="71.0" layoutY="35.0" text="Phase">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="numPhase" layoutX="121.0" layoutY="35.0" text="Label">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Separator layoutX="-1.0" layoutY="61.0" prefHeight="3.0" prefWidth="231.0" style="-fx-background-color: #800000;" />
-                        <Label layoutX="74.0" layoutY="84.0" text="Piles de tuiles">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="25.0" layoutY="178.0" prefHeight="17.0" prefWidth="93.0" text="Faire une mise:" />
-                        <ComboBox fx:id="motantMise" layoutX="20.0" layoutY="195.0" prefHeight="25.0" prefWidth="200.0" promptText="Choisir le motant de la mise" />
-                        <Button fx:id="miser" layoutX="68.0" layoutY="226.0" mnemonicParsing="false" text="Miser" textFill="#168052e5" />
-                        <Button fx:id="passer" layoutX="117.0" layoutY="226.0" mnemonicParsing="false" text="Passer" textFill="#bf1515" />
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox fx:id="partieSoudoiement" layoutX="11.0" layoutY="273.0" prefHeight="180.0" prefWidth="225.0" style="-fx-background-color: IVORY; -fx-border-color: gray; -fx-border-width: 2; -fx-border-radius: 4;">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="229.0" text="Soudoiement" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets left="75.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox prefHeight="22.0" prefWidth="229.0">
+                                 <children>
+                                    <ImageView fx:id="constructeur1" fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/figurineConstructeur.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="130.0" text="Constructeur de canal:">
+                                       <HBox.margin>
+                                          <Insets left="3.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="nomCons" prefHeight="17.0" prefWidth="88.0" text="Label" textFill="#2a8ed0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <TextField fx:id="soudoiement" prefHeight="25.0" prefWidth="139.0" promptText="Montant de votre mise" text="entrer votre montant">
+                                 <VBox.margin>
+                                    <Insets left="40.0" right="40.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <HBox prefHeight="54.0" prefWidth="229.0" spacing="4.0">
+                                 <children>
+                                    <Button fx:id="passerSoudoiement" mnemonicParsing="false" style="-fx-background-color: DARKRED;" text="Passer" textFill="WHITE" />
+                                    <Button fx:id="soudoyer" mnemonicParsing="false" style="-fx-background-color: DARKGREEN;" text="Soudoyer" textFill="#ffffffe5" />
+                                    <Button fx:id="soutenir" mnemonicParsing="false" style="-fx-background-color: GOLD;" text="Soutenir" textFill="#ffffffe5" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="20.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <ComboBox fx:id="montantSoutien" prefHeight="25.0" prefWidth="231.0" promptText="Choisir le soudoiement à soutenir">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </children>
@@ -127,30 +186,17 @@
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="580.0" style="-fx-padding: 25;" BorderPane.alignment="CENTER">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="577.0" style="-fx-padding: 25;" BorderPane.alignment="CENTER">
                <children>
                   <Separator fx:id="h5" layoutX="2.0" layoutY="137.0" prefHeight="5.0" prefWidth="150.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
                   <VBox fx:id="AA" layoutX="3.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C1" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
                         </ImageView>
-                        <HBox prefHeight="28.0" prefWidth="69.0" style="-fx-translate-y: -50;">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
+                        <HBox prefHeight="49.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
                      </children>
                   </VBox>
                   <Separator fx:id="v3" layoutX="286.0" layoutY="2.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
@@ -160,11 +206,11 @@
                   <Separator fx:id="v5" layoutX="571.0" layoutY="5.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
                   <Separator fx:id="v6" layoutX="-2.0" layoutY="140.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
                   <Separator fx:id="h6" layoutX="151.0" layoutY="137.0" prefHeight="5.0" prefWidth="137.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
-                  <Separator fx:id="h1" layoutY="-3.0" prefHeight="5.0" prefWidth="150.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
+                  <Separator fx:id="h1" layoutX="1.0" layoutY="-5.0" prefHeight="7.0" prefWidth="149.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
                   <Separator fx:id="h2" layoutX="150.0" layoutY="-3.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
                   <VBox fx:id="AB" layoutX="72.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C2" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -174,7 +220,7 @@
                   </VBox>
                   <VBox fx:id="AC" layoutX="148.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C3" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -184,7 +230,7 @@
                   </VBox>
                   <VBox fx:id="AD" layoutX="217.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C4" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -202,7 +248,7 @@
                   <Separator fx:id="h12" layoutX="436.0" layoutY="276.0" prefHeight="5.0" prefWidth="143.0" style="-fx-background-color: #8B4513; -fx-translate-y: 3;" />
                   <VBox fx:id="BA" layoutX="4.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C9" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -212,7 +258,7 @@
                   </VBox>
                   <VBox fx:id="BB" layoutX="72.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C10" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -222,7 +268,7 @@
                   </VBox>
                   <VBox fx:id="BC" layoutX="148.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C11" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -232,7 +278,7 @@
                   </VBox>
                   <VBox fx:id="BD" layoutX="217.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C12" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -246,7 +292,7 @@
                   </VBox>
                   <VBox fx:id="AE" layoutX="292.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C5" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -256,7 +302,7 @@
                   </VBox>
                   <VBox fx:id="AF" layoutX="361.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C6" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -266,7 +312,7 @@
                   </VBox>
                   <VBox fx:id="BE" layoutX="292.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C13" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -276,7 +322,7 @@
                   </VBox>
                   <VBox fx:id="BF" layoutX="361.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C14" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -286,7 +332,7 @@
                   </VBox>
                   <VBox fx:id="AG" layoutX="434.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C7" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -296,7 +342,7 @@
                   </VBox>
                   <VBox fx:id="AH" layoutX="503.0" layoutY="5.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C8" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -306,7 +352,7 @@
                   </VBox>
                   <VBox fx:id="BG" layoutX="434.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C15" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -316,7 +362,7 @@
                   </VBox>
                   <VBox fx:id="BH" layoutX="503.0" layoutY="73.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C16" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -330,7 +376,7 @@
                   <Separator fx:id="v9" layoutX="428.0" layoutY="143.0" orientation="VERTICAL" prefHeight="138.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
                   <VBox fx:id="CA" layoutX="4.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C17" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -340,7 +386,7 @@
                   </VBox>
                   <VBox fx:id="CB" layoutX="73.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C18" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -350,7 +396,7 @@
                   </VBox>
                   <VBox fx:id="DA" layoutX="4.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C25" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -360,7 +406,7 @@
                   </VBox>
                   <VBox fx:id="DB" layoutX="72.0" layoutY="212.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C26" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -370,7 +416,7 @@
                   </VBox>
                   <VBox fx:id="CC" layoutX="148.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C19" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -380,7 +426,7 @@
                   </VBox>
                   <VBox fx:id="CD" layoutX="217.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C20" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -390,7 +436,7 @@
                   </VBox>
                   <VBox fx:id="DC" layoutX="148.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C27" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -400,7 +446,7 @@
                   </VBox>
                   <VBox fx:id="DD" layoutX="217.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C28" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -410,7 +456,7 @@
                   </VBox>
                   <VBox fx:id="CE" layoutX="292.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C21" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -420,7 +466,7 @@
                   </VBox>
                   <VBox fx:id="CF" layoutX="361.0" layoutY="145.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C22" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -430,7 +476,7 @@
                   </VBox>
                   <VBox fx:id="DE" layoutX="292.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C29" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -440,7 +486,7 @@
                   </VBox>
                   <VBox fx:id="DF" layoutX="361.0" layoutY="213.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C30" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -450,7 +496,7 @@
                   </VBox>
                   <VBox fx:id="CG" layoutX="434.0" layoutY="144.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C23" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -460,7 +506,7 @@
                   </VBox>
                   <VBox fx:id="CH" layoutX="503.0" layoutY="144.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C24" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -470,7 +516,7 @@
                   </VBox>
                   <VBox fx:id="DG" layoutX="434.0" layoutY="212.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C31" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -480,7 +526,7 @@
                   </VBox>
                   <VBox fx:id="DH" layoutX="503.0" layoutY="212.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C32" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -490,7 +536,7 @@
                   </VBox>
                   <VBox fx:id="EA" layoutX="4.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C33" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -505,7 +551,7 @@
                   <Separator fx:id="v15" layoutX="571.0" layoutY="281.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />
                   <VBox fx:id="FA" layoutX="4.0" layoutY="354.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C41" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -515,7 +561,7 @@
                   </VBox>
                   <VBox fx:id="EC" layoutX="148.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C35" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -525,7 +571,7 @@
                   </VBox>
                   <VBox fx:id="ED" layoutX="217.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C36" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -535,7 +581,7 @@
                   </VBox>
                   <VBox fx:id="FC" layoutX="148.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C43" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -545,7 +591,7 @@
                   </VBox>
                   <VBox fx:id="FD" layoutX="217.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C44" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -555,7 +601,7 @@
                   </VBox>
                   <VBox fx:id="EE" layoutX="293.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C37" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -565,7 +611,7 @@
                   </VBox>
                   <VBox fx:id="EF" layoutX="361.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C38" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -575,7 +621,7 @@
                   </VBox>
                   <VBox fx:id="FE" layoutX="292.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C45" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -585,7 +631,7 @@
                   </VBox>
                   <VBox fx:id="FF" layoutX="361.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C46" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -595,7 +641,7 @@
                   </VBox>
                   <VBox fx:id="EG" layoutX="434.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C39" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -605,7 +651,7 @@
                   </VBox>
                   <VBox fx:id="EH" layoutX="503.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C40" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -615,7 +661,7 @@
                   </VBox>
                   <VBox fx:id="FG" layoutX="434.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C47" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -625,7 +671,7 @@
                   </VBox>
                   <VBox fx:id="FH" layoutX="503.0" layoutY="353.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C48" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -635,7 +681,7 @@
                   </VBox>
                   <VBox fx:id="EB" layoutX="72.0" layoutY="285.0" prefHeight="70.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C34" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -645,7 +691,7 @@
                   </VBox>
                   <VBox fx:id="FB" layoutX="73.0" layoutY="353.0" prefHeight="61.0" prefWidth="69.0">
                      <children>
-                        <ImageView fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="C42" fitHeight="76.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
@@ -662,7 +708,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </opaqueInsets>
                <BorderPane.margin>
-                  <Insets />
+                  <Insets left="40.0" right="40.0" />
                </BorderPane.margin>
             </AnchorPane>
          </center>
@@ -670,30 +716,61 @@
             <Insets />
          </opaqueInsets>
          <right>
-            <AnchorPane maxHeight="400.0" maxWidth="257.0" minHeight="96.0" minWidth="200.0" prefHeight="400.0" prefWidth="257.0" style="-fx-border-color: #800000; -fx-background-color: #FAEBD7; -fx-border-radius: 3; -fx-border-width: 2;" BorderPane.alignment="CENTER">
+            <AnchorPane maxHeight="505.0" maxWidth="251.0" minHeight="96.0" minWidth="200.0" prefHeight="460.0" prefWidth="251.0" style="-fx-background-color: Gainsboro; -fx-background-radius: 4;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="5.0" right="20.0" />
                </BorderPane.margin>
                <children>
-                  <VBox layoutX="6.0" layoutY="60.0" prefHeight="79.0" prefWidth="240.0" AnchorPane.bottomAnchor="281.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="60.0">
+                  <VBox layoutX="14.0" layoutY="81.0" prefHeight="79.0" prefWidth="227.0" style="-fx-background-color: SILVER; -fx-background-radius: 20;" AnchorPane.bottomAnchor="308.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="79.0">
                      <children>
-                        <Label text="Cagnotte:">
+                        <HBox prefHeight="41.0" prefWidth="214.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/1.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/2.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Cagnotte">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/50.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/5.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label fx:id="montantCagnotte" prefHeight="47.0" prefWidth="215.0" text="Montant Cagnotte" textFill="#970c0c">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets left="5.0" top="10.0" />
+                     </padding>
                   </VBox>
-                  <VBox layoutX="8.0" layoutY="217.0" prefHeight="110.0" prefWidth="101.0">
+                  <VBox layoutX="8.0" layoutY="204.0" prefHeight="161.0" prefWidth="231.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;">
                      <children>
-                        <Label text="Travailleurs:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        <Label text="Travailleurs:" />
                         <HBox prefHeight="47.0" prefWidth="101.0">
                            <children>
-                              <ImageView fx:id="travailleur" fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="travailleur" fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../../img/TViolet.png" />
                                  </image>
@@ -705,16 +782,8 @@
                               </Label>
                            </children>
                         </HBox>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="112.0" layoutY="217.0" prefHeight="76.0" prefWidth="138.0">
-                     <children>
-                        <Label text="Canaux:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <HBox prefHeight="33.0" prefWidth="77.0">
+                        <Label text="Canaux:" />
+                        <HBox prefHeight="33.0" prefWidth="77.0" VBox.vgrow="ALWAYS">
                            <children>
                               <ImageView fx:id="canalConstruction" fitHeight="41.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -737,87 +806,96 @@
                            </padding>
                         </HBox>
                      </children>
+                     <padding>
+                        <Insets left="5.0" top="5.0" />
+                     </padding>
                   </VBox>
-                  <Separator layoutX="13.0" layoutY="61.0" prefHeight="3.0" prefWidth="231.0" style="-fx-background-color: #800000;" />
                   <Label layoutX="14.0" layoutY="6.0" text="Fiche Joueur:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="NomJoueur" layoutX="18.0" layoutY="35.0" prefHeight="17.0" prefWidth="81.0">
+                  <Label fx:id="NomJoueur" layoutX="18.0" layoutY="35.0" prefHeight="27.0" prefWidth="180.0" text="NOM JOUEUR" textFill="DARKGREEN">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="constructeur" fitHeight="81.0" fitWidth="43.0" layoutX="88.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="constructeur" fitHeight="65.0" fitWidth="37.0" layoutX="205.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/figurineConstructeur.png" />
                      </image>
                   </ImageView>
-                  <HBox layoutX="21.0" layoutY="90.0" prefHeight="41.0" prefWidth="214.0">
-                     <children>
-                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/1.jpg" />
-                           </image>
-                        </ImageView>
-                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/2.jpg" />
-                           </image>
-                        </ImageView>
-                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/5.jpg" />
-                           </image>
-                        </ImageView>
-                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/20.jpg" />
-                           </image>
-                        </ImageView>
-                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../img/50.jpg" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <Label fx:id="montantCagnotte" layoutX="85.0" layoutY="131.0" prefHeight="53.0" prefWidth="85.0" text="Montant Cagnotte" textFill="#970c0c">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </right>
          <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu fx:id="chat" mnemonicParsing="false" text="Fichier">
-                  <items>
-                    <MenuItem fx:id="sauvegarder" mnemonicParsing="false" text="Sauvegarder la partie" />
-                        <MenuItem fx:id="quitter" mnemonicParsing="false" text="Quitter la partie" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Chat">
-                  <items>
-                    <MenuItem fx:id="chat" mnemonicParsing="false" text="Ouvrir le chat" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Aide">
-                  <items>
-                    <MenuItem fx:id="regles" mnemonicParsing="false" text="Règles du jeu" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
+            <VBox prefHeight="80.0" prefWidth="1205.0" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu fx:id="chat" mnemonicParsing="false" text="Fichier">
+                        <items>
+                          <MenuItem fx:id="sauvegarder" mnemonicParsing="false" text="Sauvegarder la partie" />
+                              <MenuItem fx:id="quitter" mnemonicParsing="false" text="Quitter la partie" />
+                        </items>
+                      </Menu>
+                      <Menu fx:id="activerchats" mnemonicParsing="false" text="Chat">
+                        <items>
+                          <MenuItem fx:id="activerchat" mnemonicParsing="false" text="Ouvrir le chat" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Aide">
+                        <items>
+                          <MenuItem fx:id="regles" mnemonicParsing="false" text="Règles du jeu" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Label fx:id="consigne" prefHeight="26.0" prefWidth="963.0" text="Label" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="200.0" right="200.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
          </top>
+         <bottom>
+            <VBox fx:id="chatj" prefHeight="140.0" prefWidth="1205.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane prefHeight="73.0" prefWidth="1145.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="90.0" prefWidth="1129.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="754.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="20.0" />
+                     </VBox.margin>
+                  </ScrollPane>
+                  <HBox fx:id="chat" prefHeight="42.0" prefWidth="1205.0">
+                     <children>
+                        <TextField fx:id="message" prefHeight="25.0" prefWidth="1077.0">
+                           <HBox.margin>
+                              <Insets left="30.0" right="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="envoyer" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #1e90ff;" text="Envoyer" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

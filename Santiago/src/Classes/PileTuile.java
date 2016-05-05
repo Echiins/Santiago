@@ -1,7 +1,8 @@
 package Classes;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PileTuile {
+public class PileTuile implements Serializable {
 	private int idPiletuile;
 	private ArrayList<TuilePlantation> tuiles;
 	
@@ -11,10 +12,6 @@ public class PileTuile {
 	 this.idPiletuile=idPiletuile;
 	 this.tuiles=new ArrayList<TuilePlantation>();
 	 
-	}
-	public PileTuile(int idPiletuile, ArrayList<TuilePlantation> tuiles) {
-		this.idPiletuile = idPiletuile;
-		this.tuiles = tuiles;
 	}
 
 	public int getIdPiletuile() {

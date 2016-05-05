@@ -46,13 +46,6 @@ public class Plateau {
 		this.liste_parcelles=new ArrayList<Parcelle>();
 		this.liste_fosses=new ArrayList<Fosse>();
 	}
-	public Plateau(int idPlateau, int sourceX, int sourceY, List<Parcelle> liste_parcelles, List<Fosse> liste_fosses) {
-		this.idPlateau=idPlateau;
-		this.sourceX = sourceX;
-		this.sourceY = sourceY;
-		this.liste_parcelles = liste_parcelles;
-		this.liste_fosses = liste_fosses;
-	}
 
 	/***************************************************************************
 	 * *******************************METHODES*******************************
@@ -83,7 +76,7 @@ public class Plateau {
 		for(int i=0;i<4;i++){
 			for(int j=0;j<4;j++){
 			this.liste_fosses.add(new Fosse(id,j,i,"H",false));
-			System.out.println(id+"x:"+i+" y:"+j);id++;
+			System.out.println(id+":"+i+" "+j);id++;
 			
 			
 			}
@@ -135,8 +128,7 @@ public class Plateau {
 			for(int j=16;j<liste_fosses.size();j++){
 				if((liste_fosses.get(j).getCoorX()==x) && (liste_fosses.get(j).getCoorY()==y))
 				{
-					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());
-					return liste_fosses.get(j);
+					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());return liste_fosses.get(j);
 				}
 					
 			}
@@ -250,13 +242,11 @@ public class Plateau {
 			y=parcelle.getCoorY()/2+1;
 		}
 		else
-			y=parcelle.getCoorY()/2;
+			y=parcelle.getCoorY();
 		
 		fosses.add(this.getFosse(parcelle.getCoorX()/2,y,"V"));
-		System.out.println("x:"+parcelle.getCoorX()/2+"y:"+y);
 		return fosses;
 	}
-	
 	public boolean getFossesIrrigueAdjacents(Fosse fosse){
 		boolean irrigue = false;
 		int x=fosse.getCoorY();
@@ -535,12 +525,4 @@ public class Plateau {
 	public void setListe_fosses(List<Fosse> liste_fosses) {
 		this.liste_fosses = liste_fosses;
 	}
-	
-	
-
-	
-	
-	
-	
-	
 }
