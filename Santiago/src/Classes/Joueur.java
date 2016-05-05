@@ -1,4 +1,4 @@
-package Santiago.Tests.Classes;
+package Classes;
 
 
 import static java.net.InetAddress.getLocalHost;
@@ -19,7 +19,7 @@ public class Joueur implements Comparable<Joueur> {
 	
 	private int id_joueur;
 	private String nom_joueur;
-	//INUTIL, il aura toujours son canal
+	private String mdp;
 	private int canal_perso;
 	private boolean canal_bleu;
 	private int cagnotte;
@@ -43,10 +43,45 @@ public class Joueur implements Comparable<Joueur> {
 		this.nb_tag=22;
 		this.rang=rang;
 		this.est_constructeurdecanal=false;
-		this.montour=false;
+		this.setMontour(false);
 		this.couleur=couleur;
 		this.tuiles_joueur=new ArrayList<TuilePlantation>();
 	}
+	
+	public Joueur(int id_joueur, String nom_joueur, String mdp, String couleur, int rang){
+		this.id_joueur=id_joueur;
+		this.nom_joueur=nom_joueur;
+		this.mdp=mdp;
+		this.canal_perso=1;
+		this.canal_bleu=true;
+		this.cagnotte=10;
+		this.nb_tag=22;
+		this.rang=rang;
+		this.est_constructeurdecanal=false;
+		this.setMontour(false);
+		this.couleur=couleur;
+		this.tuiles_joueur=new ArrayList<TuilePlantation>();
+	}
+	
+	public Joueur(int id_joueur, String nom_joueur,String couleur, String mdp,int rang,int canal_perso, boolean canal_bleu, int cagnotte, int nb_tag,
+			 boolean est_constructeurdecanal,  boolean montour,
+			List<TuilePlantation> tuiles_joueur) {
+		this.id_joueur = id_joueur;
+		this.nom_joueur = nom_joueur;
+		this.mdp=mdp;
+		this.canal_perso = canal_perso;
+		this.canal_bleu = canal_bleu;
+		this.cagnotte = cagnotte;
+		this.nb_tag = nb_tag;
+		this.rang = rang;
+		this.est_constructeurdecanal = est_constructeurdecanal;
+		this.couleur = couleur;
+		this.setMontour(montour);
+		this.tuiles_joueur = tuiles_joueur;
+	}
+	
+	
+	
 	
 	/***************************************************************************
 	 * *******************************METHODES*******************************
@@ -100,6 +135,9 @@ public class Joueur implements Comparable<Joueur> {
 	public String getCouleur() {
 		return couleur;
 	}
+	public String getMdp(){
+		return mdp;
+	}
 	
 	//************************************SETTER************************************
 	public void setTuilesjoueur(List<TuilePlantation> tuiles_joueur) {
@@ -133,8 +171,19 @@ public class Joueur implements Comparable<Joueur> {
 		this.rang = rang;
 	}
 
+	public boolean getMontour() {
+		return montour;
+	}
+
+	public void setMontour(boolean montour) {
+		this.montour = montour;
+	}
+
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
+	}
+	public void setMdp(String mdp){
+		this.mdp=mdp;
 	}
 	//A FACTORISER
 	public void estPlusConstructeur(){
@@ -143,12 +192,11 @@ public class Joueur implements Comparable<Joueur> {
 
 	public void tirerTuile(TuilePlantation t){
 		this.tuiles_joueur.add(t);
-
 	}
 
 
-	
-	
+
+
 /*** phase 4***/
 	public void phase4(){
 		//demander si passer ou soudoyer ou proposer de soutenir un soudoiement
@@ -211,9 +259,7 @@ public class Joueur implements Comparable<Joueur> {
 		
 		return null;
 	}
-/***Fin phase 4****/
-
-
+	
 /**********************COMPARATOR************************************/
 	@Override
     public int compareTo(Joueur o) {
