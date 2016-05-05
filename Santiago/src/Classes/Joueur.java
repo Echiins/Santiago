@@ -143,7 +143,76 @@ public class Joueur implements Comparable<Joueur> {
 
 	public void tirerTuile(TuilePlantation t){
 		this.tuiles_joueur.add(t);
+
 	}
+
+
+	
+	
+/*** phase 4***/
+	public void phase4(){
+		//demander si passer ou soudoyer ou proposer de soutenir un soudoiement
+		//si passer : passer au joueuer suivant
+		//sinon
+		// proposer les soudoiements des autres et proposer de :
+		//soudoyer : demander fossé et montant et lancer méthode soudoyer
+		//ou soutenir un soudoiement
+		
+	}
+	
+	//phase 4 soudoyer
+	public PropositionSoudoiement soudoyer(int id, Fosse f){
+	
+		//demander montant
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Quel est le montant de ton pot de vin?");
+		int m = sc.nextInt();	
+		
+		while(m<0){
+			sc = new Scanner(System.in);
+			System.out.println("Quel est le montant de ton pot de vin?");
+			m = sc.nextInt();		
+		}
+		PropositionSoudoiement p = new PropositionSoudoiement(id,this,m,f);
+
+		return p;
+	}
+
+	//fonction soutenir soudoiement!
+	public SoutienSoudoiement soutenir(int id, Fosse f){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Quel est le montant que vous voulez ajouter au pot de vin pour ce faussé?");
+		int m = sc.nextInt();	
+		
+		while(m<0){
+			sc = new Scanner(System.in);
+			System.out.println("Quel est le montant de ton pot de vin?");
+			m = sc.nextInt();		
+		}
+		SoutienSoudoiement sd = new SoutienSoudoiement(id,this,m,f);
+		return sd;
+	}
+	
+	public PropositionSoudoiement decider(ArrayList<PropositionSoudoiement> pss){
+		String propositions = "Voici les pots de vin que les joueurs vous propose ! A vous d'en choisir un (en entrant son n°) ou de taper '-1' pour les refuser toutes";
+		//
+		for (PropositionSoudoiement ps:pss){
+			int montantTotal = ps.montant;
+			for(SoutienSoudoiement ss : ps.supporters){
+				montantTotal = montantTotal+ ss.montant;
+			}
+			propositions= propositions + "\n pot de vin n°"+ps.idPS + "du montant de "+ montantTotal  +" pour un canal sur le faussé (" + ps.getF().getCoorX() +","+ps.getF().getCoorY()+")";
+		}
+		Scanner sc = new Scanner(System.in);
+		System.out.println(propositions);
+		int res = sc.nextInt();
+		
+		
+		
+		return null;
+	}
+/***Fin phase 4****/
+
 
 /**********************COMPARATOR************************************/
 	@Override

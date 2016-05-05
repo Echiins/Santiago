@@ -22,6 +22,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	private boolean start;
 	private int max_tour;
 	private ArrayList<PileTuile> liste_piles=null;
+	private ArrayList<PropositionSoudoiement> soudoiments;
 	private ArrayList<ProposerMise> encheres_courantes;
 	
 /***************************************************************************
@@ -41,6 +42,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		this.phase=0;
 
 		this.liste_piles=new ArrayList<PileTuile>();
+		this.soudoiments= new ArrayList<PropositionSoudoiement>();
 		this.encheres_courantes=new ArrayList<ProposerMise>();
 	}
 
@@ -141,6 +143,17 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	/**
 	 * 
 	 */
+
+
+		
+	public ArrayList<PropositionSoudoiement> getSoudoiments() {
+		return soudoiments;
+	}
+
+	public void setSoudoiments(ArrayList<PropositionSoudoiement> soudoiments) {
+		this.soudoiments = soudoiments;
+	}
+
 	public void setClient(PartieInterface client)  throws RemoteException {
 		//this.client=client;
 		if(this.liste_interface.size()<5){
@@ -563,9 +576,252 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	}
 
 	 
+		/**Phase 4 */
 	public void phase4() throws RemoteException {
-		System.out.println("Phase 4");
-		// TODO Auto-generated method stub
+	System.out.println("Phase 4");
+	//1ST STEP : definir l'ordre de passage 
+	
+		//on met tt les rang à 0
+		for (int i =0; i< this.getListe_joueurs().size();i++){
+			this.getListe_joueurs().get(i).setRang(0);
+		}
+		//on determine le joueur à gauche du constructeur en lui donnant le rang 1
+		
+		for(int i =0; i< this.getListe_joueurs().size();i++){
+			if (this.getListe_joueurs().get(i).getEst_constructeurdecanal()==true){
+				if(i>0){
+					this.getListe_joueurs().get(i-1).setRang(1);	
+				}
+				else{
+					this.getListe_joueurs().get(this.getListe_joueurs().size()-1).setRang(1);
+				}
+				break;
+			}	
+		}
+		
+		int taille = this.getListe_joueurs().size();
+		for (int i = 0; i<taille;i++){
+			if (this.getListe_joueurs().get(i).getRang()==1){
+				if (i==(taille-5)){ //*---- = 0
+					System.out.println("haha5");
+					int r=2;
+					for (int j=i+1;j<taille;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+				}
+				else if (i==(taille-1)){ //dernier joueur de la liste ----*
+					System.out.println("haha1");
+					int r =2;
+					for (int j=0;j<i;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+				}
+				else if (i==(taille-2)){ //avant dernier ---*-
+					System.out.println("haha2");
+					int r=2;
+					if (this.getListe_joueurs().get(i+1).getEst_constructeurdecanal()==false){
+						this.getListe_joueurs().get(i+1).setRang(r);
+						r++;
+					}
+					else{
+						this.getListe_joueurs().get(i+1).setRang(-1);
+					}
+					for (int j=0;j<i;j++){
+					
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+					
+				}
+				else if (i==(taille-3)){//--*--
+					System.out.println("haha3");
+					int r = 2;
+					for (int k = i+1; k< taille ; k++){
+						if(this.getListe_joueurs().get(k).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(k).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(k).setRang(r);
+							r++;
+						}
+					}
+					for (int j=0;j<i;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+				}
+				
+				else if (i==(taille-4)){ //-*---
+					System.out.println("haha4");
+					int r = 2;
+					for (int k = i+1; k<taille ; k++){
+						if(this.getListe_joueurs().get(k).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(k).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(k).setRang(r);
+							r++;
+						}
+						
+					}
+					for (int j=0;j<i;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+						this.getListe_joueurs().get(j).setRang(r);
+						r++;
+						}
+					}
+				}
+				break;
+			}
+		}
+	
+		//array des soudoyeurs dans l'ordre de passage
+		ArrayList<Joueur> soudoyeurs = new ArrayList<Joueur>();
+		int j=1;
+		while(soudoyeurs.size()<this.getListe_joueurs().size()-1){
+			for( int i=0; i< this.getListe_joueurs().size();i++){
+				if(this.getListe_joueurs().get(i).getRang()==j){
+					soudoyeurs.add(this.getListe_joueurs().get(i));
+					j++;
+				}	
+			}
+		}
+	
+		//2ND STEP : faire joueur chaque joueur à son tour : soudoiement/ passer / soutenir soudoiement
+		for (Joueur gamer : soudoyeurs){
+			
+		//passer ou soudoyer
+			boolean choisi =false;
+			Scanner sc = new Scanner(System.in);
+			System.out.println("C'est à ton tour de jouer ! Que veux tu faire? proposer un nouveau soudoiement, "
+					+"soutenir un soudoiement ou passer ton tour?");
+			String res = sc.nextLine();
+			if (res=="soudoyer" ||res=="passer"){
+				choisi=true;
+			}
+			while(choisi==false){
+				sc = new Scanner(System.in);
+				System.out.println("C'est à ton tour de jouer ! Que veux tu faire? proposer un nouveau soudoiement, "
+						+"soutenir un soudoiement ou passer ton tour?");
+				res = sc.nextLine();
+				if (res=="soudoyer" ||res=="passer"){
+					choisi=true;
+				}
+			}
+			if(res=="passer"){
+				break;
+			}
+			else if(res=="soudoyer"){				
+				Fosse f = null;
+				
+				boolean irrigué =true; //le faussé est déjà irrigué !
+				boolean irriguable = false; // le faussé n'est pas collé à la source ni à un canal du réseau
+				
+				while(irrigué==true || irriguable==false){
+					
+					//demander les coordonnées du faussé demandé
+					while(f==null){
+						Scanner sc2 = new Scanner(System.in);
+						System.out.println("Entre la coordonné x du faussé que tu veux irrigué");
+						int x =sc2.nextInt();
+						Scanner sc3 = new Scanner(System.in);
+						System.out.println("Entre la coordonné y du faussé que tu veux irrigué");
+						int y =sc3.nextInt();
+						
+						//nous cherchons le faussé demandé
+						
+						for(Fosse faus : this.getPlateau().getListe_fosses()){
+							if (faus.getCoorX()==x && faus.getCoorY()==y){
+								f=faus;
+								break;
+							}
+						}
+					}
+					
+					if(f!=null){
+						//verification : le fausse f est il bon?
+						irrigué =f.getIrrigue();
+						irriguable=this.plateau.getFossesIrrigueAdjacents(f);
+					}
+				}
+				
+				//Verifier l'emplacement de ce if ci dessous!  : chercher si proposition existe, si oui quel est son indice dans liste soudoiements
+				boolean existe=false;
+				int indiceExistante=0;
+				for(int i =0; i< this.soudoiments.size(); i++){
+					if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).getEtat()==true ){
+						existe=true;
+						indiceExistante =i;
+						break;
+					}
+				}
+				
+				
+				if (existe==true){ // une proposition existe déjà, le joueur peut la soutenir.
+					this.getSoudoiments().get(indiceExistante).getSupporters().add(gamer.soutenir(gamer.getId_joueur(),f));
+				}
+				else{//le joueur peut créer une proposition de soudoiement pour le faussé f 
+					this.getSoudoiments().add(gamer.soudoyer(gamer.getId_joueur(), f));	//la proposition prend l'id du joueur?						
+				}
+				
+				
+			}
+			else if(res=="passer"){
+				System.out.println("Tu passes ton tour ? Ok, au joueur suivant !");
+			}
+		}
+		
+		
+		//tout les joueurs ont soudoyer ou passer leurs tours: c'est au constructeur de décider : 
+		ArrayList<PropositionSoudoiement> propositions = new ArrayList<PropositionSoudoiement>();
+		for (PropositionSoudoiement ps : this.soudoiments){
+			if (ps.getEtat()==true){
+				propositions.add(ps);
+			}
+		}
+			
+		for (Joueur jo : this.liste_joueurs){
+			if (jo.getEst_constructeurdecanal()==true){
+				jo.decider(propositions);
+				break;
+			}
+		}
+		
+		
+		
+		
+		//Fin phase 4 : on passe ttes les propositions de soudoiement à état passé !
+		for (PropositionSoudoiement ps : this.soudoiments){
+			ps.setEtat(false);
+		}
+		
+				
+	  // PASSAGE A LA PHASE SUIVANTE
 		this.phaseSuivante();
 	}
 
