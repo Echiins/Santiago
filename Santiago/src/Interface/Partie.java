@@ -570,6 +570,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					//un en moins pour les passer
 				//cas 3 joueurs
 			}
+			
 		}
 		this.phaseSuivante();
 		
