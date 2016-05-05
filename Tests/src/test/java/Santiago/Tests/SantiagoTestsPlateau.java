@@ -109,4 +109,16 @@ public class SantiagoTestsPlateau {
     	assertEquals(14,p.getFossesAdjacents(p0).get(1).getIdFosse());
     	assertEquals(25, p.get(3,0).getIdParcelle());
     }
+    
+    @Test
+    public void testFossesIrrigue() throws RemoteException, UnknownHostException{
+    	Plateau p=new Plateau(1,0,0);
+    	p.initliste_parcelles();
+    	p.initfosses();
+    	p.getFosse(0, 2, "H").setIrrigue(true);;
+    	Fosse f = p.getFosse(1, 3, "V");
+    	assertEquals(true, p.getFossesIrrigueAdjacents(f));
+    	
+    
+    }
 }

@@ -6,9 +6,16 @@ import java.util.ResourceBundle;
 
 
 
+
+
+
+
+
+
 import javax.swing.JOptionPane;
 
 import Classes.Santiago;
+import Reseau.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,6 +24,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class InscriptionUIController extends DialogUIController{
+	
+	private Stage primaryStage;
+	private static final String DEMARRAGE="../view/DemarrageJeu.fxml";
+	private DemarrageUIController DemarrageController;
+	
 	@FXML
 	private Button joindre;
 	@FXML
@@ -28,9 +40,12 @@ public class InscriptionUIController extends DialogUIController{
 	@FXML
 	private TextField adresse;
 	
+	Client client;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		santiago = Santiago.getSantiago();
+		
 		dialog = new Stage(StageStyle.DECORATED);
 		dialog.initModality(Modality.WINDOW_MODAL);
 		dialog.setTitle("JOINDRE UNE PARTIE");
@@ -45,9 +60,23 @@ public class InscriptionUIController extends DialogUIController{
 			else if (adresse.getText().isEmpty()){
 				JOptionPane.showMessageDialog(null, "Entrer l'adresse de votre serveur");	
 			}
-			//else if() deja un joueur
-			else{
-				dialog.close();
+			else if(pseudo !=null && adresse !=null){
+				client= new Client(adresse.getText(),pseudo.getText());
+				try {
+					client.creerClient();
+					santiago.setClient(client);
+					DemarrageController = DemarrageUIController.initDialog(
+						DEMARRAGE, DemarrageUIController.class,
+						primaryStage);
+					DemarrageController.showAndWait();
+					dialog.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
 			}
 		});
 	}

@@ -1,4 +1,4 @@
-package Santiago.Tests.Classes;
+package Classes;
 import java.util.ArrayList;
 
 public class PileTuile {
@@ -11,6 +11,10 @@ public class PileTuile {
 	 this.idPiletuile=idPiletuile;
 	 this.tuiles=new ArrayList<TuilePlantation>();
 	 
+	}
+	public PileTuile(int idPiletuile, ArrayList<TuilePlantation> tuiles) {
+		this.idPiletuile = idPiletuile;
+		this.tuiles = tuiles;
 	}
 
 	public int getIdPiletuile() {

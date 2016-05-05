@@ -1,4 +1,4 @@
-package Santiago.Tests.Classes;
+package Classes;
 
 
 public class Parcelle {
@@ -19,6 +19,13 @@ public class Parcelle {
 		this.occupee=false;
 	}
 
+	public Parcelle(int idParcelle,int coorX,int coorY,boolean palmier,boolean occupee){
+		this.idParcelle=idParcelle;
+		this.coorX=coorX;
+		this.coorY=coorY;
+		this.palmier=palmier;
+		this.occupee=occupee;
+	}
 	/***************************************************************************
 	 * *******************************METHODES*******************************
 	 ***************************************************************************/
@@ -36,6 +43,13 @@ public class Parcelle {
 	public boolean getPalmier() {
 		return palmier;
 	}
+<<<<<<< HEAD
+	public boolean getOccupee(){
+=======
+	public boolean getOccupee() {
+>>>>>>> phase3
+		return occupee;
+	}
 
 	//************************************SETTER************************************
 	public void setIdParcelle(int idParcelle) {
@@ -49,5 +63,8 @@ public class Parcelle {
 	}
 	public void setCoorX(int coorX) {
 		this.coorX = coorX;
+	}
+	public void setOccupee(boolean occupee) {
+		this.occupee = occupee;
 	}
 }

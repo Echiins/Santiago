@@ -15,7 +15,37 @@ public class Banque {
 		this.idBanque=idBanque;
 		this.partie=partie;
 	}
+	public Banque(int idBanque,ArrayList<BilletBanque> billetsbanques) {
+		this.idBanque=idBanque;
+		this.billetsbanques = billetsbanques;
+	}
+
 	
 	//_____________________GETTER/SETTER_________________________
+
+	public int getIdBanque() {
+		return idBanque;
+	}
+
+	public void setIdBanque(int idBanque) {
+		this.idBanque = idBanque;
+	}
+
+	public Partie getPartie() {
+		return partie;
+	}
+
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+	}
+
+	public ArrayList<BilletBanque> getBilletsbanques() {
+		return billetsbanques;
+	}
+
+	public void setBilletsbanques(ArrayList<BilletBanque> billetsbanques) {
+		this.billetsbanques = billetsbanques;
+	}
+	
 	
 }

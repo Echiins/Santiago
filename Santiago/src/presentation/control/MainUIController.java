@@ -46,6 +46,7 @@ public class MainUIController {
 	
 	@FXML
 	void jouer(ActionEvent event){
+		
 		InscriptionController = DialogUIController.initDialog(
 				INSCRIPTION, InscriptionUIController.class,
 				primaryStage);

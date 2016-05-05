@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -8,7 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1113.0" style="-fx-background-color: #D2B48C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="500.0" prefWidth="1113.0" style="-fx-background-color: #D2B48C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.control.PlateauUIController">
    <children>
       <BorderPane layoutY="-2.0" prefHeight="408.0" prefWidth="1113.0" style="-fx-background-color: #3CB371;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
@@ -19,33 +20,33 @@
             </TextField>
          </bottom>
          <left>
-            <AnchorPane maxHeight="370.0" maxWidth="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="248.0" style="-fx-padding: 0; -fx-border-color: #800000; -fx-border-width: 2; -fx-background-color: #FAEBD7; -fx-border-radius: 2;" BorderPane.alignment="CENTER_LEFT">
+            <AnchorPane maxHeight="419.0" maxWidth="249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="248.0" style="-fx-padding: 0; -fx-border-color: #800000; -fx-background-color: #FAEBD7; -fx-border-width: 2; -fx-border-radius: 2;" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <AnchorPane layoutY="145.0" prefHeight="250.0" prefWidth="249.0" style="-fx-border-width: 2;" AnchorPane.bottomAnchor="124.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="8.0" layoutY="6.0" prefHeight="260.0" prefWidth="236.0" style="-fx-border-width: 2;" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="4.0">
                      <children>
-                        <HBox layoutY="27.0" prefHeight="41.0" prefWidth="200.0">
+                        <HBox layoutX="22.0" layoutY="108.0" prefHeight="41.0" prefWidth="195.0">
                            <children>
-                              <ImageView fx:id="tuile1" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile1" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tuile2" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile2" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tuile3" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile3" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tuile4" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile4" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="tuile5" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="pile5" fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/DosTuiles.png" />
                                  </image>
@@ -55,7 +56,7 @@
                               <Insets top="2.0" />
                            </padding>
                         </HBox>
-                        <HBox layoutY="68.0" prefHeight="31.0" prefWidth="200.0">
+                        <HBox layoutX="21.0" layoutY="155.0" prefHeight="31.0" prefWidth="200.0">
                            <children>
                               <RadioButton fx:id="radio1" mnemonicParsing="false">
                                  <HBox.margin>
@@ -84,76 +85,36 @@
                               </RadioButton>
                            </children>
                         </HBox>
-                        <TextField alignment="CENTER" layoutX="5.0" layoutY="94.0" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: transparent;" text="Joueurs">
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
+                        <Label layoutX="43.0" layoutY="7.0" text="Tour :">
                            <font>
-                              <Font name="Lucida Bright Demibold" size="13.0" />
+                              <Font size="24.0" />
                            </font>
-                        </TextField>
-                        <HBox layoutX="1.0" layoutY="120.0" prefHeight="71.0" prefWidth="240.0">
-                           <children>
-                              <VBox fx:id="j1" prefHeight="51.0" prefWidth="79.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
-                                    <ImageView fx:id="con1" fitHeight="77.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../img/figurineConstructeur.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="j2" prefHeight="51.0" prefWidth="79.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
-                                    <ImageView fx:id="con2" fitHeight="80.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                       <image>
-                                          <Image url="@../../../../../../../Downloads/Santiago-master%20(2)/Santiago-master/Santiago/src/img/figurineConstructeur.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="j3" prefHeight="51.0" prefWidth="79.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
-                                    <ImageView fx:id="con3" fitHeight="78.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                       <image>
-                                          <Image url="@../../img/figurineConstructeur.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="j4" prefHeight="51.0" prefWidth="79.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
-                                    <ImageView fx:id="con4" fitHeight="79.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                       <image>
-                                          <Image url="@../../img/figurineConstructeur.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </VBox>
-                              <VBox fx:id="j5" prefHeight="51.0" prefWidth="79.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="61.0" text="Max" />
-                                    <ImageView fx:id="con5" fitHeight="80.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                       <image>
-                                          <Image url="@../../img/figurineConstructeur.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <TextField alignment="CENTER" focusTraversable="false" layoutX="5.0" layoutY="2.0" prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: transparent;" text="Piles de tuiles">
+                        </Label>
+                        <Label fx:id="numTour" layoutX="114.0" layoutY="7.0" text="Label">
                            <font>
-                              <Font name="Lucida Bright Demibold" size="13.0" />
+                              <Font size="24.0" />
                            </font>
-                           <padding>
-                              <Insets top="5.0" />
-                           </padding>
-                        </TextField>
+                        </Label>
+                        <Label layoutX="71.0" layoutY="35.0" text="Phase">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="numPhase" layoutX="121.0" layoutY="35.0" text="Label">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="-1.0" layoutY="61.0" prefHeight="3.0" prefWidth="231.0" style="-fx-background-color: #800000;" />
+                        <Label layoutX="74.0" layoutY="84.0" text="Piles de tuiles">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="178.0" prefHeight="17.0" prefWidth="93.0" text="Faire une mise:" />
+                        <ComboBox fx:id="motantMise" layoutX="20.0" layoutY="195.0" prefHeight="25.0" prefWidth="200.0" promptText="Choisir le motant de la mise" />
+                        <Button fx:id="miser" layoutX="68.0" layoutY="226.0" mnemonicParsing="false" text="Miser" textFill="#168052e5" />
+                        <Button fx:id="passer" layoutX="117.0" layoutY="226.0" mnemonicParsing="false" text="Passer" textFill="#bf1515" />
                      </children>
                   </AnchorPane>
                </children>
@@ -714,274 +675,62 @@
                   <Insets left="5.0" right="20.0" />
                </BorderPane.margin>
                <children>
-                  <TextField alignment="CENTER" layoutX="1.0" prefHeight="25.0" prefWidth="212.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="Fiche Joueur">
-                     <font>
-                        <Font name="Lucida Bright Demibold" size="17.0" />
-                     </font>
-                  </TextField>
-                  <VBox layoutX="4.0" layoutY="55.0" prefHeight="79.0" prefWidth="240.0" AnchorPane.bottomAnchor="279.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="54.0">
+                  <VBox layoutX="6.0" layoutY="60.0" prefHeight="79.0" prefWidth="240.0" AnchorPane.bottomAnchor="281.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="60.0">
                      <children>
-                        <TextField prefHeight="2.0" prefWidth="207.0" style="-fx-background-color: transparent;" text="Ma cagnotte" />
-                        <HBox prefHeight="41.0" prefWidth="214.0">
+                        <Label text="Cagnotte:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="8.0" layoutY="217.0" prefHeight="110.0" prefWidth="101.0">
+                     <children>
+                        <Label text="Travailleurs:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="47.0" prefWidth="101.0">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="travailleur" fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../img/1.jpg" />
+                                    <Image url="@../../img/TViolet.png" />
                                  </image>
                               </ImageView>
-                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/2.jpg" />
-                                 </image>
-                              </ImageView>
-                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/5.jpg" />
-                                 </image>
-                              </ImageView>
-                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/20.jpg" />
-                                 </image>
-                              </ImageView>
-                              <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
-                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/50.jpg" />
-                                 </image>
-                              </ImageView>
+                              <Label fx:id="nbConstructeurs" prefHeight="47.0" prefWidth="45.0" text="X2">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox layoutX="7.0" layoutY="130.0" prefHeight="110.0" prefWidth="213.0">
+                  <VBox layoutX="112.0" layoutY="217.0" prefHeight="76.0" prefWidth="138.0">
                      <children>
-                        <TextField style="-fx-background-color: transparent;" text="Mes travailleurs" />
-                        <HBox prefHeight="26.0" prefWidth="213.0">
+                        <Label text="Canaux:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="33.0" prefWidth="77.0">
                            <children>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="33.0" prefWidth="213.0">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/TViolet.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox layoutY="235.0" prefHeight="102.0" prefWidth="215.0">
-                     <children>
-                        <TextField style="-fx-background-color: transparent;" text="Mes canaux" />
-                        <HBox prefHeight="33.0" prefWidth="221.0">
-                           <children>
-                              <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="canalConstruction" fitHeight="41.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/CViolet.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="canalBleu" fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../img/Canalbleu.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <padding>
-                              <Insets left="1.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="34.0" prefWidth="215.0">
-                           <children>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/Canalbleu.png" />
-                                 </image>
-                              </ImageView>
+                              <Label fx:id="nbCanaux" prefHeight="39.0" prefWidth="30.0" text="X2">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
                            </children>
                            <padding>
                               <Insets left="1.0" />
@@ -989,19 +738,85 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Separator layoutX="12.0" layoutY="28.0" prefHeight="3.0" prefWidth="188.0" style="-fx-background-color: #800000;" />
+                  <Separator layoutX="13.0" layoutY="61.0" prefHeight="3.0" prefWidth="231.0" style="-fx-background-color: #800000;" />
+                  <Label layoutX="14.0" layoutY="6.0" text="Fiche Joueur:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="NomJoueur" layoutX="18.0" layoutY="35.0" prefHeight="17.0" prefWidth="81.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="constructeur" fitHeight="81.0" fitWidth="43.0" layoutX="88.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/figurineConstructeur.png" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutX="21.0" layoutY="90.0" prefHeight="41.0" prefWidth="214.0">
+                     <children>
+                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/1.jpg" />
+                           </image>
+                        </ImageView>
+                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/2.jpg" />
+                           </image>
+                        </ImageView>
+                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/5.jpg" />
+                           </image>
+                        </ImageView>
+                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/20.jpg" />
+                           </image>
+                        </ImageView>
+                        <TextField prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="1x" />
+                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/50.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label fx:id="montantCagnotte" layoutX="85.0" layoutY="131.0" prefHeight="53.0" prefWidth="85.0" text="Montant Cagnotte" textFill="#970c0c">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </right>
          <top>
-            <TextField alignment="CENTER" editable="false" focusTraversable="false" prefHeight="76.0" prefWidth="1135.0" style="-fx-background-color: #FAEBD7; -fx-border-color: #800000; -fx-border-radius: 2;" text="Bienvenue dans Santiago !" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Lucida Bright Demibold" size="22.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets bottom="5.0" top="35.0" />
-               </BorderPane.margin>
-            </TextField>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu fx:id="chat" mnemonicParsing="false" text="Fichier">
+                  <items>
+                    <MenuItem fx:id="sauvegarder" mnemonicParsing="false" text="Sauvegarder la partie" />
+                        <MenuItem fx:id="quitter" mnemonicParsing="false" text="Quitter la partie" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Chat">
+                  <items>
+                    <MenuItem fx:id="chat" mnemonicParsing="false" text="Ouvrir le chat" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Aide">
+                  <items>
+                    <MenuItem fx:id="regles" mnemonicParsing="false" text="Règles du jeu" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
          </top>
       </BorderPane>
    </children>

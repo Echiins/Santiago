@@ -1,4 +1,4 @@
-package Santiago.Tests.Classes;
+package Classes;
 
 
 public class TuilePlantation {
