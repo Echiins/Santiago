@@ -901,5 +901,11 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		
 	}
 
+	@Override
+	public void phase8() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
