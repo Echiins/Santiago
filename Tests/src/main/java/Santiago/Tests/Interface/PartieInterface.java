@@ -31,4 +31,5 @@ public interface PartieInterface extends java.rmi.Remote{
 	public void phase5() throws RemoteException;
 	public void phase6() throws RemoteException;
 	public void phase7() throws RemoteException;
+	public void phase8() throws RemoteException;
 }

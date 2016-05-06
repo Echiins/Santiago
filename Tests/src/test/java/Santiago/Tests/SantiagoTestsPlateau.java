@@ -116,7 +116,7 @@ public class SantiagoTestsPlateau {
     	p.initliste_parcelles();
     	p.initfosses();
     	p.getFosse(0, 2, "H").setIrrigue(true);;
-    	Fosse f = p.getFosse(1, 3, "V");
+    	Fosse f = p.getFosse(1, 3, "V'");
     	assertEquals(true, p.getFossesIrrigueAdjacents(f));
     	
     

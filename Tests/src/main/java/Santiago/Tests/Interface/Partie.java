@@ -251,6 +251,9 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		case 7:
 			this.phase7();
 			break;
+		case 8:
+			this.phase8();
+			break;
 		case 0: //INITIALISATION, une seule fois
 			this.phase0();
 			break;
@@ -869,8 +872,28 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 			for(int i=0;i<liste_joueurs.size();i++){
 				this.liste_joueurs.get(i).setCagnotte(this.liste_joueurs.get(i).getCagnotte()+3);
 			}
-			this.tourSuivant();
+			this.phaseSuivante();
 		}
+	
+	
+	public void phase8() throws RemoteException {
+		
+		System.out.println("==============\nPhase 8: Phase Final\n===============");
+		
+			if((liste_joueurs.size()<=4 && this.tour==11)|| (liste_joueurs.size()==5 && this.tour==9)){
+				for(Joueur j:this.liste_joueurs){
+					for(int i=0;i<j.getTuilesjoueur().size();i++){
+					int tag=j.getTuilesjoueur().get(i).getTag_presents();
+					int parcelle=j.getTuilesjoueur().size();
+					System.out.println("Le joueur "+j.getNom_joueur()+" à marqué: "+tag*parcelle);
+					}
+				}
+			}
+			
+			this.tourSuivant();
+			
+		}
+
 
 
 
