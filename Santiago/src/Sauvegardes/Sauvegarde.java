@@ -204,6 +204,7 @@ public class Sauvegarde {
 		for (Joueur j : p.getListe_joueurs()){
 			Element joueur=document.createElement("joueur");
 			joueur.setAttribute("id", String.valueOf(j.getId_joueur()));
+			joueur.setAttribute("login", String.valueOf(j.getNom_joueur()));
 			joueur.setTextContent(String.valueOf(j.getScore()));
 			score.appendChild(joueur);
 		}
