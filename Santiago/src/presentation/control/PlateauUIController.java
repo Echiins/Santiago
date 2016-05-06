@@ -752,6 +752,10 @@ public class PlateauUIController extends DialogUIController{
 			
 		}
 		
+		public void mettreFossee(Separator s){
+			s.setStyle("-fx-background-color: #409CC8; -fx-translate-y: 3;");
+		}
+		
 		
 	public void initialize(URL location, ResourceBundle resources) {
 		santiago = Santiago.getSantiago();
