@@ -251,9 +251,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		case 7:
 			this.phase7();
 			break;
-		case 8:
-			this.phase8();
-			break;
 		case 0: //INITIALISATION, une seule fois
 			this.phase0();
 			break;
@@ -808,9 +805,14 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 		if(this.getTour()==this.getMax_tour()){
 			//Fin du Jeu
 			//Compter les points
-			for(int j=0;j<liste_joueurs.size();j++){
-				System.out.println("Le joueur "+liste_joueurs.get(i).getNom_joueur()+" a "+this.liste_joueurs.get(i).getCagnotte()+" escudos dans sa cagnotte");
+			for(Joueur j:this.liste_joueurs){
+				for(int compt=0;compt<j.getTuilesjoueur().size();compt++){
+				int tag=j.getTuilesjoueur().get(compt).getTag_presents();
+				int parcelle=j.getTuilesjoueur().size();
+				System.out.println("Le joueur "+j.getNom_joueur()+" à marqué: "+tag*parcelle);
+				}
 			}
+			this.tourSuivant();
 		}
 	}
 
@@ -875,27 +877,6 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 			this.phaseSuivante();
 		}
 	
-	
-	public void phase8() throws RemoteException {
-		
-		System.out.println("==============\nPhase 8: Phase Final\n===============");
-		
-			if((liste_joueurs.size()<=4 && this.tour==11)|| (liste_joueurs.size()==5 && this.tour==9)){
-				for(Joueur j:this.liste_joueurs){
-					for(int i=0;i<j.getTuilesjoueur().size();i++){
-					int tag=j.getTuilesjoueur().get(i).getTag_presents();
-					int parcelle=j.getTuilesjoueur().size();
-					System.out.println("Le joueur "+j.getNom_joueur()+" à marqué: "+tag*parcelle);
-					}
-				}
-			}
-			
-			this.tourSuivant();
-			
-		}
-
-
-
 
 
 	public int getScore() {
