@@ -480,6 +480,56 @@ public class PlateauUIController extends DialogUIController{
 					}
 			}
 		
+		remplirCase(C1,0,0);
+		remplirCase(C2,0,1);
+		remplirCase(C3,0,2);
+		remplirCase(C4,0,3);
+		remplirCase(C5,0,4);
+		remplirCase(C6,0,5);
+		remplirCase(C7,0,6);
+		remplirCase(C8,0,7);
+		remplirCase(C9,1,0);
+		remplirCase(C10,1,1);
+		remplirCase(C11,1,2);
+		remplirCase(C12,1,3);
+		remplirCase(C13,1,4);
+		remplirCase(C14,1,5);
+		remplirCase(C15,1,6);
+		remplirCase(C16,1,7);
+		remplirCase(C17,2,0);
+		remplirCase(C18,2,1);
+		remplirCase(C19,2,2);
+		remplirCase(C20,2,3);
+		remplirCase(C21,2,4);
+		remplirCase(C22,2,5);
+		remplirCase(C23,2,6);
+		remplirCase(C24,2,7);
+		remplirCase(C25,3,0);
+		remplirCase(C26,3,1);
+		remplirCase(C27,3,2);
+		remplirCase(C28,3,3);
+		remplirCase(C29,3,4);
+		remplirCase(C30,3,5);
+		remplirCase(C31,3,6);
+		remplirCase(C32,3,7);
+		remplirCase(C33,4,0);
+		remplirCase(C34,4,1);
+		remplirCase(C35,4,2);
+		remplirCase(C36,4,3);
+		remplirCase(C37,4,4);
+		remplirCase(C38,4,5);
+		remplirCase(C39,4,6);
+		remplirCase(C40,4,7);
+		remplirCase(C41,5,0);
+		remplirCase(C42,5,1);
+		remplirCase(C43,5,2);
+		remplirCase(C44,5,3);
+		remplirCase(C45,5,4);
+		remplirCase(C46,5,5);
+		remplirCase(C47,5,6);
+		remplirCase(C48,5,7);
+		
+		
 	} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -754,8 +804,90 @@ public class PlateauUIController extends DialogUIController{
 		
 		public void mettreFossee(Separator s){
 			s.setStyle("-fx-background-color: #409CC8; -fx-translate-y: 3;");
+			
+			
 		}
 		
+		public void remplirCase(ImageView c,int x,int y){
+			String host=santiago.getClient().getHost();
+			PartieInterface server;
+			Image image;
+			
+			try {
+				server = (PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
+				for(Joueur j:server.getJoueurs()){
+					
+					for(int i=0; i<j.getTuiles_joueur().size();i++){
+						int nbtag=j.getTuiles_joueur().get(i).getTag_necessaires();
+						String plante=j.getTuiles_joueur().get(i).getPlante();
+						switch(plante){
+						case "piment":
+							
+							if(nbtag==2){
+								image=new Image("@../../img/TuPiment1.png",50,47,false,false);
+							}
+							else{
+								image=new Image("@../../img/TuPiment2.png",50,47,false,false);
+							}
+							c.setImage(image);
+							break;
+						case "banane":
+							if(nbtag==2){
+								image=new Image("@../../img/TuBanane1.png",50,47,false,false);
+								
+							}
+							else{
+								image=new Image("@../../img/TuBanane2.png",50,47,false,false);
+								
+							}
+							c.setImage(image);
+							break;
+						case "patate":
+							if(nbtag==2){
+								image=new Image("@../../img/TuPDT1.png",50,47,false,false);
+								
+							}
+							else{
+								image=new Image("@../../img/TuPDT2.png",50,47,false,false);
+								
+							}c.setImage(image);
+							break;
+						case "haricot":
+							if(nbtag==2){
+								image=new Image("@../../img/TuHaricots2.png",50,47,false,false);
+								
+							}
+							else{
+								image=new Image("@../../img/TuHaricots1.png",50,47,false,false);
+							}
+							case "canne":
+							if(nbtag==2){
+								image=new Image("@../../img/TuCanne2.png",50,47,false,false);
+								
+							}
+							else{
+								image=new Image("@../../img/TuCanne1.png",50,47,false,false);
+								
+							}c.setImage(image);
+							break;
+							
+						}
+					}
+				}
+				
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 		
 	public void initialize(URL location, ResourceBundle resources) {
 		santiago = Santiago.getSantiago();
