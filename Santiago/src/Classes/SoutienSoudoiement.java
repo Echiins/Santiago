@@ -16,6 +16,17 @@ public class SoutienSoudoiement {
 		this.f=f;
 	}
 
+	public SoutienSoudoiement(int idSS,int m,int id_joueur, ArrayList<Joueur> liste_joueurs, Fosse f){
+		this.idSS=idSS;
+		for (Joueur j:liste_joueurs){
+			if(j.getId_joueur()==id_joueur){
+				this.supporter=j;
+			}
+		}
+		this.montant=m;
+		this.f=f;
+	}
+	
 	public int getIdSS() {
 		return idSS;
 	}

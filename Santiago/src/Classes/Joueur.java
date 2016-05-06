@@ -70,6 +70,24 @@ public class Joueur implements Comparable<Joueur>,Serializable {
 	
 	public Joueur(int id_joueur, String nom_joueur,String couleur, String mdp,int rang,int canal_perso, boolean canal_bleu, int cagnotte, int nb_tag,
 			 boolean est_constructeurdecanal,  boolean montour,
+			List<TuilePlantation> tuiles_joueur,int score) {
+		this.id_joueur = id_joueur;
+		this.nom_joueur = nom_joueur;
+		this.password=mdp;
+		this.canal_perso = canal_perso;
+		this.canal_bleu = canal_bleu;
+		this.cagnotte = cagnotte;
+		this.nb_tag = nb_tag;
+		this.rang = rang;
+		this.est_constructeurdecanal = est_constructeurdecanal;
+		this.couleur = couleur;
+		this.setMontour(montour);
+		this.tuiles_joueur = tuiles_joueur;
+		this.enligne=true;
+		this.score=score;
+	}
+	public Joueur(int id_joueur, String nom_joueur,String couleur, String mdp,int rang,int canal_perso, boolean canal_bleu, int cagnotte, int nb_tag,
+			 boolean est_constructeurdecanal,  boolean montour,
 			List<TuilePlantation> tuiles_joueur) {
 		this.id_joueur = id_joueur;
 		this.nom_joueur = nom_joueur;
@@ -83,6 +101,8 @@ public class Joueur implements Comparable<Joueur>,Serializable {
 		this.couleur = couleur;
 		this.setMontour(montour);
 		this.tuiles_joueur = tuiles_joueur;
+		this.enligne=true;
+		this.score=0;
 	}
 	/***************************************************************************
 	 * *******************************METHODES*******************************

@@ -48,7 +48,6 @@ public class ChargementPartie {
 			int id =Integer.parseInt(racine.getElementsByTagName("idPartie").item(0).getTextContent());
 			int tour =Integer.parseInt(racine.getElementsByTagName("tour").item(0).getTextContent());
 			int phase =Integer.parseInt(racine.getElementsByTagName("phase").item(0).getTextContent());
-			int score =Integer.parseInt(racine.getElementsByTagName("score").item(0).getTextContent());
 			int maxTour =Integer.parseInt(racine.getElementsByTagName("maxTour").item(0).getTextContent());
 			boolean start=Boolean.parseBoolean(racine.getElementsByTagName("start").item(0).getTextContent());
 				
@@ -72,29 +71,11 @@ public class ChargementPartie {
 				liste_parcelles.add(new Parcelle(id_parcelle,coorX_parcelle, coorY_parcelle,palmier,occupee));
 			}
 			for(int i=0;i<fosses.getElementsByTagName("fosse").getLength();i++){
-				Element fosse=(Element) fosses.getElementsByTagName("fosse").item(i);
-				int id_fosse=Integer.parseInt(fosse.getElementsByTagName("idFosse").item(0).getTextContent());
-				int coorX_fosse=Integer.parseInt(fosse.getElementsByTagName("coorX").item(0).getTextContent());
-				int coorY_fosse=Integer.parseInt(fosse.getElementsByTagName("coorY").item(0).getTextContent());
-				boolean irrigue= Boolean.parseBoolean(fosse.getElementsByTagName("irrigue").item(0).getTextContent());
-				String sens=fosse.getElementsByTagName("sens").item(0).getTextContent();
-				liste_fosses.add(new Fosse(id_fosse,coorX_fosse, coorY_fosse,sens,irrigue));
+				liste_fosses=codeFosse(fosses);
 			}
 			Plateau plateau_de_jeu=new Plateau(id_plateau,plateau_sourceX,plateau_sourceY,liste_parcelles,liste_fosses);
 
-			//banque
-			ArrayList<BilletBanque> billets_banque=new ArrayList();
-			final Element banque_elt=(Element)racine.getElementsByTagName("banque").item(0);
-			int id_banque=Integer.parseInt(banque_elt.getElementsByTagName("id_banque").item(0).getTextContent());
-			for (int i=0;i<banque_elt.getElementsByTagName("billet").getLength();i++){
-				Element billet= (Element) banque_elt.getElementsByTagName("billet").item(i);
-				String couleur=billet.getElementsByTagName("couleur").item(0).getTextContent();
-				int montant= Integer.parseInt(billet.getElementsByTagName("montant").item(0).getTextContent());
-				int nb_billets= Integer.parseInt(billet.getElementsByTagName("nb_billets").item(0).getTextContent());
-				billets_banque.add(new BilletBanque(couleur,montant,nb_billets));
-			}
-			
-			Banque banque=new Banque(id_banque,billets_banque);
+
 			//joueurs
 			ArrayList<Joueur>liste_joueurs=new ArrayList();
 			final Element joueurs=(Element)racine.getElementsByTagName("joueurs").item(0);
@@ -143,7 +124,30 @@ public class ChargementPartie {
 				encheres_courantes.add(new ProposerMise(id_mise,mise,id_mise_joueur,liste_joueurs));
 			}
 			
-			
+			//soudoiement
+			ArrayList<PropositionSoudoiement> propositions=new ArrayList();
+			final Element propos=(Element) racine.getElementsByTagName("propositions_soudoiement").item(0);
+			for (int i=0;i<propos.getElementsByTagName("proposition").getLength();i++){
+				Element propo=(Element) propos.getElementsByTagName("proposition").item(i);
+				int idPS=Integer.parseInt(propo.getElementsByTagName("idPS").item(0).getTextContent());
+				int montant_prop=Integer.parseInt(propo.getElementsByTagName("montant_prop").item(0).getTextContent());
+				int premier =Integer.parseInt(propo.getElementsByTagName("premier").item(0).getTextContent());
+				Fosse f_propo=codeFosse(propo).get(0);
+				boolean etat=Boolean.parseBoolean(propo.getElementsByTagName("etat").item(0).getTextContent());
+				Element supporters=(Element) propos.getElementsByTagName("supporters").item(0);
+				ArrayList<SoutienSoudoiement> liste_soutiens= new ArrayList();
+				for (int j=0;j<supporters.getElementsByTagName("soutien").getLength();j++){
+					Element soutien=(Element)supporters.getElementsByTagName("soutien").item(j);
+					int idSS=Integer.parseInt(soutien.getElementsByTagName("idSS").item(0).getTextContent());
+					int montant_soudoi=Integer.parseInt(soutien.getElementsByTagName("montant_soudoi").item(0).getTextContent());
+					Fosse f_soutien=codeFosse(soutien).get(0);
+					int idSupporter=Integer.parseInt(soutien.getElementsByTagName("id_supporter").item(0).getTextContent());
+					SoutienSoudoiement soutienSoudoi=new SoutienSoudoiement(idSS,montant_soudoi,idSupporter,liste_joueurs,f_soutien);
+					liste_soutiens.add(soutienSoudoi);
+				}
+				propositions.add(new PropositionSoudoiement(idPS,montant_prop,premier,liste_joueurs,f_propo,liste_soutiens,etat));
+
+			}
 			
 			
 			//piles
@@ -165,9 +169,7 @@ public class ChargementPartie {
 			}
 			
 			
-			
-			Partie partie=new Partie(id,tour,phase,plateau_de_jeu,banque,liste_joueurs,start,maxTour,liste_piles,encheres_courantes,score);
-			partie.getBanque().setPartie(partie);
+			Partie partie=new Partie(id,tour,phase,plateau_de_jeu,liste_joueurs,start,maxTour,liste_piles,encheres_courantes,propositions);
 			return partie;
 			
 		}
@@ -184,6 +186,22 @@ public class ChargementPartie {
 		return null;
 
 	}
+
+	public static ArrayList<Fosse> codeFosse(Element fosses){
+		ArrayList liste_fosses=new ArrayList();
+		for(int i=0;i<fosses.getElementsByTagName("fosse").getLength();i++){
+			Element fosse=(Element) fosses.getElementsByTagName("fosse").item(i);
+			int id_fosse=Integer.parseInt(fosse.getElementsByTagName("idFosse").item(0).getTextContent());
+			int coorX_fosse=Integer.parseInt(fosse.getElementsByTagName("coorX").item(0).getTextContent());
+			int coorY_fosse=Integer.parseInt(fosse.getElementsByTagName("coorY").item(0).getTextContent());
+			boolean irrigue= Boolean.parseBoolean(fosse.getElementsByTagName("irrigue").item(0).getTextContent());
+			String sens=fosse.getElementsByTagName("sens").item(0).getTextContent();
+			liste_fosses.add(new Fosse(id_fosse,coorX_fosse, coorY_fosse,sens,irrigue));
+		}
+		return liste_fosses;
+	}
+	
+	
 	
 
 }

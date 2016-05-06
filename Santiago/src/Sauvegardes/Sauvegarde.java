@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.text.AsyncBoxView.ChildState;
@@ -48,14 +49,6 @@ public class Sauvegarde {
 	
 	public static void savePartie(Partie p) throws IOException{
 
-		//banque
-		Banque banque=p.getBanque();
-		String billets_xml="";
-		for(BilletBanque billet : banque.getBilletsbanques()){
-			billets_xml+="<billet><couleur>"+billet.getCouleur()+"</couleur>"
-					+"<montant>"+billet.getMontant()+"</montant>"
-					+"<nb_billets>"+billet.getNbbillets()+"</nb_billets></billet>";
-		}
 
 		
 		//Joueurs
@@ -63,7 +56,7 @@ public class Sauvegarde {
 		for(Joueur j : p.getJoueurs()){
 			joueurs_xml+="<joueur id= '"+j.getId_joueur()+"'>"
 							+"<nom_joueur>"+j.getNom_joueur()+"</nom_joueur>"
-							+"<mdp>"+j.getMdp()+"</mdp>"
+							+"<mdp>"+j.getPassword()+"</mdp>"
 							+"<cagnotte>"+j.getCagnotte()+"</cagnotte>"
 							+"<canalPerso>"+j.getCanal_perso()+"</canalPerso>"
 							+"<canalBleu>"+j.getCanal_bleu()+"</canalBleu>"
@@ -71,7 +64,7 @@ public class Sauvegarde {
 							+"<estConstructeurdecanal>"+j.getEst_constructeurdecanal()+"</estConstructeurdecanal>"
 							+"<couleur>"+j.getCouleur()+"</couleur>"
 							+"<rang>"+j.getRang()+"</rang>"
-							+"<montour>"+j.getMontour()+"</montour>"
+							+"<montour>"+j.isMontour()+"</montour>"
 						+"<tuiles_joueur>";
 			for (TuilePlantation tuile : j.getTuilesjoueur()){
 				joueurs_xml+=xml_tuile(tuile);
@@ -102,8 +95,23 @@ public class Sauvegarde {
 						+"</enchere>";
 		}
 		
-		
+		//soudoiements
+		String soudoi_xml="<propositions_soudoiement>";
+		for (PropositionSoudoiement proposition : p.getSoudoiments()){
+			soudoi_xml+="<proposition><idPS>"+proposition.getIdPS()+"</idPS>"+"<montant_prop>"+proposition.getMontant()+"</montant_prop><premier>"+proposition.getPremier().getId_joueur()+"</premier>";
+			soudoi_xml+=xml_fosse(proposition.getF());
+			soudoi_xml+="<supporters>";
+			for(SoutienSoudoiement soutient: proposition.getSupporters()){
+				soudoi_xml+="<soutien><idSS>"+soutient.getIdSS()+"</idSS><montant_soudoi>"+soutient.getMontant()+"</montant_soudoi>";
+				soudoi_xml+=xml_fosse(soutient.getF());
+				soudoi_xml+="<id_supporter>"+soutient.getSupporter().getId_joueur()+"</id_supporter>";
+				soudoi_xml+="</soutien>";
+			}
+			soudoi_xml+="</supporters>";
+			soudoi_xml+="<etat>"+proposition.isEtat()+"</etat></proposition>";
 
+		}
+		soudoi_xml+="</propositions_soudoiement>";
 		
 		Plateau plateau=p.getPlateau();
 		String plateau_xml="<sourceX>"+plateau.getSourceX()+"</sourceX>"
@@ -120,13 +128,7 @@ public class Sauvegarde {
 		}
 		plateau_xml+="</parcelles><fosses>";
 		for(Fosse fosse: plateau.getListe_fosses()){
-			plateau_xml+="<fosse>"
-					+ "<idFosse>"+fosse.getIdFosse()+"</idFosse>"
-					+ "<coorX>"+fosse.getCoorX()+"</coorX>"
-					+ "<coorY>"+fosse.getCoorY()+"</coorY>"
-					+ "<irrigue>"+fosse.getIrrigue()+"</irrigue>"
-					+ "<sens>"+fosse.getSens()+"</sens>"
-				+ "</fosse>";
+			plateau_xml+=xml_fosse(fosse);
 		}
 			plateau_xml+="</fosses>";
 		
@@ -136,15 +138,9 @@ public class Sauvegarde {
 					+ "<idPartie>"+p.getIdPartie()+"</idPartie>"
 					+"<tour>"+p.getTour()+"</tour>"
 					+"<phase>"+p.getPhase()+"</phase>"
-					+"<score>"+p.getScore()+"</score>"
 					+"<plateau><id_plateau>"+plateau.getIdPlateau()+"</id_plateau>"
 						+plateau_xml
 					+"</plateau>"
-					+"<banque><id_banque>"+banque.getIdBanque()+"</id_banque>"
-						+"<billets>"
-							+billets_xml
-						+"</billets>"
-					+"</banque>"
 					+"<joueurs>"
 						+joueurs_xml
 					+"</joueurs>"
@@ -156,8 +152,8 @@ public class Sauvegarde {
 					+"<encheresCourantes>"
 						+encheres_xml
 					+"</encheresCourantes>"
+					+soudoi_xml
 					+"</Partie>";
-		
 		//on enregistre le fichier
 		
 		File f= new File("sauvegarde_partie_"+p.getIdPartie()+".xml");
@@ -174,20 +170,25 @@ public class Sauvegarde {
 				+"<tag_necessaires>"+tuile.getTag_necessaires()+"</tag_necessaires>" 
 				+"</tuile>";
 	}
-	
+	public static String xml_fosse(Fosse fosse){
+		return "<fosse>"
+				+ "<idFosse>"+fosse.getIdFosse()+"</idFosse>"
+				+ "<coorX>"+fosse.getCoorX()+"</coorX>"
+				+ "<coorY>"+fosse.getCoorY()+"</coorY>"
+				+ "<irrigue>"+fosse.getIrrigue()+"</irrigue>"
+				+ "<sens>"+fosse.getSens()+"</sens>"
+			+ "</fosse>";
+	}
 	
 	public static void nouveau_score(Partie p) throws IOException, ParserConfigurationException, SAXException, TransformerException{
 
 		try{
 			//Si le fichier existe
-			System.out.println("jjjjj");
 			FileReader f= new FileReader("SCORES.xml");
-			System.out.println("LOL");
 			
 		}
 		catch(FileNotFoundException e){
 			//S'il n'existe pas on crée un nouveau fichier xml "vide"
-			System.out.println("NEW");
 			File f= new File("SCORES.xml");
 			FileWriter fw=new FileWriter(f);
 			fw.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?><scores></scores>");
@@ -198,10 +199,16 @@ public class Sauvegarde {
 		final Document document= builder.parse(new File("SCORES.xml"));
 		final Element racine = document.getDocumentElement();
 		Element score = document.createElement("score");
-		score.setTextContent(String.valueOf(p.getScore()));
-		score.setAttribute("id",String.valueOf(p.getIdPartie()));
-		racine.appendChild(score);
+		score.setAttribute("id_partie",String.valueOf(p.getIdPartie()));
 		
+		for (Joueur j : p.getListe_joueurs()){
+			Element joueur=document.createElement("joueur");
+			joueur.setAttribute("id", String.valueOf(j.getId_joueur()));
+			joueur.setTextContent(String.valueOf(j.getScore()));
+			score.appendChild(joueur);
+		}
+
+		racine.appendChild(score);
 		File f= new File("SCORES.xml");
 		FileWriter fw=new FileWriter(f);
 		

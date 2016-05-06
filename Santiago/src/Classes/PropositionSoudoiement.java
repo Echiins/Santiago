@@ -23,6 +23,31 @@ public class PropositionSoudoiement {
 	
 	
 	
+	public PropositionSoudoiement(int idPS, int montant, Joueur premier, Fosse f,
+			ArrayList<SoutienSoudoiement> supporters, boolean etat) {
+		this.idPS = idPS;
+		this.montant = montant;
+		this.premier = premier;
+		this.f = f;
+		this.supporters = supporters;
+		this.etat = etat;
+	}
+	public PropositionSoudoiement(int idPS, int montant, int premier, ArrayList<Joueur> liste_joueurs, Fosse f,
+			ArrayList<SoutienSoudoiement> supporters, boolean etat) {
+		this.idPS = idPS;
+		this.montant = montant;
+		for(Joueur j:liste_joueurs){
+			if (j.getId_joueur()==premier){
+				this.premier=j;
+			}
+		}
+		this.f = f;
+		this.supporters = supporters;
+		this.etat = etat;
+	}
+
+
+
 	public int getIdPS() {
 		return idPS;
 	}

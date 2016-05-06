@@ -46,6 +46,17 @@ public class Plateau {
 		this.liste_parcelles=new ArrayList<Parcelle>();
 		this.liste_fosses=new ArrayList<Fosse>();
 	}
+	
+
+	public Plateau(int idPlateau, int sourceX, int sourceY, List<Parcelle> liste_parcelles, List<Fosse> liste_fosses) {
+		super();
+		this.idPlateau = idPlateau;
+		this.sourceX = sourceX;
+		this.sourceY = sourceY;
+		this.liste_parcelles = liste_parcelles;
+		this.liste_fosses = liste_fosses;
+	}
+
 
 	/***************************************************************************
 	 * *******************************METHODES*******************************
