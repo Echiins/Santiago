@@ -479,15 +479,14 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	}
 
 /**Phase 4 */
-	public void phase4() throws RemoteException {
-	System.out.println("Phase 4");
-	//1ST STEP : definir l'ordre de passage 
 	
-		//on met tt les rang à 0
+	
+	public ArrayList<Joueur> definirOrdre(){
+		//on met tt les rang Ã  0
 		for (int i =0; i< this.getListe_joueurs().size();i++){
 			this.getListe_joueurs().get(i).setRang(0);
 		}
-		//on determine le joueur à gauche du constructeur en lui donnant le rang 1
+		//on determine le joueur Ã  gauche du constructeur en lui donnant le rang 1
 		
 		for(int i =0; i< this.getListe_joueurs().size();i++){
 			if (this.getListe_joueurs().get(i).getEst_constructeurdecanal()==true){
@@ -613,98 +612,167 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				}	
 			}
 		}
+		return soudoyeurs;
+	}
 	
-		//2ND STEP : faire joueur chaque joueur à son tour : soudoiement/ passer / soutenir soudoiement
-		for (Joueur gamer : soudoyeurs){
-			
-		//passer ou soudoyer
+	public int soudoyerPasser(){
+		
+		//passer ou soudoyer :
 			boolean choisi =false;
 			Scanner sc = new Scanner(System.in);
-			System.out.println("C'est à ton tour de jouer ! Que veux tu faire? proposer un nouveau soudoiement, "
-					+"soutenir un soudoiement ou passer ton tour?");
-			String res = sc.nextLine();
-			if (res=="soudoyer" ||res=="passer"){
+			System.out.println("C'est à  ton tour de jouer ! Que veux tu faire? \n 1 = soudoyer \n 2 = passer ");
+			int res = sc.nextInt();
+			if (res==1 ||res==2){
 				choisi=true;
 			}
 			while(choisi==false){
 				sc = new Scanner(System.in);
-				System.out.println("C'est à ton tour de jouer ! Que veux tu faire? proposer un nouveau soudoiement, "
-						+"soutenir un soudoiement ou passer ton tour?");
-				res = sc.nextLine();
-				if (res=="soudoyer" ||res=="passer"){
+				System.out.println("Erreur.Réessaye. Que veux tu faire? \n 1 = soudoyer \n 2 = passer ");
+				res = sc.nextInt();
+				System.out.println(res);
+				if (res==1 || res==2){
 					choisi=true;
 				}
 			}
-			if(res=="passer"){
-				break;
+			return res;
+	}
+	
+	
+	//Sortir les fausés proches de la source : on prend les coordonnées faussés horisontaux pour la source
+	
+	public ArrayList<Fosse> procheSource(){
+		ArrayList<Fosse> fProchesSource = new ArrayList<Fosse>();
+		int x = this.getPlateau().getSourceX();
+		int y = this.getPlateau().getSourceY();
+		fProchesSource.add(this.getPlateau().getFosse(x,y,"H"));
+		fProchesSource.add(this.getPlateau().getFosse(x,y-1,"H"));
+		fProchesSource.add(this.getPlateau().getFosse(x-1,y+1,"V"));
+		fProchesSource.add(this.getPlateau().getFosse(x,y+1,"V"));
+		return fProchesSource;
+	}
+	
+	public void phase4() throws RemoteException {
+		System.out.println("Phase 4");
+	
+	//1st STEP : definir l'ordre des joueurs : 
+		ArrayList<Joueur> soudoyeurs = this.definirOrdre(); // Testée !
+	
+	//2ND STEP : faire jouer chaque joueur Ã  son tour : soudoiement/ passer / soutenir soudoiement
+		int jouer = soudoyerPasser();
+		
+		for (Joueur gamer : soudoyeurs){
+			if(jouer==2){
+				System.out.println("Tu passes ton tour ? Ok, au joueur suivant !");
 			}
-			else if(res=="soudoyer"){				
+			else if(jouer==1){				
 				Fosse f = null;
 				
-				boolean irrigué =true; //le faussé est déjà irrigué !
-				boolean irriguable = false; // le faussé n'est pas collé à la source ni à un canal du réseau
-				
-				while(irrigué==true || irriguable==false){
-					
-					//demander les coordonnées du faussé demandé
+				boolean irrigué =true; //le faussÃ© est dÃ©jÃ  irriguÃ© !
+				boolean irriguable = false; // le faussÃ© n'est pas collÃ© Ã  la source ni Ã  un canal du réseau
+				while(irrigué==true || irriguable==false){			
+					//demander les coordonnÃ©es du faussÃ© demandÃ©
 					while(f==null){
 						Scanner sc2 = new Scanner(System.in);
-						System.out.println("Entre la coordonné x du faussé que tu veux irrigué");
+						System.out.println("Entre la coordonnee y du fausse que tu veux irriguer");
 						int x =sc2.nextInt();
 						Scanner sc3 = new Scanner(System.in);
-						System.out.println("Entre la coordonné y du faussé que tu veux irrigué");
+						System.out.println("Entre la coordonnee x du fausse que tu veux irriguer");
 						int y =sc3.nextInt();
 						
-						//nous cherchons le faussé demandé
+						Scanner sc4 = new Scanner(System.in);
+						System.out.println("Entre le sens du fausse que tu veux irriguer");
+						String sens =sc4.nextLine();
 						
+						//faire en sorte qu'au premier tour on prend compte que la 
 						for(Fosse faus : this.getPlateau().getListe_fosses()){
-							if (faus.getCoorX()==x && faus.getCoorY()==y){
-								f=faus;
+							if (faus.getCoorX()==y && faus.getCoorY()==x && faus.getSens().equals(sens)){
+							//	System.out.println("Le Faussé a été trouvé." + f.getCoorX() + ","+f.getCoorY() + " "+f.getSens());
+							f=faus;
+							String sensString ="";
+							if (f.getSens()=="V"){
+								sensString="vertical";
+							}
+							else{
+								sensString="horisontal";
+							}
+								System.out.println("Le Faussé  " +  sensString+ " ("+ f.getCoorX() +","+f.getCoorY()+") a été trouvé. Son id est : " + f.getIdFosse() );
+								break;
+							}
+						}
+					}
+					if(f!=null){
+						//verification : le fausse f est il bon?
+						irrigué =f.getIrrigue();
+						if (this.tour==1){
+							ArrayList<Fosse> fProchesS = procheSource();
+							for(Fosse fausse : fProchesS){ //comparer si le faussé du gars appartient à un des faussés collés à la source.
+								if (fausse==f){
+								//	System.out.println("Ce faussé est proche de la source");
+									irriguable=true;
+									break;
+								}
+							}
+							if (irriguable==false){
+							//	System.out.println("Ce faussé n'est pas proche de la source ! Il ne peut être irrigué");
+							}
+						}else{
+							irriguable=this.plateau.getFossesIrrigueAdjacents(f);
+						}
+						break;
+					}
+					else{
+						System.out.println("Oups petite erreur.");
+					}
+				}
+				
+				//chercher si proposition existe, si oui quel est son indice dans liste soudoiements --Verifier l'emplacement de ce if ci dessous!  
+				if( irrigué ==  false && irriguable ==true){
+					System.out.println("ce faussé n'est pas irrigué et est irriguable");
+					boolean existe=false; // on cherche si une proposition de soudoiement existe.
+					int indiceExistante=0; //indice de a proposition					
+					
+					if(this.soudoiments.size()>0){
+
+						for(int i =0; i< this.soudoiments.size(); i++){
+							if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).getEtat()==true ){
+								existe=true;
+								System.out.println("Boucle for : Un soudoiement existe");
+								indiceExistante =i;
+								break;
+							}
+							else{
+								System.out.println("Boucle for : Aucun soudoiement n'existe");
 								break;
 							}
 						}
 					}
 					
-					if(f!=null){
-						//verification : le fausse f est il bon?
-						irrigué =f.getIrrigue();
-						irriguable=this.plateau.getFossesIrrigueAdjacents(f);
+					if (existe==true){ // une proposition existe dÃ©jÃ , le joueur peut la soutenir.
+						System.out.println("Soutenir un soudoiement existant : ");
+						this.soudoiments.get(indiceExistante).getSupporters().add(gamer.soutenir(gamer.getId_joueur(),f));
+					}
+					else{//le joueur peut crÃ©er une proposition de soudoiement pour le faussÃ© f 
+						System.out.println("Aucun soudoiement n'existe pour ce faussé. Vous pouvez en créer un");
+						this.getSoudoiments().add(gamer.soudoyer(gamer.getId_joueur(), f));	//la proposition prend l'id du joueur?						
+					}
+				}else{
+					if (tour==1){
+						System.out.println("Ce faussé n'est pas proche de la source. Il n'est donc pas irriguable");	
+					}
+					else{
+						System.out.println("Ce faussé n'est pas proche du réseaux de canaux. Il n'est donc pas irriguable");
 					}
 				}
-				
-				//Verifier l'emplacement de ce if ci dessous!  : chercher si proposition existe, si oui quel est son indice dans liste soudoiements
-				boolean existe=false;
-				int indiceExistante=0;
-				for(int i =0; i< this.soudoiments.size(); i++){
-					if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).isEtat()==true ){
-						existe=true;
-						indiceExistante =i;
-						break;
-					}
-				}
-				
-				if (existe==true){ // une proposition existe déjà, le joueur peut la soutenir.
-					this.soudoiments.get(indiceExistante).getSupporters().add(gamer.soutenir(gamer.getId_joueur(),f));
-				}
-				else{//le joueur peut créer une proposition de soudoiement pour le faussé f 
-					this.soudoiments.add(gamer.soudoyer(gamer.getId_joueur(), f));	//la proposition prend l'id du joueur?						
-				}
-				
-			}
-			else if(res=="passer"){
-				System.out.println("Tu passes ton tour ? Ok, au joueur suivant !");
 			}
 		}
 		
-		
-		//tout les joueurs ont soudoyer ou passer leurs tours: c'est au constructeur de décider : 
+		//tout les joueurs ont soudoyer ou passer leurs tours: c'est au constructeur de dÃ©cider : 
 		ArrayList<PropositionSoudoiement> propositions = new ArrayList<PropositionSoudoiement>();
 		for (PropositionSoudoiement ps : this.soudoiments){
-			if (ps.isEtat()==true){
+			if (ps.getEtat()==true){
 				propositions.add(ps);
 			}
 		}
-			
 		for (Joueur jo : this.liste_joueurs){
 			if (jo.getEst_constructeurdecanal()==true){
 				jo.decider(propositions);
@@ -712,15 +780,15 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 		}
 		
-		//Fin phase 4 : on passe ttes les propositions de soudoiement à état passé !
+		//Fin phase 4 : on passe ttes les propositions de soudoiement Ã  Ã©tat passÃ© !
 		for (PropositionSoudoiement ps : this.soudoiments){
 			ps.setEtat(false);
 		}
-		
-				
+					
 	  // PASSAGE A LA PHASE SUIVANTE
 		this.phaseSuivante();
 	}
+
 
 
 	/**

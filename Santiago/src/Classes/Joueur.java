@@ -153,24 +153,17 @@ public class Joueur implements Comparable<Joueur>,Serializable {
 		return sd;
 	}
 	
-	public PropositionSoudoiement decider(ArrayList<PropositionSoudoiement> pss){
-		String propositions = "Voici les pots de vin que les joueurs vous propose ! A vous d'en choisir un (en entrant son n°) ou de taper '-1' pour les refuser toutes";
+	public int decider(ArrayList<PropositionSoudoiement> pss){
+		String propositions = "Voici les pots de vin que les joueurs vous propose ! A vous d'en choisir un (en entrant son nÂ°) ou de taper '-1' pour les refuser toutes";
 		//
 		for (PropositionSoudoiement ps:pss){
-			int montantTotal = ps.montant;
-			for(SoutienSoudoiement ss : ps.supporters){
-				montantTotal = montantTotal+ ss.montant;
-			}
-			propositions= propositions + "\n pot de vin n°"+ps.idPS + "du montant de "+ montantTotal  +" pour un canal sur le faussé (" + ps.getF().getCoorX() +","+ps.getF().getCoorY()+")";
+			propositions= propositions + "\n pot de vin numero "+ps.idPS + " du montant de "+ ps.getMontant() +" pour un canal sur le fausse (" + ps.getF().getCoorX() +","+ps.getF().getCoorY()+")";
 		}
-		
 		Scanner sc = new Scanner(System.in);
 		System.out.println(propositions);
 		int res = sc.nextInt();
-		
-		
-		
-		return null;
+	
+		return res;
 	}
 	//************************************GETTER************************************
 	public List<TuilePlantation> getTuilesjoueur() {
