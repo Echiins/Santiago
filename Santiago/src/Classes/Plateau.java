@@ -1,6 +1,7 @@
 package Classes;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-public class Plateau {
+public class Plateau implements Serializable{
 
 	private int idPlateau;
 	private int sourceX;

@@ -1,8 +1,9 @@
 package Classes;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class ProposerMise implements Comparable<ProposerMise> {
+public class ProposerMise implements Comparable<ProposerMise>, Serializable {
 	
 	private int idMise;
 	private Joueur joueur;

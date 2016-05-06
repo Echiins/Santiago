@@ -1,8 +1,9 @@
 package Classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SoutienSoudoiement {
+public class SoutienSoudoiement implements Serializable {
 
 	int idSS;
 	int montant;

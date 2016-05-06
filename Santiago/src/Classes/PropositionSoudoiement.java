@@ -1,8 +1,9 @@
 package Classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PropositionSoudoiement {
+public class PropositionSoudoiement implements Serializable {
 
 	int idPS;
 	int montant;
