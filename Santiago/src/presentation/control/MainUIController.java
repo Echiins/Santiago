@@ -66,7 +66,8 @@ public class MainUIController extends DialogUIController{
 					if(santiago.getClient()!=null){
 							try {
 							PartieInterface server;
-							server = (PartieInterface)Naming.lookup("rmi://localhost:5755/jeu");
+							String host=santiago.getClient().getHost();
+							server = (PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
 							for(Joueur j : server.getJoueurs()){
 								if(j.getNom_joueur().equals(santiago.getClient().getJoueur().getNom_joueur()))
 									joueur=j;

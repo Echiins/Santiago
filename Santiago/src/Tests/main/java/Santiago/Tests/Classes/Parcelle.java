@@ -1,9 +1,7 @@
-package Classes;
-
-import java.io.Serializable;
+package Santiago.Tests.Classes;
 
 
-public class Parcelle implements Serializable {
+public class Parcelle {
 	private int idParcelle;
 	private int coorX;
 	private int coorY;
@@ -21,13 +19,6 @@ public class Parcelle implements Serializable {
 		this.occupee=false;
 	}
 
-	public Parcelle(int idParcelle,int coorX,int coorY,boolean palmier,boolean occupee){
-		this.idParcelle=idParcelle;
-		this.coorX=coorX;
-		this.coorY=coorY;
-		this.palmier=palmier;
-		this.occupee=occupee;
-	}
 	/***************************************************************************
 	 * *******************************METHODES*******************************
 	 ***************************************************************************/
@@ -45,8 +36,6 @@ public class Parcelle implements Serializable {
 	public boolean getPalmier() {
 		return palmier;
 	}
-
-
 	public boolean getOccupee() {
 		return occupee;
 	}

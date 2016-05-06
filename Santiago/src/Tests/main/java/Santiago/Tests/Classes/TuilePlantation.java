@@ -1,9 +1,7 @@
-package Classes;
-
-import java.io.Serializable;
+package Santiago.Tests.Classes;
 
 
-public class TuilePlantation implements Serializable{
+public class TuilePlantation {
 
 	private int idPlantation;
 	private int SourceX;
@@ -13,20 +11,11 @@ public class TuilePlantation implements Serializable{
 	private String plante;
 	private int tag_necessaires;
 	private int tag_presents;
-	private int prix;
 
 	/***************************************************************************
 	 * *******************************CONSTRUCTOR*******************************
 	 ***************************************************************************/
-	public TuilePlantation(int idPlantation, String plante,int tag_necessaires,int prix ){
-		this.idPlantation=idPlantation;
-		this.plante=plante;
-		this.desert=false;
-		this.visible=false;
-		this.tag_necessaires=tag_necessaires;
-		this.tag_presents=0;
-	}
-	public TuilePlantation(int idPlantation,String plante, int tag_necessaires ){
+	public TuilePlantation(int idPlantation, String plante,int tag_necessaires ){
 		this.idPlantation=idPlantation;
 		this.plante=plante;
 		this.desert=false;
@@ -41,14 +30,6 @@ public class TuilePlantation implements Serializable{
 	//************************************GETTER************************************
 	public int getIdPlantation() {
 		return idPlantation;
-	}
-
-	public int getPrix() {
-		return prix;
-	}
-
-	public void setPrix(int prix) {
-		this.prix = prix;
 	}
 
 	public int getSourceX() {

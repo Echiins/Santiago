@@ -69,23 +69,7 @@ public class InscriptionUIController extends DialogUIController{
 		dialog.initModality(Modality.WINDOW_MODAL);
 		dialog.setTitle("JOINDRE UNE PARTIE");
 		
-		ObservableList<String> options = 
-			    FXCollections.observableArrayList(
-			    		"Noir",
-			    		"Gris",
-			    		"Rouge",
-			    		"Beige",
-			    		"Violet"
-			    		
-			    );
-		couleur.setItems(options);
-		couleur.getItems().get(0);
-		couleur.getItems().get(1);
-		couleur.getItems().get(2);
-		couleur.getItems().get(3);
-		couleur.getItems().get(4);
 		
-		//couleur.setOnAction(event -> color.getItems());
 		
 		annuler.setOnAction(event -> dialog.close());
 		joindre.setOnAction(event -> {
@@ -108,23 +92,43 @@ public class InscriptionUIController extends DialogUIController{
 							if(commence){
 								JOptionPane.showMessageDialog(null, "Impossible de vous connecter la partie sur ce réseau à déjà commencé");
 								}
+							else if(server.getClient().size()==5){
+								JOptionPane.showMessageDialog(null, "Il y a déja assez de joueurs pouur cette partie");
+								
+							}
 							else{
+								dialog.close();
 								DemarrageController = DemarrageUIController.initDialog(
 									DEMARRAGE, DemarrageUIController.class,
 									primaryStage);
 								DemarrageController.showAndWait();}
 								
-								dialog.close();
 							}
+						//==null
 						else{
 						client= new Client(adresse.getText(),pseudo.getText(),password.getText());
 						client.creerClient();
 						santiago.setClient(client);
-						DemarrageController = DemarrageUIController.initDialog(
-							DEMARRAGE, DemarrageUIController.class,
-							primaryStage);
-						DemarrageController.showAndWait();}
 						dialog.close();
+						String host=santiago.getClient().getHost();
+						PartieInterface server = (PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
+						boolean commence=server.getStart();
+						if(commence){
+							JOptionPane.showMessageDialog(null, "Impossible de vous connecter la partie sur ce réseau à déjà commencé");
+							}
+						else if(server.getClient().size()==5){
+							JOptionPane.showMessageDialog(null, "Il y a déja assez de joueurs pouur cette partie");
+							
+						}
+						else{
+							dialog.close();
+							DemarrageController = DemarrageUIController.initDialog(
+								DEMARRAGE, DemarrageUIController.class,
+								primaryStage);
+							DemarrageController.showAndWait();}
+							
+						}
+						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

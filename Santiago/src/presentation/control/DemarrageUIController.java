@@ -48,8 +48,8 @@ public class DemarrageUIController extends DialogUIController{
 		dialog.close();});
 		
 		try {
-			
-			PartieInterface server=(PartieInterface)Naming.lookup("rmi://localhost:5755/jeu");
+			String host=santiago.getClient().getHost();
+			PartieInterface server=(PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
 			for(Joueur j : server.getJoueurs()){
 			if(j.getNom_joueur().equals(santiago.getClient().getJoueur().getNom_joueur()))
 				joueur=j;
@@ -60,15 +60,15 @@ public class DemarrageUIController extends DialogUIController{
 				instruction.setText("Il n'y a pas assez de joueurs connectés pour lancer une partie");
 				switch (taille){
 				case 1:
-					a1.setVisible(false);
+					a1.setVisible(true);
 					break;
 				case 2:
-					a1.setVisible(false);
-					a2.setVisible(false);
+					a1.setVisible(true);
+					a2.setVisible(true);
 					break;
 				}
 			}
-			else if(5>=taille && taille>=3){
+			else if(5>taille && taille>=3){
 				switch (taille){
 				case 3:
 					a3.setVisible(true);
@@ -91,7 +91,13 @@ public class DemarrageUIController extends DialogUIController{
 					break;
 				}
 				commencer.setDisable(false);
-				instruction.setText("Il n'y a assez de joueurs connectés pour commencer à jouer.\n Après 5 connections la  partie se lancera automatiquement ");
+				instruction.setText("Il y a assez de joueurs connectés pour commencer à jouer.\n Après 5 connections la  partie se lancera automatiquement ");
+				dialog.close();
+			}
+			else if(taille==5){
+				PlateauController = DialogUIController.initDialog(PLATEAU, PlateauUIController.class,primaryStage);
+				dialog.close();
+				PlateauController.showAndWait();
 			}
 		}
 		} catch (MalformedURLException e) {
@@ -106,7 +112,8 @@ public class DemarrageUIController extends DialogUIController{
 		
 		commencer.setOnAction(event->{
 			try {
-				PartieInterface server=(PartieInterface)Naming.lookup("rmi://localhost:5755/jeu");
+				String host=santiago.getClient().getHost();
+				PartieInterface server=(PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
 				if (!server.getStart())
 				{
 					server.lancerLaPartie();

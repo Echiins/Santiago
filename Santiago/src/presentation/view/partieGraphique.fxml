@@ -17,7 +17,7 @@
                <children>
                   <AnchorPane layoutY="2.0" prefHeight="505.0" prefWidth="246.0" style="-fx-border-width: 2;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="2.0">
                      <children>
-                        <VBox layoutY="1.0" prefHeight="69.0" prefWidth="242.0">
+                        <VBox layoutY="1.0" prefHeight="160.0" prefWidth="260.0">
                            <children>
                               <HBox prefHeight="35.0" prefWidth="215.0">
                                  <children>
@@ -32,6 +32,9 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="20.0" />
+                                 </VBox.margin>
                               </HBox>
                               <HBox prefHeight="29.0" prefWidth="235.0">
                                  <children>
@@ -44,59 +47,92 @@
                                        <font>
                                           <Font size="18.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
                                     </Label>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Label text="Piles de tuiles">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="80.0" right="20.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox fx:id="listePiles" prefHeight="80.0" prefWidth="240.0">
+                                 <children>
+                                    <ImageView fx:id="pile1" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/DosTuiles.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="pile2" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/DosTuiles.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="pile3" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/DosTuiles.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="pile4" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/DosTuiles.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="pile5" fitHeight="59.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../img/DosTuiles.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets top="2.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox fx:id="puces" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <RadioButton fx:id="p1" mnemonicParsing="false">
+                                       <HBox.margin>
+                                          <Insets left="15.0" right="30.0" />
+                                       </HBox.margin></RadioButton>
+                                    <RadioButton fx:id="p2" mnemonicParsing="false">
+                                       <HBox.margin>
+                                          <Insets right="25.0" />
+                                       </HBox.margin></RadioButton>
+                                    <RadioButton fx:id="p3" mnemonicParsing="false">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin></RadioButton>
+                                    <RadioButton fx:id="p4" mnemonicParsing="false">
+                                       <HBox.margin>
+                                          <Insets right="25.0" />
+                                       </HBox.margin></RadioButton>
+                                    <RadioButton fx:id="p5" mnemonicParsing="false" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                            <padding>
-                              <Insets left="20.0" />
+                              <Insets left="2.0" />
                            </padding>
                         </VBox>
-                        <Label layoutX="74.0" layoutY="84.0" text="Piles de tuiles">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <HBox fx:id="listePiles" layoutX="3.0" layoutY="103.0" prefHeight="50.0" prefWidth="234.0">
-                           <children>
-                              <ImageView fx:id="pile1" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/DosTuiles.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="pile2" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/DosTuiles.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="pile3" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/DosTuiles.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="pile4" fitHeight="47.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/DosTuiles.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="pile5" fitHeight="59.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/DosTuiles.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                           <padding>
-                              <Insets top="2.0" />
-                           </padding>
-                        </HBox>
-                        <VBox fx:id="partieMise" layoutX="9.0" layoutY="166.0" prefHeight="76.0" prefWidth="229.0" style="-fx-background-color: LIGHTSLATEGRAY; -fx-background-radius: 4;">
+                        <VBox fx:id="partieMise" layoutX="9.0" layoutY="176.0" prefHeight="76.0" prefWidth="229.0" style="-fx-background-color: LIGHTSLATEGRAY; -fx-background-radius: 4;">
                            <children>
                               <Label prefHeight="17.0" prefWidth="229.0" text="Faire une enchere sur une tuile:" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="montanMise" prefHeight="25.0" prefWidth="180.0" promptText="Montant de votre mise">
+                              <TextField fx:id="montantaMiser" prefHeight="25.0" prefWidth="180.0" promptText="Montant de votre mise">
                                  <opaqueInsets>
                                     <Insets right="5.0" />
                                  </opaqueInsets>
@@ -196,7 +232,7 @@
                               <Image url="@../../img/parcelle.jpg" />
                            </image>
                         </ImageView>
-                        <HBox prefHeight="49.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
+                        <HBox fx:id="tag1" prefHeight="49.0" prefWidth="69.0" style="-fx-translate-y: -50;" />
                      </children>
                   </VBox>
                   <Separator fx:id="v3" layoutX="286.0" layoutY="2.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="6.0" style="-fx-background-color: #8B4513;" />

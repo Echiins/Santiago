@@ -1,8 +1,7 @@
-package Classes;
-import java.io.Serializable;
+package Santiago.Tests.Classes;
 import java.util.ArrayList;
 
-public class PileTuile implements Serializable {
+public class PileTuile {
 	private int idPiletuile;
 	private ArrayList<TuilePlantation> tuiles;
 	
@@ -13,12 +12,7 @@ public class PileTuile implements Serializable {
 	 this.tuiles=new ArrayList<TuilePlantation>();
 	 
 	}
-	public PileTuile(int idPiletuile, ArrayList<TuilePlantation> listetuiles){
-		
-		 this.idPiletuile=idPiletuile;
-		 this.tuiles=listetuiles;
-		 
-		}
+
 	public int getIdPiletuile() {
 		return idPiletuile;
 	}

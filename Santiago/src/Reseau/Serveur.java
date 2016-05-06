@@ -11,13 +11,15 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import Classes.*;
 import Interface.Partie;
 
 public class Serveur {
-
+	String host;
+	
 	public static  InetAddress getAddress() throws Exception {
 		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
                        .getNetworkInterfaces();
@@ -39,7 +41,7 @@ public class Serveur {
 
 	public static void initServeur()  throws Exception{
 		
-		String host = "localhost";
+		String host = getAddress().getHostAddress();
         System.out.println("[SERVEUR : "+host+"]");
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
@@ -66,27 +68,44 @@ public class Serveur {
         			server.setMaxTour(9);
         		}
         	}
-        	while(true){
 	        	if(server.getPhase()==1){
 	        		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nTour \n=-=-=-=-=-=-=-=-=-="+server.getTour());
 	        		System.out.println("===============\nPhase 1: Mise aux ench�res des tuiles de plantation \n===============");
-	        		//retourner les tuiles
+	        		//RETOURNER PILE
+	        		for(int p=0; p<server.getListe_piles().size();p++){
+	        			server.getListe_piles().get(p).getTuiles().get(0).setVisible(true);
+	        		}
+	        			
+	        		
 	        		int j=0;
 	        		while(true){
-	        			if(server.getEncheres_courantes().size()==server.getListe_joueurs().size()){
-	        				break;
-	        			}
-	        			else{
 	        				j++;
-	        				if(j==j+1000000000){System.out.println("En attente d'enchere...");
+	        				if(j==1000000000){System.out.println("En attente d'enchere...");
+	        			if(server.getEncheres_courantes().size()==server.getListe_joueurs().size()){
+	        				System.out.println("toutes les encheres recue");
+	        				server.phaseSuivante();
+	        				break;
 	        				}
 	        			}
-	        		}
-	        		
-	        		
 	        	}
         	}
-        	
+	        	if(server.getPhase()==2){
+	        		server.jouerPhase();
+	        		server.phaseSuivante();
+	        		break;
+	        	}
+	        	
+	        	if(server.getPhase()==4){
+	        		//controller, changer les constructeur et ejt canaux
+	        		server.jouerPhase();
+	        		break;
+	        	}
+	        	
+	        	if(server.getPhase()==5){
+	        		server.jouerPhase();
+	        		break;
+	        	}
+	        	
         }
         }
 	}

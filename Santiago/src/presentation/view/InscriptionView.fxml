@@ -7,16 +7,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="343.0" prefWidth="443.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.control.InscriptionUIController">
+<AnchorPane prefHeight="274.0" prefWidth="443.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.control.InscriptionUIController">
    <children>
       <Label layoutX="14.0" layoutY="78.0" text="Votre pseudo:" />
-      <ChoiceBox fx:id="couleur" layoutX="14.0" layoutY="246.0" prefWidth="150.0" />
       <Label layoutX="14.0" layoutY="148.0" text="Adresse du Serveur:" />
       <TextField fx:id="adresse" layoutX="16.0" layoutY="173.0" prefHeight="33.0" prefWidth="415.0" />
       <TextField fx:id="pseudo" layoutX="14.0" layoutY="102.0" prefHeight="33.0" prefWidth="200.0" />
-      <Button fx:id="annuler" layoutX="345.0" layoutY="301.0" mnemonicParsing="false" text="Annuler" textFill="#c60a0a" />
-      <Button fx:id="joindre" layoutX="204.0" layoutY="285.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="Joindre " textFill="#2b6126" />
-      <Label layoutX="22.0" layoutY="221.0" text="Choisir une couleur:" />
+      <Button fx:id="annuler" layoutX="332.0" layoutY="245.0" mnemonicParsing="false" text="Annuler" textFill="#c60a0a" />
+      <Button fx:id="joindre" layoutX="172.0" layoutY="224.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="Joindre " textFill="#2b6126" />
       <PasswordField fx:id="password" layoutX="219.0" layoutY="102.0" prefHeight="33.0" prefWidth="210.0" />
       <Label layoutX="110.0" layoutY="29.0" text="Inscription Joueur">
          <font>
