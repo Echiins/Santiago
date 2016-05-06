@@ -1,7 +1,8 @@
-package Santiago.Tests.Classes;
+package Classes;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PileTuile {
+public class PileTuile implements Serializable {
 	private int idPiletuile;
 	private ArrayList<TuilePlantation> tuiles;
 	

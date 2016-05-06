@@ -15,12 +15,8 @@
                   <MenuItem id="menuSortir" fx:id="menuSortir" mnemonicParsing="false" onAction="#exit" text="Fermer" />
                </items>
             </Menu>
-            <Menu fx:id="menuPartiesPrecedentes" mnemonicParsing="false" onAction="#anciensresultats" text="Parties précédentes">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu fx:id="menuRegles" mnemonicParsing="false" onAction="#reglesdujeu" text="Règles du jeu">
+            <Menu fx:id="menuPartiesPrecedentes" mnemonicParsing="false" text="Parties précédentes" />
+            <Menu fx:id="menuRegles" mnemonicParsing="false" text="Règles du jeu">
                <items>
                   <MenuItem mnemonicParsing="false" text="About" />
                </items>
@@ -32,6 +28,6 @@
             <Image url="@../../../image/349e3b9a96ec89a6de79fc278a90b47cae08.jpeg" />
          </image>
       </ImageView>
-      <Button fx:id="menuJouer" layoutX="99.0" layoutY="137.0" mnemonicParsing="false" onAction="#jouer" prefHeight="47.0" prefWidth="135.0" text="Jouer" />
+      <Button fx:id="jouer" layoutX="99.0" layoutY="137.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="135.0" text="Jouer" />
    </children>
 </AnchorPane>

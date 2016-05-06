@@ -1,6 +1,5 @@
-package Santiago.Tests.Classes;
+package Classes;
 
-import Santiago.Tests.Classes.*;
 import java.util.*;
 
 public class ProposerMise implements Comparable<ProposerMise> {
@@ -19,6 +18,16 @@ public class ProposerMise implements Comparable<ProposerMise> {
 		this.joueur=joueur;
 		this.idMise=idMise;
 		this.montant=0;
+	}
+	
+	public ProposerMise(int idMise, int montant,int id_joueur, ArrayList<Joueur> liste_joueurs){
+		this.idMise=idMise;
+		this.montant=montant;
+		for(Joueur j:liste_joueurs){
+			if(j.getId_joueur()==id_joueur){
+				this.joueur=j;
+			}
+		}
 	}
 
 	public int getIdMise() {

@@ -1,4 +1,4 @@
-package Santiago.Tests;
+package Tests;
 
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
@@ -9,12 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Santiago.Tests.Classes.Fosse;
-import Santiago.Tests.Classes.Joueur;
-import Santiago.Tests.Classes.Parcelle;
-import Santiago.Tests.Classes.Plateau;
-import Santiago.Tests.Interface.Partie;
-import Santiago.Tests.Interface.PartieInterface;
+import Classes.*;
 import static org.junit.Assert.*;
 
 public class SantiagoTestsPlateau {
@@ -108,17 +103,5 @@ public class SantiagoTestsPlateau {
     	assertEquals(12,p.getFossesAdjacents(p0).get(0).getIdFosse());
     	assertEquals(14,p.getFossesAdjacents(p0).get(1).getIdFosse());
     	assertEquals(25, p.get(3,0).getIdParcelle());
-    }
-    
-    @Test
-    public void testFossesIrrigue() throws RemoteException, UnknownHostException{
-    	Plateau p=new Plateau(1,0,0);
-    	p.initliste_parcelles();
-    	p.initfosses();
-    	p.getFosse(0, 2, "H").setIrrigue(true);;
-    	Fosse f = p.getFosse(1, 3, "V");
-    	assertEquals(true, p.getFossesIrrigueAdjacents(f));
-    	
-    
     }
 }
