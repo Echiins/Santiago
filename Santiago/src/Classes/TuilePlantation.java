@@ -1,7 +1,9 @@
-package Santiago.Tests.Classes;
+package Classes;
+
+import java.io.Serializable;
 
 
-public class TuilePlantation {
+public class TuilePlantation implements Serializable{
 
 	private int idPlantation;
 	private int SourceX;

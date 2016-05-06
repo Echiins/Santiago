@@ -11,26 +11,15 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 import java.util.Enumeration;
+
 import Classes.*;
 import Interface.Partie;
 
 public class Serveur {
+	String host;
 	
-	private Partie server;
-	
-	public Serveur(){
-		try {
-			this.server=new Partie();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public static  InetAddress getAddress() throws Exception {
 		 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface
                        .getNetworkInterfaces();
@@ -50,18 +39,9 @@ public class Serveur {
 		return null;
 	}
 
-	
-	public Partie getServer() {
-		return server;
-	}
-
-	public void setServer(Partie server) {
-		this.server = server;
-	}
-
 	public static void initServeur()  throws Exception{
 		
-		String host = "localhost";
+		String host = getAddress().getHostAddress();
         System.out.println("[SERVEUR : "+host+"]");
         LocateRegistry.createRegistry(5755);
         System.setSecurityManager(new SecurityManager());
@@ -80,29 +60,52 @@ public class Serveur {
         	if(i==1000000000){System.out.println("En attente de joueurs...");}
         }
         if(server.getStart()){
-        	if(server.getMax_tour()==0){
+        	if(server.getMaxTour()==0){
         		if(server.getClient().size()==5){
-        			server.setMax_tour(11);
+        			server.setMaxTour(11);
         		}
         		else{
-        			server.setMax_tour(9);
+        			server.setMaxTour(9);
         		}
         	}
-			//La on est censé commencer la partie avec les 'maxTour' tours, chacun avec les 7 phases
-			server.jouerPhase(); //Cette méthode comprendra tout le lancement du jeu
-        	server.tourSuivant();
-        	if(server.getTour()>server.getMax_tour()){ //le tour 12 correspond au tour de fin de la partie
-			//Après les x tours (11 si 5 joueurs sinon 9 tours) : fin de la partie ->
-        	
-	        	//Ultime secheresse
-	        	
-	        	//décompte
-	        	
-	        	//resultats
-	        	
-	        	//fin partie
-        	server.quitterPartie(); // prend en compte la sauvegarde
+	        	if(server.getPhase()==1){
+	        		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nTour \n=-=-=-=-=-=-=-=-=-="+server.getTour());
+	        		System.out.println("===============\nPhase 1: Mise aux enchï¿½res des tuiles de plantation \n===============");
+	        		//RETOURNER PILE
+	        		for(int p=0; p<server.getListe_piles().size();p++){
+	        			server.getListe_piles().get(p).getTuiles().get(0).setVisible(true);
+	        		}
+	        			
+	        		
+	        		int j=0;
+	        		while(true){
+	        				j++;
+	        				if(j==1000000000){System.out.println("En attente d'enchere...");
+	        			if(server.getEncheres_courantes().size()==server.getListe_joueurs().size()){
+	        				System.out.println("toutes les encheres recue");
+	        				server.phaseSuivante();
+	        				break;
+	        				}
+	        			}
+	        	}
         	}
+	        	if(server.getPhase()==2){
+	        		server.jouerPhase();
+	        		server.phaseSuivante();
+	        		break;
+	        	}
+	        	
+	        	if(server.getPhase()==4){
+	        		//controller, changer les constructeur et ejt canaux
+	        		server.jouerPhase();
+	        		break;
+	        	}
+	        	
+	        	if(server.getPhase()==5){
+	        		server.jouerPhase();
+	        		break;
+	        	}
+	        	
         }
         }
 	}

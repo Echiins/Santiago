@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="260.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.control.DemarrageUIController">
+   <children>
+      <AnchorPane layoutY="8.0" prefHeight="189.0" prefWidth="423.0">
+         <children>
+            <HBox layoutX="59.0" layoutY="34.0" prefHeight="82.0" prefWidth="327.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="a1" fitHeight="69.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../img/avatar.gif" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="CLOSED_HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="j4" text="Label" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="a2" fitHeight="69.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../img/avatar.gif" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="CLOSED_HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="j5" text="Label" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="a3" fitHeight="69.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../img/avatar.gif" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="CLOSED_HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="j1" text="Label" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="a4" fitHeight="69.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../img/avatar.gif" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="CLOSED_HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="j2" text="Label" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="a5" fitHeight="69.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../../img/avatar.gif" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="CLOSED_HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label fx:id="j3" text="Label" visible="false" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label layoutX="124.0" layoutY="7.0" text="Joueur(s) déjà en ligne:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="instruction" layoutX="42.0" layoutY="127.0" prefHeight="44.0" prefWidth="362.0" text="Label" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="commencer" layoutX="139.0" layoutY="208.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="Commencer à Jouer" />
+      <Button fx:id="annuler" layoutX="351.0" layoutY="227.0" mnemonicParsing="false" text="Annuler" textFill="#c60a0a" />
+   </children>
+</AnchorPane>

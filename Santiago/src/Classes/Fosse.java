@@ -1,7 +1,9 @@
-package Santiago.Tests.Classes;
+package Classes;
+
+import java.io.Serializable;
 
 
-public class Fosse {
+public class Fosse implements Serializable{
 	private int idFosse;
 	private int coorX;
 	private int coorY;

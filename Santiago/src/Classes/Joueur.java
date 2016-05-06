@@ -1,4 +1,4 @@
-package Santiago.Tests.Classes;
+package Classes;
 
 
 import static java.net.InetAddress.getLocalHost;
@@ -15,11 +15,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.*;
 
-public class Joueur implements Comparable<Joueur> {
+public class Joueur implements Comparable<Joueur>,Serializable {
 	
 	private int id_joueur;
 	private String nom_joueur;
-	//INUTIL, il aura toujours son canal
+	private String password;
 	private int canal_perso;
 	private boolean canal_bleu;
 	private int cagnotte;
@@ -28,13 +28,16 @@ public class Joueur implements Comparable<Joueur> {
 	private boolean est_constructeurdecanal;
 	private String couleur;
 	private boolean montour;
+	private boolean enligne;
 	private List<TuilePlantation> tuiles_joueur;
+	private int score;
 	
-	
+
+
 	/***************************************************************************
 	 * *******************************CONSTRUCTOR*******************************
 	 ***************************************************************************/
-	public Joueur(int id_joueur, String nom_joueur, String couleur, int rang){
+	public Joueur(int id_joueur, String nom_joueur, String couleur, int rang,String password){
 		this.id_joueur=id_joueur;
 		this.nom_joueur=nom_joueur;
 		this.canal_perso=1;
@@ -46,8 +49,41 @@ public class Joueur implements Comparable<Joueur> {
 		this.montour=false;
 		this.couleur=couleur;
 		this.tuiles_joueur=new ArrayList<TuilePlantation>();
+		this.password=password;
+		this.enligne=true;
 	}
 	
+	public Joueur(int id_joueur, String nom_joueur, String mdp, String couleur, int rang){
+		this.id_joueur=id_joueur;
+		this.nom_joueur=nom_joueur;
+		this.password=mdp;
+		this.canal_perso=1;
+		this.canal_bleu=true;
+		this.cagnotte=10;
+		this.nb_tag=22;
+		this.rang=rang;
+		this.est_constructeurdecanal=false;
+		this.setMontour(false);
+		this.couleur=couleur;
+		this.tuiles_joueur=new ArrayList<TuilePlantation>();
+	}
+	
+	public Joueur(int id_joueur, String nom_joueur,String couleur, String mdp,int rang,int canal_perso, boolean canal_bleu, int cagnotte, int nb_tag,
+			 boolean est_constructeurdecanal,  boolean montour,
+			List<TuilePlantation> tuiles_joueur) {
+		this.id_joueur = id_joueur;
+		this.nom_joueur = nom_joueur;
+		this.password=mdp;
+		this.canal_perso = canal_perso;
+		this.canal_bleu = canal_bleu;
+		this.cagnotte = cagnotte;
+		this.nb_tag = nb_tag;
+		this.rang = rang;
+		this.est_constructeurdecanal = est_constructeurdecanal;
+		this.couleur = couleur;
+		this.setMontour(montour);
+		this.tuiles_joueur = tuiles_joueur;
+	}
 	/***************************************************************************
 	 * *******************************METHODES*******************************
 	 ***************************************************************************/
@@ -63,6 +99,59 @@ public class Joueur implements Comparable<Joueur> {
 		return mise;
 	}
 
+
+	//phase 4 soudoyer
+	public PropositionSoudoiement soudoyer(int id, Fosse f){
+	
+		//demander montant
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Quel est le montant de ton pot de vin?");
+		int m = sc.nextInt();	
+		
+		while(m<0){
+			sc = new Scanner(System.in);
+			System.out.println("Quel est le montant de ton pot de vin?");
+			m = sc.nextInt();		
+		}
+		PropositionSoudoiement p = new PropositionSoudoiement(id,this,m,f);
+
+		return p;
+	}
+
+	//fonction soutenir soudoiement!
+	public SoutienSoudoiement soutenir(int id, Fosse f){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Quel est le montant que vous voulez ajouter au pot de vin pour ce faussé?");
+		int m = sc.nextInt();	
+		
+		while(m<0){
+			sc = new Scanner(System.in);
+			System.out.println("Quel est le montant de ton pot de vin?");
+			m = sc.nextInt();		
+		}
+		SoutienSoudoiement sd = new SoutienSoudoiement(id,this,m,f);
+		return sd;
+	}
+	
+	public PropositionSoudoiement decider(ArrayList<PropositionSoudoiement> pss){
+		String propositions = "Voici les pots de vin que les joueurs vous propose ! A vous d'en choisir un (en entrant son n°) ou de taper '-1' pour les refuser toutes";
+		//
+		for (PropositionSoudoiement ps:pss){
+			int montantTotal = ps.montant;
+			for(SoutienSoudoiement ss : ps.supporters){
+				montantTotal = montantTotal+ ss.montant;
+			}
+			propositions= propositions + "\n pot de vin n°"+ps.idPS + "du montant de "+ montantTotal  +" pour un canal sur le faussé (" + ps.getF().getCoorX() +","+ps.getF().getCoorY()+")";
+		}
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println(propositions);
+		int res = sc.nextInt();
+		
+		
+		
+		return null;
+	}
 	//************************************GETTER************************************
 	public List<TuilePlantation> getTuilesjoueur() {
 		return tuiles_joueur;
@@ -99,6 +188,14 @@ public class Joueur implements Comparable<Joueur> {
 	
 	public String getCouleur() {
 		return couleur;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	//************************************SETTER************************************
@@ -143,6 +240,38 @@ public class Joueur implements Comparable<Joueur> {
 
 	public void tirerTuile(TuilePlantation t){
 		this.tuiles_joueur.add(t);
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isMontour() {
+		return montour;
+	}
+
+	public void setMontour(boolean montour) {
+		this.montour = montour;
+	}
+
+	public List<TuilePlantation> getTuiles_joueur() {
+		return tuiles_joueur;
+	}
+
+	public void setTuiles_joueur(List<TuilePlantation> tuiles_joueur) {
+		this.tuiles_joueur = tuiles_joueur;
+	}
+	
+public boolean isEnligne() {
+		return enligne;
+	}
+
+	public void setEnligne(boolean enligne) {
+		this.enligne = enligne;
 	}
 
 /**********************COMPARATOR************************************/

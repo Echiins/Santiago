@@ -1,6 +1,7 @@
-package Santiago.Tests.Classes;
+package Classes;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
-public class Plateau {
+public class Plateau implements Serializable{
 
 	private int idPlateau;
 	private int sourceX;
@@ -76,7 +77,7 @@ public class Plateau {
 		for(int i=0;i<4;i++){
 			for(int j=0;j<4;j++){
 			this.liste_fosses.add(new Fosse(id,j,i,"H",false));
-			System.out.println(id+"x:"+i+" y:"+j);id++;
+			System.out.println(id+":"+i+" "+j);id++;
 			
 			
 			}
@@ -128,8 +129,7 @@ public class Plateau {
 			for(int j=16;j<liste_fosses.size();j++){
 				if((liste_fosses.get(j).getCoorX()==x) && (liste_fosses.get(j).getCoorY()==y))
 				{
-					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());
-					return liste_fosses.get(j);
+					//System.out.println("V :"+x+","+y+""+liste_fosses.get(j).getIdFosse());return liste_fosses.get(j);
 				}
 					
 			}
@@ -243,15 +243,287 @@ public class Plateau {
 			y=parcelle.getCoorY()/2+1;
 		}
 		else
-			y=parcelle.getCoorY()/2;
+			y=parcelle.getCoorY();
 		
 		fosses.add(this.getFosse(parcelle.getCoorX()/2,y,"V"));
-		System.out.println("x:"+parcelle.getCoorX()/2+"y:"+y);
 		return fosses;
 	}
-	
-	
+	public boolean getFossesIrrigueAdjacents(Fosse fosse){
+		boolean irrigue = false;
+		int x=fosse.getCoorY();
+		int y = fosse.getCoorX();
+		String sens = fosse.getSens();
+			if((x==0)&&(y==0)){
+				if(sens=="V"){
+					if(this.getFosse(x+1, y, "V").getIrrigue()){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==1)&&(y==0)){
+				if(sens=="V"){
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==2)&&(y==0)){
+				if(sens=="V"){
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==3)&&(y==0)){
+				if(sens=="V"){
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==4)&&(y==0)){
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			
+			if((x==0)&&(y==1)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==1)&&(y==1)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==2)&&(y==1)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==3)&&(y==1)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==4)&&(y==1)){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+			}
+			if((x==0)&&(y==2)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==1)&&(y==2)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==2)&&(y==2)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==3)&&(y==2)){
+				if(sens=="V"){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+					
+				}else{
+					if(this.getFosse(x,y,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+				}
+			}
+			if((x==4)&&(y==2)){
+				if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x-1,y+1,"V").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+			}
+			if((x==0)&&(y==3)){
+					if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+					if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+			}
+			if((x==1)&&(y==3)){
+				if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+			}
+			if((x==2)&&(y==3)){
+				if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x+1,y,"V").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x-1,y,"V").getIrrigue()==true){irrigue=true;}
+			}
+			if((x==3)&&(y==3)){
+				if(this.getFosse(x,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x+1,y-1,"H").getIrrigue()==true){irrigue=true;}
+				if(this.getFosse(x-1,y,"H").getIrrigue()==true){irrigue=true;}
+			}
+			return irrigue;
+		}
 	
 	//************************************GETTER************************************
 	//************************************SETTER************************************
+	
+	
+	public int getIdPlateau() {
+		return idPlateau;
+	}
+
+	public void setIdPlateau(int idPlateau) {
+		this.idPlateau = idPlateau;
+	}
+
+	public int getSourceX() {
+		return sourceX;
+	}
+
+	public void setSourceX(int sourceX) {
+		this.sourceX = sourceX;
+	}
+
+	public int getSourceY() {
+		return sourceY;
+	}
+
+	public void setSourceY(int sourceY) {
+		this.sourceY = sourceY;
+	}
+
+	public List<Parcelle> getListe_parcelles() {
+		return liste_parcelles;
+	}
+
+	public void setListe_parcelles(List<Parcelle> liste_parcelles) {
+		this.liste_parcelles = liste_parcelles;
+	}
+
+	public List<Fosse> getListe_fosses() {
+		return liste_fosses;
+	}
+
+	public void setListe_fosses(List<Fosse> liste_fosses) {
+		this.liste_fosses = liste_fosses;
+	}
 }
