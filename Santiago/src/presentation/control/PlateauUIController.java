@@ -305,7 +305,7 @@ public class PlateauUIController extends DialogUIController{
 			//.....Jusque 48
 			}}
 		else{
-			JOptionPane.showMessageDialog(null, "Toute les plantations sont irriguée");
+			JOptionPane.showMessageDialog(null, "Toute les plantations sont irriguï¿½e");
 		}
 		server.phaseSuivante();
 		} catch (MalformedURLException e) {
@@ -491,12 +491,274 @@ public class PlateauUIController extends DialogUIController{
 				e.printStackTrace();
 			}
 }
+		
+		public void mettrePile(ImageView C1,int x,int y){
+			
+			String host=santiago.getClient().getHost();
+			PartieInterface server;
+			try {
+				server = (PartieInterface)Naming.lookup("rmi://"+host+":5755/jeu");
+				
+				ColorAdjust colorAdjust=new ColorAdjust();
+				colorAdjust.setBrightness(-0.5);
+				
+				C1.addEventFilter(MouseEvent.MOUSE_CLICKED, e->{
+					C1.setEffect(colorAdjust);
+			try {
+				if(server.getPhase()==3)
+				{
+					//P1
+					if((p1.isSelected()&& !p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
+							||(!p1.isSelected()&& p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
+							||(!p1.isSelected()&& !p2.isSelected() && p3.isSelected() && !p4.isSelected() && !p5.isSelected())
+							||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && !p5.isSelected())
+							||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && p5.isSelected()))
+							{
+						try {
+							joueur.setCagnotte(joueur.getCagnotte()-server.getEncheresCourantes().get(joueur.getRang()-1).getMontant());
+							if (server.getPlateau().get(0,0).getOccupee())
+								JOptionPane.showMessageDialog(null, "Parcelle occcupï¿½e, choisir une autre parcelle");
+							else if(p1.isSelected() && !server.getPlateau().get(0,0).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
+								TuilePlantation tuile = server.getListe_piles().get(0).getTuiles().get(0);
+								server.getListe_piles().get(0).getTuiles().remove(0);
+								joueur.getTuilesjoueur().add(tuile);
+								int tag;
+								if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents();
+								}else{
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
+								}
+								if(joueur.getNb_tag()-tag>0){
+									
+									joueur.setNb_tag(joueur.getNb_tag()-tag);
+									tuile.setTag_presents(tag);
+									tuile.setSourceX(x);
+									tuile.setSourceY(y);
+									server.getPlateau().get(x,y).setOccupee(true);
+									server.phaseSuivante();
+									numPhase.setText("4");
+									server.phaseSuivante();
+									numPhase.setText("5");
+									server.phaseSuivante();
+									numPhase.setText("6");
+									
+									
+									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
+									
+										//tag1.getChildren().add(img.setImage(travailleur.getImage()));
+								}
+								
+								bouger(pile1,C1);
+								pile1.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
+								
+								if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
+									JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
+								}
+								else
+									puces.setDisable(true);
+							}
+							//p2
+							else if(p2.isSelected() && !server.getPlateau().get(0,1).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
+								TuilePlantation tuile = server.getListe_piles().get(1).getTuiles().get(0);
+								server.getListe_piles().get(1).getTuiles().remove(0);
+								joueur.getTuilesjoueur().add(tuile);
+								int tag;
+								if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents();
+								}else{
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
+								}
+								if(joueur.getNb_tag()-tag>0){
+									
+									joueur.setNb_tag(joueur.getNb_tag()-tag);
+									tuile.setTag_presents(tag);
+									tuile.setSourceX(x);
+									tuile.setSourceY(y);
+									server.getPlateau().get(x,y).setOccupee(true);
+									server.phaseSuivante();
+									numPhase.setText("4");
+									server.phaseSuivante();
+									numPhase.setText("5");
+									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
+									
+									
+										//tag1.getChildren().add(img.setImage(travailleur.getImage()));
+								}
+								
+								bouger(pile2,C1);
+								pile2.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
+								
+								if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
+									JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
+								}
+								else
+									puces.setDisable(true);
+							}
+							//p3
+							else if(p3.isSelected() && !server.getPlateau().get(0,2).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
+								TuilePlantation tuile = server.getListe_piles().get(2).getTuiles().get(0);
+								server.getListe_piles().get(2).getTuiles().remove(0);
+								joueur.getTuilesjoueur().add(tuile);
+								int tag;
+								if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents();
+								}else{
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
+								}
+								if(joueur.getNb_tag()-tag>0){
+									
+									joueur.setNb_tag(joueur.getNb_tag()-tag);
+									tuile.setTag_presents(tag);
+									tuile.setSourceX(x);
+									tuile.setSourceY(y);
+									server.getPlateau().get(x,y).setOccupee(true);
+									server.phaseSuivante();
+									numPhase.setText("4");
+									server.phaseSuivante();
+									numPhase.setText("5");
+									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
+									
+									
+										//tag1.getChildren().add(img.setImage(travailleur.getImage()));
+								}
+								
+								bouger(pile3,C1);
+								pile3.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
+								
+								if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
+									JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
+								}
+								else
+									puces.setDisable(true);
+							}
+							
+							//p4
+							else if(p4.isSelected() && !server.getPlateau().get(0,3).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
+								TuilePlantation tuile = server.getListe_piles().get(3).getTuiles().get(0);
+								server.getListe_piles().get(3).getTuiles().remove(0);
+								joueur.getTuilesjoueur().add(tuile);
+								int tag;
+								if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents();
+								}else{
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
+								}
+								if(joueur.getNb_tag()-tag>0){
+									
+									joueur.setNb_tag(joueur.getNb_tag()-tag);
+									tuile.setTag_presents(tag);
+									tuile.setSourceX(x);
+									tuile.setSourceY(y);
+									server.getPlateau().get(x,y).setOccupee(true);
+									server.phaseSuivante();
+									numPhase.setText("4");
+									server.phaseSuivante();
+									numPhase.setText("5");
+									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
+									
+									
+										//tag1.getChildren().add(img.setImage(travailleur.getImage()));
+								}
+								
+								bouger(pile4,C1);
+								pile4.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
+								
+								if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
+									JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
+								}
+								else
+									puces.setDisable(true);
+							}
+							//p4
+							else if(p5.isSelected() && !server.getPlateau().get(0,4).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
+								TuilePlantation tuile = server.getListe_piles().get(4).getTuiles().get(0);
+								server.getListe_piles().get(4).getTuiles().remove(0);
+								joueur.getTuilesjoueur().add(tuile);
+								int tag;
+								if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents();
+								}else{
+									tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
+								}
+								if(joueur.getNb_tag()-tag>0){
+									
+									joueur.setNb_tag(joueur.getNb_tag()-tag);
+									tuile.setTag_presents(tag);
+									tuile.setSourceX(x);
+									tuile.setSourceY(y);
+									server.getPlateau().get(x,y).setOccupee(true);
+									server.phaseSuivante();
+									numPhase.setText("4");
+									server.phaseSuivante();
+									numPhase.setText("5");
+									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
+									
+									
+										//tag1.getChildren().add(img.setImage(travailleur.getImage()));
+								}
+								
+								bouger(pile5,C1);
+								pile5.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
+								
+								if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
+									JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
+								}
+								else
+									puces.setDisable(true);
+							}
+							
+							else{
+								JOptionPane.showMessageDialog(null, "La tuile n'a pas encore ï¿½tï¿½ retournï¿½e"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
+								if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
+									puces.setDisable(true);
+									}
+							}
+							
+							
+							
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Selectioner qu'une seule pile");
+					}
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Attendre la phase 3");
+				}
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+					
+			});
+				
+			} catch (MalformedURLException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			} catch (RemoteException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			} catch (NotBoundException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			
+			
+			
+			
+		}
+		
+		
 	public void initialize(URL location, ResourceBundle resources) {
 		santiago = Santiago.getSantiago();
 		dialog = new Stage(StageStyle.DECORATED);
 		dialog.initModality(Modality.WINDOW_MODAL);
 		dialog.setTitle("PLATEAU: SANTIAGO");
-		//On récupere le joueur et le plateau
+		//On rï¿½cupere le joueur et le plateau
 		
 					
 				try {
@@ -517,7 +779,7 @@ public class PlateauUIController extends DialogUIController{
 					 * 
 					 */
 					 
-					C1.addEventFilter(MouseEvent.MOUSE_CLICKED, e->{
+					/*C1.addEventFilter(MouseEvent.MOUSE_CLICKED, e->{
 							C1.setEffect(colorAdjust);
 					try {
 						if(server.getPhase()==3)
@@ -532,7 +794,7 @@ public class PlateauUIController extends DialogUIController{
 								try {
 									joueur.setCagnotte(joueur.getCagnotte()-server.getEncheresCourantes().get(joueur.getRang()-1).getMontant());
 									if (server.getPlateau().get(0,0).getOccupee())
-										JOptionPane.showMessageDialog(null, "Parcelle occcupée, choisir une autre parcelle");
+										JOptionPane.showMessageDialog(null, "Parcelle occcupï¿½e, choisir une autre parcelle");
 									else if(p1.isSelected() && !server.getPlateau().get(0,0).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
 										TuilePlantation tuile = server.getListe_piles().get(0).getTuiles().get(0);
 										server.getListe_piles().get(0).getTuiles().remove(0);
@@ -567,7 +829,7 @@ public class PlateauUIController extends DialogUIController{
 										pile1.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 										
 										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 										}
 										else
 											puces.setDisable(true);
@@ -604,7 +866,7 @@ public class PlateauUIController extends DialogUIController{
 										pile2.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 										
 										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 										}
 										else
 											puces.setDisable(true);
@@ -641,7 +903,7 @@ public class PlateauUIController extends DialogUIController{
 										pile3.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 										
 										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 										}
 										else
 											puces.setDisable(true);
@@ -679,7 +941,7 @@ public class PlateauUIController extends DialogUIController{
 										pile4.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 										
 										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 										}
 										else
 											puces.setDisable(true);
@@ -716,14 +978,14 @@ public class PlateauUIController extends DialogUIController{
 										pile5.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 										
 										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 										}
 										else
 											puces.setDisable(true);
 									}
 									
 									else{
-										JOptionPane.showMessageDialog(null, "La tuile n'a pas encore été retournée"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
+										JOptionPane.showMessageDialog(null, "La tuile n'a pas encore ï¿½tï¿½ retournï¿½e"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
 										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
 											puces.setDisable(true);
 											}
@@ -766,7 +1028,7 @@ public class PlateauUIController extends DialogUIController{
 							try {
 								joueur.setCagnotte(joueur.getCagnotte()-server.getEncheresCourantes().get(joueur.getRang()-1).getMontant());
 								if (server.getPlateau().get(0,0).getOccupee())
-									JOptionPane.showMessageDialog(null, "Parcelle occcupée, choisir une autre parcelle");
+									JOptionPane.showMessageDialog(null, "Parcelle occcupï¿½e, choisir une autre parcelle");
 								else if(p1.isSelected() && !server.getPlateau().get(0,0).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
 									TuilePlantation tuile = server.getListe_piles().get(0).getTuiles().get(0);
 									server.getListe_piles().get(0).getTuiles().remove(0);
@@ -797,7 +1059,7 @@ public class PlateauUIController extends DialogUIController{
 									pile1.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 									
 									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 									}
 									else
 										puces.setDisable(true);
@@ -834,7 +1096,7 @@ public class PlateauUIController extends DialogUIController{
 									pile2.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 									
 									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 									}
 									else
 										puces.setDisable(true);
@@ -871,7 +1133,7 @@ public class PlateauUIController extends DialogUIController{
 									pile3.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 									
 									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 									}
 									else
 										puces.setDisable(true);
@@ -909,7 +1171,7 @@ public class PlateauUIController extends DialogUIController{
 									pile4.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 									
 									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 									}
 									else
 										puces.setDisable(true);
@@ -946,14 +1208,14 @@ public class PlateauUIController extends DialogUIController{
 									pile5.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
 									
 									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la dernière tuile");	
+										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derniï¿½re tuile");	
 									}
 									else
 										puces.setDisable(true);
 								}
 								
 								else{
-									JOptionPane.showMessageDialog(null, "La tuile n'a pas encore été retournée"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
+									JOptionPane.showMessageDialog(null, "La tuile n'a pas encore ï¿½tï¿½ retournï¿½e"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
 									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
 										puces.setDisable(true);
 										}
@@ -979,7 +1241,11 @@ public class PlateauUIController extends DialogUIController{
 					e2.printStackTrace();
 				}
 						
-				});
+				});*/
+					
+					mettrePile(C1,0,0);
+					mettrePile(C2,0,1);
+					mettrePile(C48,5,7);
 					
 					//*************MISER********************************
 						miser.setOnAction(event ->{
@@ -1013,7 +1279,7 @@ public class PlateauUIController extends DialogUIController{
 										try {System.out.println('4');
 											if(0<server.getEncheresCourantes().size()){
 												if(verifEnchere(montant)==true){
-													JOptionPane.showMessageDialog(null, "Enchere Validée");
+													JOptionPane.showMessageDialog(null, "Enchere Validï¿½e");
 													
 													server.miser(joueur,montant);
 													partieMise.setDisable(true);
@@ -1022,11 +1288,11 @@ public class PlateauUIController extends DialogUIController{
 													
 													}
 												else{
-													JOptionPane.showMessageDialog(null, "Il existe déja une enchère pour ce montant: veuillez entrer un autre montant ou passer");
+													JOptionPane.showMessageDialog(null, "Il existe dï¿½ja une enchï¿½re pour ce montant: veuillez entrer un autre montant ou passer");
 													}
 											}
 											else{
-												JOptionPane.showMessageDialog(null, "Enchere Validée");
+												JOptionPane.showMessageDialog(null, "Enchere Validï¿½e");
 												server.miser(joueur,montant);
 												partieMise.setDisable(true);
 												numPhase.setText("3");
@@ -1092,7 +1358,7 @@ public class PlateauUIController extends DialogUIController{
 				//****************QUITTER*****************************	
 		quitter.setOnAction(event -> {
 			
-			//Si la personne est connectée 
+			//Si la personne est connectï¿½e 
 			if(santiago.getClient()!=null){
 					try {
 					String host=santiago.getClient().getHost();
@@ -1102,7 +1368,7 @@ public class PlateauUIController extends DialogUIController{
 							joueur=j;
 						
 					}
-					//Lorsqu'on quitte le jeu, on  deconnecte le joueur déja connecté.
+					//Lorsqu'on quitte le jeu, on  deconnecte le joueur dï¿½ja connectï¿½.
 					server.getClient().remove(santiago.getClient());
 					server.getJoueurs().remove(joueur);
 				} catch (Exception e) {
