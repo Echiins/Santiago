@@ -114,7 +114,6 @@
                                        <HBox.margin>
                                           <Insets right="25.0" />
                                        </HBox.margin></RadioButton>
-                                    <RadioButton fx:id="p5" mnemonicParsing="false" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -887,14 +886,6 @@
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <Label fx:id="consigne" prefHeight="26.0" prefWidth="963.0" text="Label" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="200.0" right="200.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
                </children>
                <BorderPane.margin>
                   <Insets />

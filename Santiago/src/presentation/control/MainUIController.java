@@ -34,7 +34,8 @@ public class MainUIController extends DialogUIController{
 	private InscriptionUIController InscriptionController;
 	private PlateauUIController PlateauController;
 	private DemarrageUIController DemarrageController;
-	//private ReglesUIController reglesController;
+
+	private RegleUIController ReglesController;
 	
 	@FXML 
 	private Menu menuPartiePrecedentes;
@@ -43,7 +44,10 @@ public class MainUIController extends DialogUIController{
 	private MenuItem menuSortir;
 	
 	@FXML 
-	private Menu menuRegles;
+	private MenuItem regles;
+	
+	@FXML 
+	private Menu aide;
 	
 	@FXML 
 	private Button jouer;
@@ -130,10 +134,13 @@ public class MainUIController extends DialogUIController{
 						
 					});
 					
-					//
-					//Selectionner une partie
-					//
-					//quitter
+					regles.setOnAction(event->{
+						ReglesController = RegleUIController.initDialog(
+							REGLES, RegleUIController.class,
+							primaryStage);
+						ReglesController.showAndWait();
+					});
+					
 				 
 				
 	}

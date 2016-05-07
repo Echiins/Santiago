@@ -25,7 +25,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="j4" text="Label" visible="false" />
+                        <Label fx:id="j1" text="Label" visible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -38,7 +38,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="j5" text="Label" visible="false" />
+                        <Label fx:id="j2" text="Label" visible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -51,7 +51,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="j1" text="Label" visible="false" />
+                        <Label fx:id="j3" text="Label" visible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -64,7 +64,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="j2" text="Label" visible="false" />
+                        <Label fx:id="j4" text="Label" visible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -77,7 +77,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="j3" text="Label" visible="false" />
+                        <Label fx:id="j5" text="Label" visible="false" />
                      </children>
                   </VBox>
                </children>
@@ -90,7 +90,7 @@
             <Label fx:id="instruction" layoutX="42.0" layoutY="127.0" prefHeight="44.0" prefWidth="362.0" text="Label" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <Button fx:id="commencer" layoutX="139.0" layoutY="208.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" text="Commencer à Jouer" />
-      <Button fx:id="annuler" layoutX="351.0" layoutY="227.0" mnemonicParsing="false" text="Annuler" textFill="#c60a0a" />
+      <Button fx:id="commencer" layoutX="139.0" layoutY="208.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="132.0" style="-fx-background-color: darkgreen;" text="Commencer à Jouer" textFill="WHITE" />
+      <Button fx:id="annuler" layoutX="351.0" layoutY="227.0" mnemonicParsing="false" style="-fx-background-color: darkred;" text="Annuler" textFill="WHITE" />
    </children>
 </AnchorPane>

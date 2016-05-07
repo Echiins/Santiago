@@ -31,7 +31,10 @@ import javafx.stage.StageStyle;
 
 public class PlateauUIController extends DialogUIController{
 	///private Stage primaryStage;
-	//MENU
+	private RegleUIController ReglesController;
+	private Stage primaryStage;
+	private static final String REGLES="../view/reglesView.fxml";
+	
 	@FXML
 	private MenuItem sauvegarder;
 	@FXML
@@ -422,9 +425,16 @@ public class PlateauUIController extends DialogUIController{
 		
 		for(int i=0;i<piles.size();i++)
 		{
+			
 			pilep=piles.get(i);
 			plante=pilep.getTuiles().get(0).getPlante();
 			nbtag=pilep.getTuiles().get(0).getTag_necessaires();
+			if(!pilep.getTuiles().get(0).getVisible()){
+				pile=(ImageView) listePiles.getChildren().get(i);
+				image=new Image("@../../img/DosTuiles.png",50,47,false,false);
+				pile.setImage(image);
+			}
+			else{
 			pile=(ImageView) listePiles.getChildren().get(i);
 			
 			switch (plante){
@@ -478,7 +488,7 @@ public class PlateauUIController extends DialogUIController{
 					}pile.setImage(image);
 					break;
 					}
-			}
+			}}
 		
 		remplirCase(C1,0,0);
 		remplirCase(C2,0,1);
@@ -558,11 +568,11 @@ public class PlateauUIController extends DialogUIController{
 				if(server.getPhase()==3)
 				{
 					//P1
-					if((p1.isSelected()&& !p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-							||(!p1.isSelected()&& p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-							||(!p1.isSelected()&& !p2.isSelected() && p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-							||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && !p5.isSelected())
-							||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && p5.isSelected()))
+					if((p1.isSelected()&& !p2.isSelected() && !p3.isSelected() && !p4.isSelected())
+							||(!p1.isSelected()&& p2.isSelected() && !p3.isSelected() && !p4.isSelected())
+							||(!p1.isSelected()&& !p2.isSelected() && p3.isSelected() && !p4.isSelected())
+							||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected())
+							||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()))
 							{
 						try {
 							joueur.setCagnotte(joueur.getCagnotte()-server.getEncheresCourantes().get(joueur.getRang()-1).getMontant());
@@ -585,14 +595,6 @@ public class PlateauUIController extends DialogUIController{
 									tuile.setSourceX(x);
 									tuile.setSourceY(y);
 									server.getPlateau().get(x,y).setOccupee(true);
-									server.phaseSuivante();
-									numPhase.setText("4");
-									server.phaseSuivante();
-									numPhase.setText("5");
-									server.phaseSuivante();
-									numPhase.setText("6");
-									
-									
 									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
 									
 										//tag1.getChildren().add(img.setImage(travailleur.getImage()));
@@ -625,10 +627,7 @@ public class PlateauUIController extends DialogUIController{
 									tuile.setSourceX(x);
 									tuile.setSourceY(y);
 									server.getPlateau().get(x,y).setOccupee(true);
-									server.phaseSuivante();
-									numPhase.setText("4");
-									server.phaseSuivante();
-									numPhase.setText("5");
+									
 									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
 									
 									
@@ -663,9 +662,7 @@ public class PlateauUIController extends DialogUIController{
 									tuile.setSourceY(y);
 									server.getPlateau().get(x,y).setOccupee(true);
 									server.phaseSuivante();
-									numPhase.setText("4");
-									server.phaseSuivante();
-									numPhase.setText("5");
+									
 									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
 									
 									
@@ -701,9 +698,7 @@ public class PlateauUIController extends DialogUIController{
 									tuile.setSourceY(y);
 									server.getPlateau().get(x,y).setOccupee(true);
 									server.phaseSuivante();
-									numPhase.setText("4");
-									server.phaseSuivante();
-									numPhase.setText("5");
+									
 									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
 									
 									
@@ -737,10 +732,7 @@ public class PlateauUIController extends DialogUIController{
 									tuile.setSourceX(x);
 									tuile.setSourceY(y);
 									server.getPlateau().get(x,y).setOccupee(true);
-									server.phaseSuivante();
-									numPhase.setText("4");
-									server.phaseSuivante();
-									numPhase.setText("5");
+									
 									nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
 									
 									
@@ -796,10 +788,7 @@ public class PlateauUIController extends DialogUIController{
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
-			
-			
-			
-			
+	
 		}
 		
 		public void mettreFossee(Separator s){
@@ -896,7 +885,6 @@ public class PlateauUIController extends DialogUIController{
 		dialog.setTitle("PLATEAU: SANTIAGO");
 		//On r�cupere le joueur et le plateau
 		
-					
 				try {
 		
 					String host=santiago.getClient().getHost();
@@ -914,470 +902,7 @@ public class PlateauUIController extends DialogUIController{
 					 * 2)Payer
 					 * 
 					 */
-					 
-					/*C1.addEventFilter(MouseEvent.MOUSE_CLICKED, e->{
-							C1.setEffect(colorAdjust);
-					try {
-						if(server.getPhase()==3)
-						{
-							//P1
-							if((p1.isSelected()&& !p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-									||(!p1.isSelected()&& p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-									||(!p1.isSelected()&& !p2.isSelected() && p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-									||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && !p5.isSelected())
-									||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && p5.isSelected()))
-									{
-								try {
-									joueur.setCagnotte(joueur.getCagnotte()-server.getEncheresCourantes().get(joueur.getRang()-1).getMontant());
-									if (server.getPlateau().get(0,0).getOccupee())
-										JOptionPane.showMessageDialog(null, "Parcelle occcup�e, choisir une autre parcelle");
-									else if(p1.isSelected() && !server.getPlateau().get(0,0).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-										TuilePlantation tuile = server.getListe_piles().get(0).getTuiles().get(0);
-										server.getListe_piles().get(0).getTuiles().remove(0);
-										joueur.getTuilesjoueur().add(tuile);
-										int tag;
-										if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-										}else{
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-										}
-										if(joueur.getNb_tag()-tag>0){
-											
-											joueur.setNb_tag(joueur.getNb_tag()-tag);
-											tuile.setTag_presents(tag);
-											tuile.setSourceX(0);
-											tuile.setSourceY(0);
-											server.getPlateau().get(0,0).setOccupee(true);
-											server.phaseSuivante();
-											numPhase.setText("4");
-											server.phaseSuivante();
-											numPhase.setText("5");
-											server.phaseSuivante();
-											numPhase.setText("6");
-											
-											
-											nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-											
-												//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-										}
 										
-										bouger(pile1,C1);
-										pile1.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-										
-										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-										}
-										else
-											puces.setDisable(true);
-									}
-									//p2
-									else if(p2.isSelected() && !server.getPlateau().get(0,1).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-										TuilePlantation tuile = server.getListe_piles().get(1).getTuiles().get(0);
-										server.getListe_piles().get(1).getTuiles().remove(0);
-										joueur.getTuilesjoueur().add(tuile);
-										int tag;
-										if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-										}else{
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-										}
-										if(joueur.getNb_tag()-tag>0){
-											
-											joueur.setNb_tag(joueur.getNb_tag()-tag);
-											tuile.setTag_presents(tag);
-											tuile.setSourceX(0);
-											tuile.setSourceY(0);
-											server.getPlateau().get(0,0).setOccupee(true);
-											server.phaseSuivante();
-											numPhase.setText("4");
-											server.phaseSuivante();
-											numPhase.setText("5");
-											nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-											
-											
-												//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-										}
-										
-										bouger(pile2,C1);
-										pile2.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-										
-										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-										}
-										else
-											puces.setDisable(true);
-									}
-									//p3
-									else if(p3.isSelected() && !server.getPlateau().get(0,2).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-										TuilePlantation tuile = server.getListe_piles().get(2).getTuiles().get(0);
-										server.getListe_piles().get(2).getTuiles().remove(0);
-										joueur.getTuilesjoueur().add(tuile);
-										int tag;
-										if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-										}else{
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-										}
-										if(joueur.getNb_tag()-tag>0){
-											
-											joueur.setNb_tag(joueur.getNb_tag()-tag);
-											tuile.setTag_presents(tag);
-											tuile.setSourceX(0);
-											tuile.setSourceY(0);
-											server.getPlateau().get(0,0).setOccupee(true);
-											server.phaseSuivante();
-											numPhase.setText("4");
-											server.phaseSuivante();
-											numPhase.setText("5");
-											nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-											
-											
-												//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-										}
-										
-										bouger(pile3,C1);
-										pile3.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-										
-										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-										}
-										else
-											puces.setDisable(true);
-									}
-									
-									//p4
-									else if(p4.isSelected() && !server.getPlateau().get(0,3).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-										TuilePlantation tuile = server.getListe_piles().get(3).getTuiles().get(0);
-										server.getListe_piles().get(3).getTuiles().remove(0);
-										joueur.getTuilesjoueur().add(tuile);
-										int tag;
-										if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-										}else{
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-										}
-										if(joueur.getNb_tag()-tag>0){
-											
-											joueur.setNb_tag(joueur.getNb_tag()-tag);
-											tuile.setTag_presents(tag);
-											tuile.setSourceX(0);
-											tuile.setSourceY(0);
-											server.getPlateau().get(0,0).setOccupee(true);
-											server.phaseSuivante();
-											numPhase.setText("4");
-											server.phaseSuivante();
-											numPhase.setText("5");
-											nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-											
-											
-												//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-										}
-										
-										bouger(pile4,C1);
-										pile4.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-										
-										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-										}
-										else
-											puces.setDisable(true);
-									}
-									//p4
-									else if(p5.isSelected() && !server.getPlateau().get(0,4).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-										TuilePlantation tuile = server.getListe_piles().get(4).getTuiles().get(0);
-										server.getListe_piles().get(4).getTuiles().remove(0);
-										joueur.getTuilesjoueur().add(tuile);
-										int tag;
-										if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-										}else{
-											tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-										}
-										if(joueur.getNb_tag()-tag>0){
-											
-											joueur.setNb_tag(joueur.getNb_tag()-tag);
-											tuile.setTag_presents(tag);
-											tuile.setSourceX(0);
-											tuile.setSourceY(0);
-											server.getPlateau().get(0,0).setOccupee(true);
-											server.phaseSuivante();
-											numPhase.setText("4");
-											server.phaseSuivante();
-											numPhase.setText("5");
-											nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-											
-											
-												//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-										}
-										
-										bouger(pile5,C1);
-										pile5.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-										
-										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-										}
-										else
-											puces.setDisable(true);
-									}
-									
-									else{
-										JOptionPane.showMessageDialog(null, "La tuile n'a pas encore �t� retourn�e"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
-										if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-											puces.setDisable(true);
-											}
-									}
-									
-									
-									
-								} catch (Exception e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-
-							}
-							else{
-								JOptionPane.showMessageDialog(null, "Selectioner qu'une seule pile");
-							}
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Attendre la phase 3");
-						}
-					} catch (Exception e2) {
-						// TODO Auto-generated catch block
-						e2.printStackTrace();
-					}
-							
-					});
-					
-					C2.addEventFilter(MouseEvent.MOUSE_CLICKED, e->{
-						C2.setEffect(colorAdjust);
-				try {
-					if(server.getPhase()==3)
-					{
-						//P1
-						if((p1.isSelected()&& !p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-								||(!p1.isSelected()&& p2.isSelected() && !p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-								||(!p1.isSelected()&& !p2.isSelected() && p3.isSelected() && !p4.isSelected() && !p5.isSelected())
-								||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && !p5.isSelected())
-								||(!p1.isSelected()&& !p2.isSelected() && !p3.isSelected()&& p4.isSelected()  && p5.isSelected()))
-								{
-							try {
-								joueur.setCagnotte(joueur.getCagnotte()-server.getEncheresCourantes().get(joueur.getRang()-1).getMontant());
-								if (server.getPlateau().get(0,0).getOccupee())
-									JOptionPane.showMessageDialog(null, "Parcelle occcup�e, choisir une autre parcelle");
-								else if(p1.isSelected() && !server.getPlateau().get(0,0).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-									TuilePlantation tuile = server.getListe_piles().get(0).getTuiles().get(0);
-									server.getListe_piles().get(0).getTuiles().remove(0);
-									joueur.getTuilesjoueur().add(tuile);
-									int tag;
-									if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-									}else{
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-									}
-									if(joueur.getNb_tag()-tag>0){
-										
-										joueur.setNb_tag(joueur.getNb_tag()-tag);
-										tuile.setTag_presents(tag);
-										tuile.setSourceX(0);
-										tuile.setSourceY(1);
-										server.getPlateau().get(0,1).setOccupee(true);
-										server.phaseSuivante();
-										numPhase.setText("4");
-										server.phaseSuivante();
-										numPhase.setText("5");
-										nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-										
-											//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-									}
-									
-									bouger(pile1,C2);
-									pile1.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-									
-									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-									}
-									else
-										puces.setDisable(true);
-								}
-								//p2
-								else if(p2.isSelected() && !server.getPlateau().get(0,1).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-									TuilePlantation tuile = server.getListe_piles().get(1).getTuiles().get(0);
-									server.getListe_piles().get(1).getTuiles().remove(0);
-									joueur.getTuilesjoueur().add(tuile);
-									int tag;
-									if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-									}else{
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-									}
-									if(joueur.getNb_tag()-tag>0){
-										
-										joueur.setNb_tag(joueur.getNb_tag()-tag);
-										tuile.setTag_presents(tag);
-										tuile.setSourceX(0);
-										tuile.setSourceY(1);
-										server.getPlateau().get(0,1).setOccupee(true);
-										server.phaseSuivante();
-										numPhase.setText("4");
-										server.phaseSuivante();
-										numPhase.setText("5");
-										nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-										
-										
-											//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-									}
-									
-									bouger(pile2,C2);
-									pile2.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-									
-									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-									}
-									else
-										puces.setDisable(true);
-								}
-								//p3
-								else if(p3.isSelected() && !server.getPlateau().get(0,2).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-									TuilePlantation tuile = server.getListe_piles().get(2).getTuiles().get(0);
-									server.getListe_piles().get(2).getTuiles().remove(0);
-									joueur.getTuilesjoueur().add(tuile);
-									int tag;
-									if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-									}else{
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-									}
-									if(joueur.getNb_tag()-tag>0){
-										
-										joueur.setNb_tag(joueur.getNb_tag()-tag);
-										tuile.setTag_presents(tag);
-										tuile.setSourceX(0);
-										tuile.setSourceY(1);
-										server.getPlateau().get(0,1).setOccupee(true);
-										server.phaseSuivante();
-										numPhase.setText("4");
-										server.phaseSuivante();
-										numPhase.setText("5");
-										nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-										
-										
-											//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-									}
-									
-									bouger(pile3,C2);
-									pile3.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-									
-									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-									}
-									else
-										puces.setDisable(true);
-								}
-								
-								//p4
-								else if(p4.isSelected() && !server.getPlateau().get(0,3).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-									TuilePlantation tuile = server.getListe_piles().get(3).getTuiles().get(0);
-									server.getListe_piles().get(3).getTuiles().remove(0);
-									joueur.getTuilesjoueur().add(tuile);
-									int tag;
-									if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-									}else{
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-									}
-									if(joueur.getNb_tag()-tag>0){
-										
-										joueur.setNb_tag(joueur.getNb_tag()-tag);
-										tuile.setTag_presents(tag);
-										tuile.setSourceX(0);
-										tuile.setSourceY(1);
-										server.getPlateau().get(0,1).setOccupee(true);
-										server.phaseSuivante();
-										numPhase.setText("4");
-										server.phaseSuivante();
-										numPhase.setText("5");
-										nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-										
-										
-											//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-									}
-									
-									bouger(pile4,C2);
-									pile4.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-									
-									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-									}
-									else
-										puces.setDisable(true);
-								}
-								//p4
-								else if(p5.isSelected() && !server.getPlateau().get(0,4).getOccupee()&& server.getListe_piles().get(0).getTuiles().get(0).getVisible()){
-									TuilePlantation tuile = server.getListe_piles().get(4).getTuiles().get(0);
-									server.getListe_piles().get(4).getTuiles().remove(0);
-									joueur.getTuilesjoueur().add(tuile);
-									int tag;
-									if(server.getEncheresCourantes().get(joueur.getRang()-1).getMontant()!=0){
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents();
-									}else{
-										tag=tuile.getTag_necessaires()-tuile.getTag_presents()-1;
-									}
-									if(joueur.getNb_tag()-tag>0){
-										
-										joueur.setNb_tag(joueur.getNb_tag()-tag);
-										tuile.setTag_presents(tag);
-										tuile.setSourceX(0);
-										tuile.setSourceY(1);
-										server.getPlateau().get(0,1).setOccupee(true);
-										server.phaseSuivante();
-										numPhase.setText("4");
-										server.phaseSuivante();
-										numPhase.setText("5");
-										nbConstructeurs.setText(String.valueOf(joueur.getNb_tag()-tag));
-										
-										
-											//tag1.getChildren().add(img.setImage(travailleur.getImage()));
-									}
-									
-									bouger(pile5,C2);
-									pile5.setImage(new Image("@../../img/DosTuiles.png",50,47,false,false));
-									
-									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										JOptionPane.showMessageDialog(null, "Vous avez eu la plus grosse mise, placer la derni�re tuile");	
-									}
-									else
-										puces.setDisable(true);
-								}
-								
-								else{
-									JOptionPane.showMessageDialog(null, "La tuile n'a pas encore �t� retourn�e"+server.getListe_piles().get(0).getTuiles().get(0).getVisible());
-									if(server.getJoueurs().size()==3 && joueur.equals(server.getJoueurs().get(0))){
-										puces.setDisable(true);
-										}
-								}
-								
-								
-								
-							} catch (Exception e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Selectioner qu'une seule pile");
-						}
-					}
-					else{
-						JOptionPane.showMessageDialog(null, "Attendre la phase 3");
-					}
-				} catch (Exception e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-						
-				});*/
 					
 					mettrePile(C1,0,0);
 					mettrePile(C2,0,1);
@@ -1532,7 +1057,12 @@ public class PlateauUIController extends DialogUIController{
 						}catch (RemoteException e) {
 							e.printStackTrace();
 						}
-				
+				regles.setOnAction(event->{
+					ReglesController = RegleUIController.initDialog(
+						REGLES, RegleUIController.class,
+						primaryStage);
+					ReglesController.showAndWait();
+				});		
 				
 		
 		
@@ -1557,11 +1087,11 @@ public class PlateauUIController extends DialogUIController{
 					e.printStackTrace();
 				}
 			}
+			
 			dialog.close();
 			});
 		sauvegarder.setOnAction(event -> dialog.close());
 		activerchat.setOnAction(event -> dialog.close());
-		regles.setOnAction(event -> dialog.close());
 		}
 
 	

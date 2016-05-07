@@ -16,9 +16,9 @@
                </items>
             </Menu>
             <Menu fx:id="menuPartiesPrecedentes" mnemonicParsing="false" text="Parties précédentes" />
-            <Menu fx:id="menuRegles" mnemonicParsing="false" text="Règles du jeu">
+            <Menu fx:id="aide" mnemonicParsing="false" text="Aide">
                <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem fx:id="regles" mnemonicParsing="false" text="regles" />
                </items>
             </Menu>
          </menus>
@@ -28,6 +28,6 @@
             <Image url="@../../../image/349e3b9a96ec89a6de79fc278a90b47cae08.jpeg" />
          </image>
       </ImageView>
-      <Button fx:id="jouer" layoutX="99.0" layoutY="137.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="135.0" text="Jouer" />
+      <Button fx:id="jouer" layoutX="99.0" layoutY="137.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="135.0" style="-fx-background-color: darkgreen; -fx-background-radius: 4;" text="Jouer" textFill="WHITE" />
    </children>
 </AnchorPane>

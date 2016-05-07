@@ -7,6 +7,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+import com.sun.media.jfxmediaimpl.platform.Platform;
+
 import Classes.Joueur;
 import Classes.Santiago;
 import Interface.PartieInterface;
@@ -89,12 +91,13 @@ public class DemarrageUIController extends DialogUIController{
 					a1.setVisible(true);
 					a2.setVisible(true);
 					break;
-				}
+				}dialog.close();
 				commencer.setDisable(false);
 				instruction.setText("Il y a assez de joueurs connectés pour commencer à jouer.\n Après 5 connections la  partie se lancera automatiquement ");
-				dialog.close();
+				
 			}
 			else if(taille==5){
+				dialog.close();
 				PlateauController = DialogUIController.initDialog(PLATEAU, PlateauUIController.class,primaryStage);
 				dialog.close();
 				PlateauController.showAndWait();

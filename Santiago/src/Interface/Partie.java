@@ -642,12 +642,12 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	
 	public ArrayList<Fosse> procheSource(){
 		ArrayList<Fosse> fProchesSource = new ArrayList<Fosse>();
-		int x = this.getPlateau().getSourceX();
-		int y = this.getPlateau().getSourceY();
-		fProchesSource.add(this.getPlateau().getFosse(x,y,"H"));
-		fProchesSource.add(this.getPlateau().getFosse(x,y-1,"H"));
-		fProchesSource.add(this.getPlateau().getFosse(x-1,y+1,"V"));
-		fProchesSource.add(this.getPlateau().getFosse(x,y+1,"V"));
+		int x = this.plateau.getSourceX();
+		int y = this.plateau.getSourceY();
+		fProchesSource.add(plateau.getFosse(x,y,"H"));
+		fProchesSource.add(plateau.getFosse(x,y-1,"H"));
+		fProchesSource.add(plateau.getFosse(x-1,y+1,"V"));
+		fProchesSource.add(plateau.getFosse(x,y+1,"V"));
 		return fProchesSource;
 	}
 	
@@ -734,7 +734,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					if(this.soudoiments.size()>0){
 
 						for(int i =0; i< this.soudoiments.size(); i++){
-							if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).getEtat()==true ){
+							if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).isEtat()==true ){
 								existe=true;
 								System.out.println("Boucle for : Un soudoiement existe");
 								indiceExistante =i;
@@ -769,7 +769,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 		//tout les joueurs ont soudoyer ou passer leurs tours: c'est au constructeur de dÃ©cider : 
 		ArrayList<PropositionSoudoiement> propositions = new ArrayList<PropositionSoudoiement>();
 		for (PropositionSoudoiement ps : this.soudoiments){
-			if (ps.getEtat()==true){
+			if (ps.isEtat()==true){
 				propositions.add(ps);
 			}
 		}
@@ -788,7 +788,6 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	  // PASSAGE A LA PHASE SUIVANTE
 		this.phaseSuivante();
 	}
-
 
 
 	/**
