@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
+import Classes.Fosse;
+import Classes.Joueur;
+import Classes.PropositionSoudoiement;
 import Santiago.Tests.Classes.*;
 
 public class Partie extends UnicastRemoteObject implements PartieInterface{
@@ -173,7 +176,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 			}
 		}
 		else{
-			System.out.println("D�j� 5 joueurs connect�s dsl");
+			System.out.println("Dï¿½jï¿½ 5 joueurs connectï¿½s dsl");
 		}
 	}
 	
@@ -289,27 +292,27 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	 * PHASE 0 : INITIALISATION DU JEU
 	 * 1)Initialiser le tableau
 	 * 	a)initialiser les parcelles
-	 * 	b)initialiser les foss�es
+	 * 	b)initialiser les fossï¿½es
 	 * 2)Initialiser les piles
 	 * 	a)Initialiser les tuiles
 	 * 	b)distribuer les tuiles
 	 * 3)Initialiser le nombre de Tours
 	 * 4)Choisisir le constucteur de canal
-	 * 5)D�finir le nouvel Ordre de jeu
+	 * 5)Dï¿½finir le nouvel Ordre de jeu
 	 * Phase suivante
 	 */
 	public void phase0() throws RemoteException{ 
-		//On cr�e le tableau de la partie
+		//On crï¿½e le tableau de la partie
 		plateau=new Plateau(1,5,6);
-		System.out.println("Création Tableau");
+		System.out.println("CrÃ©ation Tableau");
 		plateau.initliste_parcelles();// tableau de parcelle 8X6
 		System.out.println("Initialisation parcelles");
 		this.plateau.initfosses();//tableau de fosses 16 premier verticaux, 16 d'apres horizontaux
-		System.out.println("Initialisation fossés");
+		System.out.println("Initialisation fossÃ©s");
 		
 		//initialisation de la Banque
 		//this.banque=new Banque();
-		//On g�re les tuiles de plantations
+		//On gï¿½re les tuiles de plantations
 		
 			//CREATION DES TUILES
 		ArrayList<TuilePlantation> toutesLesTuiles=new ArrayList<TuilePlantation>();
@@ -423,14 +426,14 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 	
 	}
 /**
- * Phase 1: Mise aux ench�res des tuiles de plantation
+ * Phase 1: Mise aux enchï¿½res des tuiles de plantation
  * 1)Retourner les Tuiles
  * 2)Proposer les Encheress
  * Phase suivante
  */
 	public void phase1() throws RemoteException {
 		System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nTour \n=-=-=-=-=-=-=-=-=-="+this.getTour());
-		System.out.println("===============\nPhase 1: Mise aux ench�res des tuiles de plantation \n===============");
+		System.out.println("===============\nPhase 1: Mise aux enchï¿½res des tuiles de plantation \n===============");
 		
 		//RENDRE LES PREMIERES TUILES DE CHAQUE PILES VISIBLES:
 		for(int i=0;i<this.liste_piles.size();i++){
@@ -458,7 +461,7 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 				System.out.println("ENCHERIR:");
 				int montant=0;
 				boolean res=false;
-				System.out.println("Le Montant de votre ench�re:");
+				System.out.println("Le Montant de votre enchï¿½re:");
 
 				while(res==false){
 					//TODO VERIFIER QUE LE JOUEUR A ASSEZ D'ARGENT DANS SA CAGNOTTE POUR ENCHERIR
@@ -471,29 +474,29 @@ public class Partie extends UnicastRemoteObject implements PartieInterface{
 					
 					montant=m.nextInt();
 					if(0<encheres_courantes.size()){
-						System.out.println("Vérification de l'enchere");
+						System.out.println("VÃ©rification de l'enchere");
 					
 						if(montant==0){
-							System.out.println("Passer par défaut");
+							System.out.println("Passer par dÃ©faut");
 							this.addEnchere(j.passer(j.getRang()));
 							res=true;
 						}
 						else{
 								if(verifEnchere(montant)==true){
-									System.out.println("Enchere validée");
+									System.out.println("Enchere validÃ©e");
 									res=true;
 									this.addEnchere(j.proposerEnchere(j.getRang(),montant));
 									}
 								else{
 									res=false;
-									System.out.println("Cette enchere � d�ja �t� faite, faites en une autre:");
+									System.out.println("Cette enchere ï¿½ dï¿½ja ï¿½tï¿½ faite, faites en une autre:");
 									}
 							}			
 					}
 					else {
 						if(montant==0){
 							res=true;
-							System.out.println("Passer par défaut");
+							System.out.println("Passer par dÃ©faut");
 							this.addEnchere(j.passer(j.getRang()));
 						}
 						else{
@@ -589,7 +592,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 				
 				j.getTuilesjoueur().add(tuile);
 				
-				System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
+				System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e x :");
 				Scanner c=new Scanner(System.in);
 				int coordx=c.nextInt();
 				
@@ -599,17 +602,17 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 				while(occupee==true){
 					while ((coordx<=0) || (coordx>8) )
 					{
-						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e x :");
 						c=new Scanner(System.in);
 						coordx=c.nextInt();
 					}
 					
-					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e y :");
 					c=new Scanner(System.in);
 					coordy=c.nextInt();
 					while ((coordy<=0) || (coordy>6) || this.plateau.get(coordx,coordy).getOccupee()==true )
 					{
-						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e y :");
 						c=new Scanner(System.in);
 						coordy=c.nextInt();
 					}
@@ -663,17 +666,17 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 				while(occupee==true){
 					while ((coordx<=0) || (coordx>8) )
 					{
-						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée x :");
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e x :");
 						c=new Scanner(System.in);
 						coordx=c.nextInt();
 					}
 					
-					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+					System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e y :");
 					c=new Scanner(System.in);
 					coordy=c.nextInt();
 					while ((coordy<0) || (coordy>6) || (this.plateau.get(coordx,coordy).getOccupee()==true ))
 					{
-						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" Où voulez-vous poser votre tuile ? Saisissez la coordonnée y :");
+						System.out.println("Joueur: "+j.getNom_joueur()+" rang "+ j.getRang()+" OÃ¹ voulez-vous poser votre tuile ? Saisissez la coordonnÃ©e y :");
 						c=new Scanner(System.in);
 						coordy=c.nextInt();
 					}
@@ -690,22 +693,328 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 	}
 
 	 
+/**Phase 4 */
+	
+	
+	public ArrayList<Joueur> definirOrdre(){
+		//on met tt les rang Ã  0
+		for (int i =0; i< this.getListe_joueurs().size();i++){
+			this.getListe_joueurs().get(i).setRang(0);
+		}
+		//on determine le joueur Ã  gauche du constructeur en lui donnant le rang 1
+		
+		for(int i =0; i< this.getListe_joueurs().size();i++){
+			if (this.getListe_joueurs().get(i).getEst_constructeurdecanal()==true){
+				if(i>0){
+					this.getListe_joueurs().get(i-1).setRang(1);	
+				}
+				else{
+					this.getListe_joueurs().get(this.getListe_joueurs().size()-1).setRang(1);
+				}
+				break;
+			}	
+		}
+		
+		int taille = this.getListe_joueurs().size();
+		for (int i = 0; i<taille;i++){
+			if (this.getListe_joueurs().get(i).getRang()==1){
+				if (i==(taille-5)){ //*---- = 0
+					System.out.println("haha5");
+					int r=2;
+					for (int j=i+1;j<taille;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+				}
+				else if (i==(taille-1)){ //dernier joueur de la liste ----*
+					System.out.println("haha1");
+					int r =2;
+					for (int j=0;j<i;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+				}
+				else if (i==(taille-2)){ //avant dernier ---*-
+					System.out.println("haha2");
+					int r=2;
+					if (this.getListe_joueurs().get(i+1).getEst_constructeurdecanal()==false){
+						this.getListe_joueurs().get(i+1).setRang(r);
+						r++;
+					}
+					else{
+						this.getListe_joueurs().get(i+1).setRang(-1);
+					}
+					for (int j=0;j<i;j++){
+					
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+					
+				}
+				else if (i==(taille-3)){//--*--
+					System.out.println("haha3");
+					int r = 2;
+					for (int k = i+1; k< taille ; k++){
+						if(this.getListe_joueurs().get(k).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(k).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(k).setRang(r);
+							r++;
+						}
+					}
+					for (int j=0;j<i;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(j).setRang(r);
+							r++;
+						}
+					}
+				}
+				
+				else if (i==(taille-4)){ //-*---
+					System.out.println("haha4");
+					int r = 2;
+					for (int k = i+1; k<taille ; k++){
+						if(this.getListe_joueurs().get(k).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(k).setRang(-1);
+						}
+						else{
+							this.getListe_joueurs().get(k).setRang(r);
+							r++;
+						}
+						
+					}
+					for (int j=0;j<i;j++){
+						if(this.getListe_joueurs().get(j).getEst_constructeurdecanal()==true){
+							this.getListe_joueurs().get(j).setRang(-1);
+						}
+						else{
+						this.getListe_joueurs().get(j).setRang(r);
+						r++;
+						}
+					}
+				}
+				break;
+			}
+		}
+	
+		//array des soudoyeurs dans l'ordre de passage
+		ArrayList<Joueur> soudoyeurs = new ArrayList<Joueur>();
+		int j=1;
+		while(soudoyeurs.size()<this.getListe_joueurs().size()-1){
+			for( int i=0; i< this.getListe_joueurs().size();i++){
+				if(this.getListe_joueurs().get(i).getRang()==j){
+					soudoyeurs.add(this.getListe_joueurs().get(i));
+					j++;
+				}	
+			}
+		}
+		return soudoyeurs;
+	}
+	
+	public int soudoyerPasser(){
+		
+		//passer ou soudoyer :
+			boolean choisi =false;
+			Scanner sc = new Scanner(System.in);
+			System.out.println("C'est à  ton tour de jouer ! Que veux tu faire? \n 1 = soudoyer \n 2 = passer ");
+			int res = sc.nextInt();
+			if (res==1 ||res==2){
+				choisi=true;
+			}
+			while(choisi==false){
+				sc = new Scanner(System.in);
+				System.out.println("Erreur.Réessaye. Que veux tu faire? \n 1 = soudoyer \n 2 = passer ");
+				res = sc.nextInt();
+				System.out.println(res);
+				if (res==1 || res==2){
+					choisi=true;
+				}
+			}
+			return res;
+	}
+	
+	
+	//Sortir les fausés proches de la source : on prend les coordonnées faussés horisontaux pour la source
+	
+	public ArrayList<Fosse> procheSource(){
+		ArrayList<Fosse> fProchesSource = new ArrayList<Fosse>();
+		int x = this.plateau.getSourceX();
+		int y = this.plateau.getSourceY();
+		fProchesSource.add(plateau.getFosse(x,y,"H"));
+		fProchesSource.add(plateau.getFosse(x,y-1,"H"));
+		fProchesSource.add(plateau.getFosse(x-1,y+1,"V"));
+		fProchesSource.add(plateau.getFosse(x,y+1,"V"));
+		return fProchesSource;
+	}
+	
 	public void phase4() throws RemoteException {
 		System.out.println("Phase 4");
-		// TODO Auto-generated method stub
+	
+	//1st STEP : definir l'ordre des joueurs : 
+		ArrayList<Joueur> soudoyeurs = this.definirOrdre(); // Testée !
+	
+	//2ND STEP : faire jouer chaque joueur Ã  son tour : soudoiement/ passer / soutenir soudoiement
+		int jouer = soudoyerPasser();
+		
+		for (Joueur gamer : soudoyeurs){
+			if(jouer==2){
+				System.out.println("Tu passes ton tour ? Ok, au joueur suivant !");
+			}
+			else if(jouer==1){				
+				Fosse f = null;
+				
+				boolean irrigué =true; //le faussÃ© est dÃ©jÃ  irriguÃ© !
+				boolean irriguable = false; // le faussÃ© n'est pas collÃ© Ã  la source ni Ã  un canal du réseau
+				while(irrigué==true || irriguable==false){			
+					//demander les coordonnÃ©es du faussÃ© demandÃ©
+					while(f==null){
+						Scanner sc2 = new Scanner(System.in);
+						System.out.println("Entre la coordonnee y du fausse que tu veux irriguer");
+						int x =sc2.nextInt();
+						Scanner sc3 = new Scanner(System.in);
+						System.out.println("Entre la coordonnee x du fausse que tu veux irriguer");
+						int y =sc3.nextInt();
+						
+						Scanner sc4 = new Scanner(System.in);
+						System.out.println("Entre le sens du fausse que tu veux irriguer");
+						String sens =sc4.nextLine();
+						
+						//faire en sorte qu'au premier tour on prend compte que la 
+						for(Fosse faus : this.getPlateau().getListe_fosses()){
+							if (faus.getCoorX()==y && faus.getCoorY()==x && faus.getSens().equals(sens)){
+							//	System.out.println("Le Faussé a été trouvé." + f.getCoorX() + ","+f.getCoorY() + " "+f.getSens());
+							f=faus;
+							String sensString ="";
+							if (f.getSens()=="V"){
+								sensString="vertical";
+							}
+							else{
+								sensString="horisontal";
+							}
+								System.out.println("Le Faussé  " +  sensString+ " ("+ f.getCoorX() +","+f.getCoorY()+") a été trouvé. Son id est : " + f.getIdFosse() );
+								break;
+							}
+						}
+					}
+					if(f!=null){
+						//verification : le fausse f est il bon?
+						irrigué =f.getIrrigue();
+						if (this.tour==1){
+							ArrayList<Fosse> fProchesS = procheSource();
+							for(Fosse fausse : fProchesS){ //comparer si le faussé du gars appartient à un des faussés collés à la source.
+								if (fausse==f){
+								//	System.out.println("Ce faussé est proche de la source");
+									irriguable=true;
+									break;
+								}
+							}
+							if (irriguable==false){
+							//	System.out.println("Ce faussé n'est pas proche de la source ! Il ne peut être irrigué");
+							}
+						}else{
+							irriguable=this.plateau.getFossesIrrigueAdjacents(f);
+						}
+						break;
+					}
+					else{
+						System.out.println("Oups petite erreur.");
+					}
+				}
+				
+				//chercher si proposition existe, si oui quel est son indice dans liste soudoiements --Verifier l'emplacement de ce if ci dessous!  
+				if( irrigué ==  false && irriguable ==true){
+					System.out.println("ce faussé n'est pas irrigué et est irriguable");
+					boolean existe=false; // on cherche si une proposition de soudoiement existe.
+					int indiceExistante=0; //indice de a proposition					
+					
+					if(this.soudoiments.size()>0){
+
+						for(int i =0; i< this.soudoiments.size(); i++){
+							if(this.soudoiments.get(i).getF().equals(f) && this.soudoiments.get(i).isEtat()==true ){
+								existe=true;
+								System.out.println("Boucle for : Un soudoiement existe");
+								indiceExistante =i;
+								break;
+							}
+							else{
+								System.out.println("Boucle for : Aucun soudoiement n'existe");
+								break;
+							}
+						}
+					}
+					
+					if (existe==true){ // une proposition existe dÃ©jÃ , le joueur peut la soutenir.
+						System.out.println("Soutenir un soudoiement existant : ");
+						this.soudoiments.get(indiceExistante).getSupporters().add(gamer.soutenir(gamer.getId_joueur(),f));
+					}
+					else{//le joueur peut crÃ©er une proposition de soudoiement pour le faussÃ© f 
+						System.out.println("Aucun soudoiement n'existe pour ce faussé. Vous pouvez en créer un");
+						this.getSoudoiments().add(gamer.soudoyer(gamer.getId_joueur(), f));	//la proposition prend l'id du joueur?						
+					}
+				}else{
+					if (tour==1){
+						System.out.println("Ce faussé n'est pas proche de la source. Il n'est donc pas irriguable");	
+					}
+					else{
+						System.out.println("Ce faussé n'est pas proche du réseaux de canaux. Il n'est donc pas irriguable");
+					}
+				}
+			}
+		}
+		
+		//tout les joueurs ont soudoyer ou passer leurs tours: c'est au constructeur de dÃ©cider : 
+		ArrayList<PropositionSoudoiement> propositions = new ArrayList<PropositionSoudoiement>();
+		for (PropositionSoudoiement ps : this.soudoiments){
+			if (ps.isEtat()==true){
+				propositions.add(ps);
+			}
+		}
+		for (Joueur jo : this.liste_joueurs){
+			if (jo.getEst_constructeurdecanal()==true){
+				jo.decider(propositions);
+				break;
+			}
+		}
+		
+		//Fin phase 4 : on passe ttes les propositions de soudoiement Ã  Ã©tat passÃ© !
+		for (PropositionSoudoiement ps : this.soudoiments){
+			ps.setEtat(false);
+		}
+					
+	  // PASSAGE A LA PHASE SUIVANTE
 		this.phaseSuivante();
 	}
 
+
 	/**
 	  * Phasre 5:
-	  * En commençant par le joueur à gauche du constructeur de canal et en suivant le sens horaire :
-	  * Chaque joueur qui possède encore un canal bleu peut choisir de le placer maintenant
-	  * sur un double segment (de couleur sombre) non irrigué du plateau.
-	  * La phase s’arrête immédiatement si un joueur place un canal bleu (en clair, on ne peut
-	  * placer qu’un seul canal complémentaire par tour de jeu).
+	  * En commencÌ§ant par le joueur aÌ€ gauche du constructeur de canal et en suivant le sens horaire :
+	  * Chaque joueur qui posseÌ€de encore un canal bleu peut choisir de le placer maintenant
+	  * sur un double segment (de couleur sombre) non irrigueÌ� du plateau.
+	  * La phase sâ€™arreÌ‚te immeÌ�diatement si un joueur place un canal bleu (en clair, on ne peut
+	  * placer quâ€™un seul canal compleÌ�mentaire par tour de jeu).
 	  */
 	public void phase5() throws RemoteException {
-		System.out.println("==============\nPhase 5: Irrigation Complémentaire\n===============");
+		System.out.println("==============\nPhase 5: Irrigation ComplÃ©mentaire\n===============");
 		Scanner c=new Scanner(System.in);
 		boolean aPoser=false;
 		int i =0;
@@ -730,31 +1039,31 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 					boolean estBienpose = false;
 					while (estBienpose == false){
 					
-						//Coordonnée X
-						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Où voulez-vous poser votre canal bleu ? Saisissez la coordonnée x :");
+						//CoordonnÃ©e X
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" OÃ¹ voulez-vous poser votre canal bleu ? Saisissez la coordonnÃ©e x :");
 						int coordx=c.nextInt();
 						while ((coordx<0) || (coordx>4) )
 						{
-							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée x :");
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e x :");
 
 							coordx=c.nextInt();
 						}
 						
-						//Coordonnée Y
-						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+						//CoordonnÃ©e Y
+						System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e y :");
 
 						int coordy=c.nextInt();
 						if(coordx==4){
 							while ((coordy<0) || (coordy>2) )
 							{
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e y :");
 
 								coordy=c.nextInt();
 							}
 						}else{
 							while ((coordy<0) || (coordy>3) )
 							{
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnée y :");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Saisissez la coordonnÃ©e y :");
 
 								coordy=c.nextInt();
 							}
@@ -788,12 +1097,12 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 								estBienpose=true;
 								aPoser=true;
 								this.plateau.getFosse(coordx,coordy,sens).setIrrigue(true);
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a été posé.");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal a Ã©tÃ© posÃ©.");
 							}else{
-								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas être posé car il n'est pas relier à un autre canal.");
+								System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Votre canal ne peux pas Ãªtre posÃ© car il n'est pas relier Ã  un autre canal.");
 							}
 						}else{
-							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Ce fossé est déjà irrigué.");	
+							System.out.println("Joueur: "+this.liste_joueurs.get(i).getNom_joueur()+" rang "+ this.liste_joueurs.get(i).getRang()+" Ce fossÃ© est dÃ©jÃ  irriguÃ©.");	
 						}
 					}
 				}else{
@@ -816,10 +1125,10 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 
 	 /**
 	  * Phasre 6:
-	  * Pour chaque tuile de plantation qui n’est pas adjacente à un canal bleu :
-	  * Si la tuile est couverte d’au moins un travailleur agricole, retirer un travailleur
+	  * Pour chaque tuile de plantation qui nâ€™est pas adjacente Ã  un canal bleu :
+	  * Si la tuile est couverte dâ€™au moins un travailleur agricole, retirer un travailleur
 	  * agricole de la tuile.
-	  * Si la tuile n’est couverte d’aucun travailleur agricole, retourner la tuile côté désert.
+	  * Si la tuile nâ€™est couverte dâ€™aucun travailleur agricole, retourner la tuile cÃ´tÃ© dÃ©sert.
 	  */
 	public void phase6() throws RemoteException {
 		System.out.println("==============\nPhase 6: Secheresse\n===============");
@@ -828,7 +1137,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 			for(TuilePlantation t:j.getTuilesjoueur()){
 			
 					 ArrayList<Fosse> fosses=this.plateau.getFossesAdjacents(this.plateau.get(t.getSourceX(), t.getSourceY()));
-					 System.out.println("la tuile "+fosses.get(0).getSens()+" est bien arrosée");
+					 System.out.println("la tuile "+fosses.get(0).getSens()+" est bien arrosÃ©e");
 					 boolean res=false;
 					 	if(fosses.size()==0){
 					 		res=false;
@@ -836,7 +1145,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 					 	else
 					 	for(int i=0;i<2;i++){
 					 		if(fosses.get(i).getIrrigue()==true){
-					 			System.out.println("la tuile "+t.getPlante()+" est bien arrosée");
+					 			System.out.println("la tuile "+t.getPlante()+" est bien arrosÃ©e");
 					 			res=true;
 					 			break;
 					 		}	
@@ -885,7 +1194,7 @@ Collections.sort(this.liste_joueurs, Joueur.Comparators.RANG);
 					for(int i=0;i<j.getTuilesjoueur().size();i++){
 					int tag=j.getTuilesjoueur().get(i).getTag_presents();
 					int parcelle=j.getTuilesjoueur().size();
-					System.out.println("Le joueur "+j.getNom_joueur()+" à marqué: "+tag*parcelle);
+					System.out.println("Le joueur "+j.getNom_joueur()+" Ã  marquÃ©: "+tag*parcelle);
 					}
 				}
 			}
